@@ -55,6 +55,87 @@ td small{display:block;color:var(--mut);font-size:11px}
 .ok{background:var(--okb);color:var(--ok)}.warn{background:var(--warnb);color:var(--warn)}.bad{background:var(--badb);color:var(--bad)}
 .mini{height:6px;border-radius:99px;background:var(--soft);margin-top:5px;min-width:90px;overflow:hidden}.mini i{display:block;height:100%}
 .note{margin-top:16px;font-size:12px;color:var(--mut);padding:14px;border-radius:12px;background:var(--soft)}
+
+/* ===== SECTION PENYUSUN ===== */
+.author-section{
+  margin-top:26px;padding:0;border-radius:18px;overflow:hidden;
+  border:1px solid var(--line);background:var(--card);
+  box-shadow:0 4px 20px -12px rgba(0,0,0,.15);
+}
+.author-header{
+  padding:14px 20px;
+  background:linear-gradient(90deg,rgba(37,99,235,.10),rgba(14,165,233,.06));
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:10px;
+}
+.author-header .badge-icon{
+  width:26px;height:26px;border-radius:8px;
+  display:grid;place-items:center;font-size:13px;
+  background:linear-gradient(135deg,var(--acc),#0ea5e9);
+  color:#fff;flex-shrink:0;
+}
+.author-header .badge-title{
+  font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--acc);
+}
+.author-body{
+  padding:22px 20px;
+  display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;
+}
+.author-avatar{
+  width:90px;height:110px; /* Ukuran disesuaikan untuk foto formal */
+  border-radius:12px;flex-shrink:0;
+  display:grid;place-items:center;
+  font-size:26px;font-weight:800;letter-spacing:-1px;
+  color:#fff;
+  background:linear-gradient(135deg,#1d4ed8,#0ea5e9);
+  box-shadow:0 8px 24px -8px rgba(37,99,235,.5);
+  position:relative; overflow:hidden; /* Penting agar foto tidak keluar kotak */
+}
+.author-avatar img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  position:absolute;inset:0;
+}
+.author-info{min-width:0}
+.author-name{
+  font-size:18px;font-weight:800;letter-spacing:-.2px;
+  color:var(--txt);margin-bottom:2px;
+  line-height:1.25;
+}
+.author-nip{
+  font-size:13px; color:var(--mut); font-weight:600;
+  margin-bottom:8px; font-variant-numeric:tabular-nums;
+}
+.author-role{
+  font-size:13.5px;font-weight:600;color:var(--acc);
+  margin-bottom:4px;
+}
+.author-unit{
+  font-size:12.5px;color:var(--mut);line-height:1.5;
+}
+.author-unit strong{color:var(--txt);font-weight:700}
+.author-desc{
+  grid-column:1/-1;
+  margin-top:6px;padding-top:16px;
+  border-top:1px dashed var(--line);
+  font-size:12.5px;color:var(--mut);line-height:1.7;
+}
+.author-desc b{color:var(--txt)}
+.author-tag{
+  display:inline-block;margin-top:10px;padding:4px 10px;border-radius:99px;
+  font-size:11px;font-weight:700;
+  background:var(--soft);color:var(--mut);
+  border:1px solid var(--line);
+}
+
+@media (max-width:600px){
+  .author-body{grid-template-columns:1fr;text-align:center;gap:14px}
+  .author-avatar{width:80px;height:100px;margin:0 auto;border-radius:10px}
+  .author-name{font-size:16px}
+  .author-nip{font-size:12px}
+  .author-role{font-size:12.5px}
+  .author-unit{font-size:11.5px}
+}
 </style>
 </head>
 <body><div class="wrap">
@@ -87,6 +168,40 @@ td small{display:block;color:var(--mut);font-size:11px}
 <div class="tw"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table></div>
 
 <div class="note"><b>Catatan.</b> %Keuangan = Realisasi ÷ Pagu × 100. Target 75% adalah patokan linier (9 dari 12 bulan). %Fisik diambil apa adanya dari laporan; rata-rata fisik dihitung sederhana (tidak dibobot pagu). Kecamatan Tulungagung belum punya data fisik (—). Kecamatan Tanggunggunung tercatat fisik 0,77%, kemungkinan salah input, mohon dicek.</div>
+
+<!-- ================= SECTION PENYUSUN ================= -->
+<section class="author-section" aria-label="Informasi penyusun laporan">
+  <div class="author-header">
+    <div class="badge-icon">👤</div>
+    <div class="badge-title">Laporan Kinerja · Penyusun Dashboard</div>
+  </div>
+  <div class="author-body">
+    
+    <!-- Avatar Foto dengan Fallback Inisial -->
+    <div class="author-avatar">
+      <img src="foto-nanang.jpg" alt="Foto Nanang Agus Subekti" 
+           onerror="this.style.display='none'; this.parentElement.innerText='NAS';">
+    </div>
+    
+    <div class="author-info">
+      <div class="author-name">NANANG AGUS SUBEKTI</div>
+      <div class="author-nip">NIP. 198508282009011003</div>
+      <div class="author-role">Penelaah Teknis Kebijakan</div>
+      <div class="author-unit">
+        <strong>Bagian Administrasi Pembangunan</strong><br>
+        Sekretariat Daerah Kabupaten Tulungagung
+      </div>
+    </div>
+    <div class="author-desc">
+      Dashboard <b>Realisasi APBD Kabupaten Tulungagung Tahun Anggaran 2026</b> ini disusun sebagai bagian dari <b>laporan kinerja</b> yang bersangkutan dalam melaksanakan tugas dan fungsi sebagai <b>Penelaah Teknis Kebijakan</b> pada <b>Bagian Administrasi Pembangunan Setda Kabupaten Tulungagung</b>.
+      <br><br>
+      Penyajian data dimaksudkan untuk memberikan gambaran capaian realisasi fisik dan keuangan seluruh OPD di lingkungan Pemerintah Kabupaten Tulungagung sampai dengan <b>September 2026</b>, sekaligus sebagai bahan evaluasi dan pengambilan keputusan dalam rangka percepatan penyerapan anggaran serta peningkatan kinerja pelaksanaan program dan kegiatan APBD.
+      <div class="author-tag">📄 Dokumen internal · Bukan untuk disebarluaskan tanpa izin</div>
+    </div>
+  </div>
+</section>
+<!-- ================= /SECTION PENYUSUN ================= -->
+
 </div>
 
 <script>
