@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grafik Tren Pagu per OPD — APBD Kab. Tulungagung 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#0a0f1a; --card:#111a2c; --line:rgba(120,155,215,.12);
+  --txt:#e8eefb; --mut:#7f94b8;
+  --sky:#38bdf8; --cyan:#22d3ee; --grn:#34d399; --amb:#fbbf24;
+  --red:#f87171; --vio:#a78bfa; --gold:#ffd45e; --pink:#f472b6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);
+  background-image:
+    radial-gradient(900px 500px at 10% 0%,rgba(56,189,248,.10),transparent 55%),
+    radial-gradient(800px 500px at 95% 5%,rgba(167,139,250,.09),transparent 55%);
+  background-attachment:fixed;
+  color:var(--txt); padding:18px 20px 60px; min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== HEADER ===== */
+.header{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:18px 22px;margin-bottom:16px;border-radius:16px;
+  background:linear-gradient(120deg,rgba(25,40,70,.72),rgba(13,21,36,.68));
+  border:1px solid var(--line);
+  box-shadow:0 20px 50px -25px rgba(0,0,0,.9);
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-logo{
+  width:48px;height:48px;border-radius:13px;display:grid;place-items:center;
+  font-weight:800;font-size:15px;color:#04121f;
+  background:linear-gradient(135deg,var(--sky),var(--cyan));
+  box-shadow:0 0 24px rgba(56,189,248,.4);
+}
+.brand h1{font-size:18px;font-weight:800;letter-spacing:-.3px}
+.brand p{font-size:12.5px;color:var(--mut);margin-top:4px}
+.badge-periode{
+  display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;
+  background:rgba(56,189,248,.10);border:1px solid rgba(56,189,248,.28);
+  color:var(--sky);font-size:12.5px;font-weight:700;
+}
+.badge-periode .dot{width:8px;height:8px;border-radius:50%;background:var(--sky);
+  box-shadow:0 0 10px var(--sky);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ===== TOOLBAR ===== */
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.search{
+  display:flex;align-items:center;gap:8px;height:42px;padding:0 14px;
+  border-radius:11px;background:var(--card);border:1px solid var(--line);
+  flex:1;max-width:380px;min-width:220px;
+}
+.search span{opacity:.5;font-size:14px}
+.search input{
+  flex:1;background:transparent;border:0;outline:0;color:var(--txt);
+  font-size:13px;font-family:inherit;
+}
+.search input::placeholder{color:#5a6e8f}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chipbtn{
+  padding:8px 14px;border-radius:9px;font-size:12px;font-weight:700;
+  background:var(--card);border:1px solid var(--line);color:var(--mut);
+  cursor:pointer;transition:.2s;font-family:inherit;
+}
+.chipbtn:hover{color:var(--txt);border-color:rgba(56,189,248,.4)}
+.chipbtn.on{background:rgba(56,189,248,.15);color:var(--sky);border-color:rgba(56,189,248,.5)}
+.spacer{flex:1}
+select.sortsel{
+  height:42px;padding:0 14px;border-radius:11px;font-size:12.5px;font-weight:600;font-family:inherit;
+  background:var(--card);border:1px solid var(--line);color:var(--txt);cursor:pointer;outline:0;
+}
+select.sortsel option{background:#0d1526}
+.count{
+  padding:9px 14px;border-radius:10px;font-size:12px;font-weight:700;
+  color:var(--cyan);background:rgba(34,211,238,.08);
+  border:1px solid rgba(34,211,238,.25);white-space:nowrap;
+}
+
+/* ===== SUMMARY BAR ===== */
+.summary{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;margin-bottom:18px;
+}
+.sum{
+  padding:14px 16px;border-radius:13px;background:var(--card);
+  border:1px solid var(--line);border-left:3px solid var(--c,var(--sky));
+}
+.sum .lbl{font-size:10.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--mut)}
+.sum .val{font-size:18px;font-weight:800;letter-spacing:-.4px;margin-top:6px;font-variant-numeric:tabular-nums}
+.sum .sub{font-size:11px;color:var(--mut);margin-top:4px}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:14px;
+}
+
+/* ===== CARD per OPD ===== */
+.opdcard{
+  position:relative;overflow:hidden;
+  border-radius:15px;
+  background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:0 16px 35px -28px rgba(0,0,0,.95);
+  transition:transform .25s,border-color .25s;
+  display:flex;flex-direction:column;
+}
+.opdcard:hover{transform:translateY(-3px);border-color:rgba(56,189,248,.35)}
+.opdcard::before{
+  content:'';position:absolute;left:0;top:0;right:0;height:3px;
+  background:var(--accent,var(--sky));
+}
+.opdcard.up{--accent:linear-gradient(90deg,#34d399,#22d3ee)}
+.opdcard.down{--accent:linear-gradient(90deg,#f87171,#fb923c)}
+.opdcard.flat{--accent:linear-gradient(90deg,#7f94b8,#a78bfa)}
+
+.opdcard .oc-head{
+  padding:14px 16px 10px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+}
+.oc-title{
+  flex:1;min-width:0;
+}
+.oc-name{
+  font-size:13px;font-weight:700;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  margin-bottom:6px;
+}
+.oc-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pill{
+  display:inline-block;padding:2.5px 8px;border-radius:6px;
+  font-size:9.5px;font-weight:800;letter-spacing:.3px;
+}
+.pill.Dinas{background:rgba(56,189,248,.13);color:var(--sky)}
+.pill.Badan{background:rgba(167,139,250,.13);color:var(--vio)}
+.pill.Sekretariat{background:rgba(251,191,36,.13);color:var(--amb)}
+.pill.Kecamatan{background:rgba(52,211,153,.13);color:var(--grn)}
+
+.delta-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:4px 9px;border-radius:7px;
+  font-size:11px;font-weight:800;letter-spacing:-.2px;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.delta-badge.up{background:rgba(52,211,153,.14);color:var(--grn)}
+.delta-badge.down{background:rgba(248,113,113,.14);color:var(--red)}
+.delta-badge.flat{background:rgba(120,155,215,.12);color:var(--mut)}
+
+.oc-chart{
+  position:relative;height:130px;
+  padding:0 8px;
+}
+.oc-foot{
+  padding:8px 16px 12px;
+  display:flex;justify-content:space-between;gap:10px;
+  border-top:1px solid rgba(120,155,215,.08);
+  margin-top:4px;
+}
+.foot-item{
+  flex:1;
+  font-size:10.5px;color:var(--mut);
+}
+.foot-item .v{
+  display:block;font-size:12px;font-weight:800;color:var(--txt);
+  font-variant-numeric:tabular-nums;margin-top:3px;
+}
+
+/* empty state */
+.empty{
+  grid-column:1/-1;
+  padding:60px 20px;text-align:center;
+  background:var(--card);border:1px dashed var(--line);border-radius:15px;
+  color:var(--mut);
+}
+.empty .ico{font-size:36px;opacity:.4;margin-bottom:12px}
+.empty p{font-size:13px}
+
+/* scrollbar */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(120,155,215,.22);border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:rgba(120,155,215,.4)}
+
+@media(max-width:860px){
+  .grid{grid-template-columns:1fr}
+  body{padding:12px 12px 50px}
+  .brand h1{font-size:15px}
+  .oc-chart{height:120px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="brand-logo">TA</div>
+    <div>
+      <h1>Grafik Tren Pagu Anggaran per OPD</h1>
+      <p>Kabupaten Tulungagung · Januari – September 2026</p>
+    </div>
+  </div>
+  <div class="badge-periode">
+    <span class="dot"></span>
+    <span id="badgeCount">53 OPD</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="search">
+    <span>🔍</span>
+    <input id="q" type="text" placeholder="Cari nama OPD...">
+  </div>
+  <div class="chips" id="chips">
+    <button class="chipbtn on" data-k="all">Semua</button>
+    <button class="chipbtn" data-k="Dinas">Dinas</button>
+    <button class="chipbtn" data-k="Badan">Badan</button>
+    <button class="chipbtn" data-k="Sekretariat">Sekretariat</button>
+    <button class="chipbtn" data-k="Kecamatan">Kecamatan</button>
+  </div>
+  <div class="spacer"></div>
+  <select class="sortsel" id="sortSel">
+    <option value="delta_desc">Urut: Kenaikan Terbesar</option>
+    <option value="delta_asc">Urut: Penurunan Terbesar</option>
+    <option value="pct_desc">Urut: % Kenaikan Tertinggi</option>
+    <option value="pct_asc">Urut: % Penurunan Terbesar</option>
+    <option value="pagu_desc">Urut: Pagu September Terbesar</option>
+    <option value="pagu_asc">Urut: Pagu September Terkecil</option>
+    <option value="nama">Urut: Nama A–Z</option>
+  </select>
+  <div class="count" id="count">53 OPD</div>
+</div>
+
+<!-- Ringkasan -->
+<div class="summary" id="summary"></div>
+
+<!-- Grid kartu per OPD -->
+<div class="grid" id="grid"></div>
+
+<script>
+/* ============================================================
+   DATA PAGU ANGGARAN 2026 — Kab. Tulungagung
+   Nilai dalam Rupiah. Urutan bulan: Jan → Sep
+   ============================================================ */
+const MONTHS = ['jan','feb','mar','apr','mei','jun','jul','agu','sep'];
+const MONTH_LABELS = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep'];
+
+const DATA = [
+ {nama:"Sekretariat Daerah",                                      kat:"Sekretariat",
+  jan:82963992650, feb:83188143530, mar:94642049790, apr:94642049790, mei:94642049790,
+  jun:96583049790, jul:96583049790, agu:96583049790, sep:96583049790},
+
+ {nama:"Sekretariat Dewan Perwakilan Rakyat Daerah",              kat:"Sekretariat",
+  jan:274680948675, feb:89192632675, mar:89832585875, apr:89832585875, mei:89832585875,
+  jun:90612554275, jul:90612554275, agu:90612554275, sep:90612554275},
+
+ {nama:"Dinas Pekerjaan Umum dan Penataan Ruang",                 kat:"Dinas",
+  jan:386081000252, feb:410853267084, mar:410853267084, apr:410853267084, mei:410853267084,
+  jun:349722633104, jul:349722633104, agu:349722633104, sep:349722633104},
+
+ {nama:"Dinas Perumahan dan Kawasan Permukiman",                  kat:"Dinas",
+  jan:27026800957, feb:27026800957, mar:28208697847, apr:28208697847, mei:28208697847,
+  jun:28807697847, jul:28807697847, agu:28807697847, sep:28807697847},
+
+ {nama:"Dinas Kesehatan",                                         kat:"Dinas",
+  jan:122539368527, feb:797871124038, mar:851803081708, apr:852002536708, mei:852002536708,
+  jun:859324853661, jul:859324853661, agu:859324853661, sep:859324853661},
+
+ {nama:"Dinas Pendidikan",                                        kat:"Dinas",
+  jan:867933369645, feb:867933369645, mar:890387214844, apr:890556855194, mei:893609140695,
+  jun:894637537943, jul:894637537943, agu:899574391943, sep:900554703368},
+
+ {nama:"Dinas Kependudukan dan Pencatatan Sipil",                 kat:"Dinas",
+  jan:10404301249, feb:10644688857, mar:10644688857, apr:10644688857, mei:10644688857,
+  jun:10968657857, jul:10968657857, agu:10968657857, sep:10968657857},
+
+ {nama:"Dinas Perindustrian dan Perdagangan",                     kat:"Dinas",
+  jan:25172487735, feb:26996126215, mar:26996126215, apr:26996126215, mei:26996126215,
+  jun:26996126215, jul:26996126215, agu:26996126215, sep:26996126215},
+
+ {nama:"Dinas Kebudayaan dan Pariwisata",                         kat:"Dinas",
+  jan:15214364229, feb:15257572701, mar:15257572701, apr:15257572701, mei:15257572701,
+  jun:15257572701, jul:15257572701, agu:15257572701, sep:15257572701},
+
+ {nama:"Dinas Perhubungan",                                       kat:"Dinas",
+  jan:47768593401, feb:47768593401, mar:48523878433, apr:48523878433, mei:48523878433,
+  jun:48523878433, jul:48523878433, agu:48523878433, sep:48523878433},
+
+ {nama:"Dinas Komunikasi dan Informatika",                        kat:"Dinas",
+  jan:13792380031, feb:13792380031, mar:13854352447, apr:13854352447, mei:13854352447,
+  jun:13854352447, jul:13854352447, agu:13926438407, sep:13926438407},
+
+ {nama:"Dinas Tenaga Kerja dan Transmigrasi",                     kat:"Dinas",
+  jan:10394144337, feb:10394144337, mar:10535864337, apr:10535864337, mei:10535864337,
+  jun:10536359337, jul:10536359337, agu:10536359337, sep:10536359337},
+
+ {nama:"Dinas Perikanan",                                         kat:"Dinas",
+  jan:8276075615, feb:8276075615, mar:8472072663, apr:8472072663, mei:8472072663,
+  jun:8472072663, jul:8472072663, agu:8472072663, sep:8472072663},
+
+ {nama:"Dinas Pertanian",                                         kat:"Dinas",
+  jan:39416522580, feb:38674895964, mar:38674895964, apr:38674895964, mei:38674895964,
+  jun:39299895964, jul:39299895964, agu:39299895964, sep:39299895964},
+
+ {nama:"Dinas Peternakan dan Kesehatan Hewan",                    kat:"Dinas",
+  jan:15075923527, feb:15075923527, mar:14604115359, apr:14604115359, mei:14604115359,
+  jun:14649115359, jul:14649115359, agu:14649115359, sep:14649115359},
+
+ {nama:"Dinas Koperasi dan Usaha Mikro",                          kat:"Dinas",
+  jan:8797751012, feb:9028638164, mar:9028638164, apr:9028638164, mei:9028638164,
+  jun:9028638164, jul:9028638164, agu:9028638164, sep:9028638164},
+
+ {nama:"Dinas Sosial",                                            kat:"Dinas",
+  jan:11185742531, feb:11185742531, mar:11656899683, apr:11656899683, mei:11656899683,
+  jun:12013899683, jul:12013899683, agu:12013899683, sep:12013899683},
+
+ {nama:"Dinas Ketahanan Pangan",                                  kat:"Dinas",
+  jan:7676806668, feb:7984928852, mar:7984928852, apr:7984928852, mei:7984928852,
+  jun:7984928852, jul:7984928852, agu:7984928852, sep:7984928852},
+
+ {nama:"Dinas Pemberdayaan Masyarakat dan Desa",                  kat:"Dinas",
+  jan:11351240609, feb:11351240609, mar:11587795609, apr:11742575237, mei:11742575237,
+  jun:14353632137, jul:14353632137, agu:14353632137, sep:14353632137},
+
+ {nama:"Dinas Lingkungan Hidup",                                  kat:"Dinas",
+  jan:31223058572, feb:32941480676, mar:32941444676, apr:32941444676, mei:32941444676,
+  jun:36417210016, jul:36417210016, agu:36417210016, sep:36417210016},
+
+ {nama:"Dinas Perpustakaan dan Kearsipan",                        kat:"Dinas",
+  jan:5967873310, feb:6069095470, mar:6069095470, apr:6069095470, mei:6069095470,
+  jun:6075305470, jul:6075305470, agu:6075305470, sep:6075305470},
+
+ {nama:"Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu",  kat:"Dinas",
+  jan:5523523358, feb:5523523358, mar:5735180142, apr:5735180142, mei:5735180142,
+  jun:5809656142, jul:5809656142, agu:5809656142, sep:5809656142},
+
+ {nama:"Satuan Polisi Pamong Praja",                              kat:"Dinas",
+  jan:14548080157, feb:14648516365, mar:14648516365, apr:14648516365, mei:14648516365,
+  jun:14648516365, jul:14648516365, agu:14648516365, sep:14648516365},
+
+ {nama:"Badan Perencanaan Pembangunan Daerah",                    kat:"Badan",
+  jan:16332746929, feb:16332746929, mar:16473671361, apr:16473671361, mei:16473671361,
+  jun:16773671361, jul:16773671361, agu:16773671361, sep:16773671361},
+
+ {nama:"Inspektorat Daerah",                                      kat:"Badan",
+  jan:17242587892, feb:17411576756, mar:17411576756, apr:17411576756, mei:17411576756,
+  jun:17411576756, jul:17411576756, agu:17411576756, sep:17411576756},
+
+ {nama:"Badan Kepegawaian dan Pengembangan Sumber Daya Manusia",  kat:"Badan",
+  jan:10701268682, feb:10701268682, mar:12361341618, apr:12361341618, mei:12361341618,
+  jun:12461341618, jul:12461341618, agu:12461341618, sep:12461341618},
+
+ {nama:"Badan Pengelolaan Keuangan dan Aset Daerah",              kat:"Badan",
+  jan:459162944563, feb:459162944563, mar:439208718995, apr:439208718995, mei:439208718995,
+  jun:489761450647, jul:489761450647, agu:489761450647, sep:489761450647},
+
+ {nama:"Badan Pendapatan Daerah",                                 kat:"Badan",
+  jan:33571327840, feb:34588998608, mar:34588998608, apr:34588998608, mei:34588998608,
+  jun:34588998608, jul:34588998608, agu:34588998608, sep:34588998608},
+
+ {nama:"Kecamatan Tulungagung",                                   kat:"Kecamatan",
+  jan:27092570922, feb:27092570922, mar:27395551434, apr:27395551434, mei:27224470458,
+  jun:27563235858, jul:27563235858, agu:27558235858, sep:27563235858},
+
+ {nama:"Kecamatan Kedungwaru",                                    kat:"Kecamatan",
+  jan:3563886306, feb:3563886306, mar:3814788515, apr:3814788515, mei:3814788515,
+  jun:3821778515, jul:3821778515, agu:3821778515, sep:3821778515},
+
+ {nama:"Kecamatan Boyolangu",                                     kat:"Kecamatan",
+  jan:3122958262, feb:3306416462, mar:3306416462, apr:3306416462, mei:3306416462,
+  jun:3306416462, jul:3306416462, agu:3306416462, sep:3306416462},
+
+ {nama:"Kecamatan Ngantru",                                       kat:"Kecamatan",
+  jan:3334983377, feb:3334983377, mar:3390579993, apr:3390579993, mei:3390579993,
+  jun:3394959993, jul:3394959993, agu:3394959993, sep:3394959993},
+
+ {nama:"Kecamatan Sumbergempol",                                  kat:"Kecamatan",
+  jan:3505838877, feb:3505838877, mar:3574883749, apr:3574883749, mei:3574883749,
+  jun:3574883749, jul:3574883749, agu:3574883749, sep:3574883749},
+
+ {nama:"Kecamatan Ngunut",                                        kat:"Kecamatan",
+  jan:3702117941, feb:3587117941, mar:3822401957, apr:3822401957, mei:3822401957,
+  jun:3822401957, jul:3822401957, agu:3822401957, sep:3822401957},
+
+ {nama:"Kecamatan Rejotangan",                                    kat:"Kecamatan",
+  jan:3419342923, feb:3419342923, mar:3419342923, apr:3473855771, mei:3473855771,
+  jun:3473855771, jul:3473855771, agu:3473855771, sep:3473855771},
+
+ {nama:"Kecamatan Pucanglaban",                                   kat:"Kecamatan",
+  jan:3068936067, feb:3068936067, mar:3145254067, apr:3145254067, mei:3145254067,
+  jun:3147304067, jul:3147304067, agu:3147304067, sep:3147304067},
+
+ {nama:"Kecamatan Kalidawir",                                     kat:"Kecamatan",
+  jan:3566617915, feb:3566617915, mar:3668666435, apr:3668666435, mei:3668666435,
+  jun:3673666435, jul:3673666435, agu:3673666435, sep:3673666435},
+
+ {nama:"Kecamatan Tanggunggunung",                                kat:"Kecamatan",
+  jan:3841291570, feb:3854291570, mar:3854291570, apr:3854291570, mei:3918443570,
+  jun:3918443570, jul:3918443570, agu:3918443570, sep:3918443570},
+
+ {nama:"Kecamatan Besuki",                                        kat:"Kecamatan",
+  jan:3491485743, feb:3577364151, mar:3577364151, apr:3577364151, mei:3577364151,
+  jun:3577364151, jul:3577364151, agu:3577364151, sep:3577364151},
+
+ {nama:"Kecamatan Campurdarat",                                   kat:"Kecamatan",
+  jan:3000427457, feb:3000427457, mar:3110352957, apr:3110352957, mei:3110352957,
+  jun:3110352957, jul:3110352957, agu:3110352957, sep:3110352957},
+
+ {nama:"Kecamatan Pakel",                                         kat:"Kecamatan",
+  jan:3832912919, feb:3832912919, mar:3888343983, apr:3888343983, mei:3888343983,
+  jun:3888343983, jul:3888343983, agu:3888343983, sep:3888343983},
+
+ {nama:"Kecamatan Bandung",                                       kat:"Kecamatan",
+  jan:3994672789, feb:4051289837, mar:4051289837, apr:4051289837, mei:4051289837,
+  jun:4051289837, jul:4051289837, agu:4051289837, sep:4051289837},
+
+ {nama:"Kecamatan Gondang",                                       kat:"Kecamatan",
+  jan:4252761203, feb:4252761203, mar:4340353456, apr:4340353456, mei:4340353456,
+  jun:4344603456, jul:4344603456, agu:4344603456, sep:4344603456},
+
+ {nama:"Kecamatan Kauman",                                        kat:"Kecamatan",
+  jan:3998824943, feb:3998824943, mar:4063324279, apr:4063324279, mei:4063324279,
+  jun:4063324279, jul:4063324279, agu:4063324279, sep:4063324279},
+
+ {nama:"Kecamatan Pagerwojo",                                     kat:"Kecamatan",
+  jan:3718588857, feb:3467796307, mar:3625776739, apr:3625776739, mei:3625776739,
+  jun:3625776739, jul:3625776739, agu:3625776739, sep:3625776739},
+
+ {nama:"Kecamatan Karangrejo",                                    kat:"Kecamatan",
+  jan:3606574625, feb:3678577493, mar:3678577493, apr:3678577493, mei:3678577493,
+  jun:3678577493, jul:3678577493, agu:3678577493, sep:3678577493},
+
+ {nama:"Kecamatan Sendang",                                       kat:"Kecamatan",
+  jan:2994025128, feb:2994025128, mar:3036209560, apr:3036209560, mei:3036209560,
+  jun:3036209560, jul:3036209560, agu:3036209560, sep:3036209560},
+
+ {nama:"Badan Kesatuan Bangsa dan Politik",                       kat:"Badan",
+  jan:16318253960, feb:16318253960, mar:16603738360, apr:16603738360, mei:16603738360,
+  jun:16603738360, jul:16603738360, agu:16603738360, sep:16603738360},
+
+ {nama:"Badan Penanggulangan Bencana Daerah",                     kat:"Badan",
+  jan:6911773623, feb:6911773623, mar:7296463743, apr:7296463743, mei:7296463743,
+  jun:7296463743, jul:7296463743, agu:7296463743, sep:7296463743},
+
+ {nama:"Dinas Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak", kat:"Dinas",
+  jan:17008575065, feb:17008575065, mar:17303378777, apr:17303378777, mei:17303378777,
+  jun:17303378777, jul:17303378777, agu:17303378777, sep:17303378777},
+
+ {nama:"Dinas Pemadam Kebakaran dan Penyelamatan",                kat:"Dinas",
+  jan:7746123257, feb:7928889905, mar:7928889905, apr:7928889905, mei:7928889905,
+  jun:8038639905, jul:8038639905, agu:8038639905, sep:8038639905},
+
+ {nama:"Dinas Pemuda dan Olahraga",                               kat:"Dinas",
+  jan:16778748601, feb:17256150389, mar:17256150389, apr:17256150389, mei:17256150389,
+  jun:17487378117, jul:17487378117, agu:17487378117, sep:17487378117},
+
+ {nama:"Badan Riset dan Inovasi Daerah",                          kat:"Badan",
+  jan:3755903953, feb:3755903953, mar:3830791513, apr:3830791513, mei:3830791513,
+  jun:3905791513, jul:3905791513, agu:3905791513, sep:3905791513}
+];
+
+/* ================= UTIL ================= */
+const $ = s => document.querySelector(s);
+const fmt = n => new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(Math.round(n));
+const rp = n => 'Rp ' + fmt(n);
+const shortRp = n => {
+  const a = Math.abs(n);
+  const sign = n<0 ? '-' : '';
+  if(a>=1e12) return sign+'Rp '+(a/1e12).toFixed(2).replace('.',',')+' T';
+  if(a>=1e9)  return sign+'Rp '+(a/1e9).toFixed(2).replace('.',',')+' M';
+  if(a>=1e6)  return sign+'Rp '+(a/1e6).toFixed(1).replace('.',',')+' Jt';
+  return sign+'Rp '+fmt(a);
+};
+const pct = n => (n).toFixed(2).replace('.',',')+'%';
+const trunc = (s,n)=> s.length>n ? s.slice(0,n-1)+'…' : s;
+const shortName = n => n.replace(/^Dinas /,'').replace(/^Badan /,'').replace(/^Kecamatan /,'Kec. ').replace(/ dan /g,' & ');
+
+/* enrich */
+DATA.forEach(d => {
+  d.delta = d.sep - d.jan;
+  d.pct   = d.jan ? d.delta/d.jan*100 : 0;
+  d.min   = Math.min(...MONTHS.map(m=>d[m]));
+  d.max   = Math.max(...MONTHS.map(m=>d[m]));
+});
+
+/* ================= STATE ================= */
+const state = { kat:'all', q:'', sort:'delta_desc' };
+const chartInstances = {};
+
+/* ================= SUMMARY ================= */
+function renderSummary(rows){
+  const totJan = rows.reduce((s,d)=>s+d.jan,0);
+  const totSep = rows.reduce((s,d)=>s+d.sep,0);
+  const delta  = totSep - totJan;
+  const p      = totJan ? delta/totJan*100 : 0;
+
+  const naik  = rows.filter(d=>d.delta>0).length;
+  const turun = rows.filter(d=>d.delta<0).length;
+  const tetap = rows.filter(d=>d.delta===0).length;
+
+  $('#summary').innerHTML = `
+    <div class="sum" style="--c:var(--sky)">
+      <div class="lbl">Total Pagu Januari</div>
+      <div class="val">${shortRp(totJan)}</div>
+      <div class="sub">${rows.length} OPD</div>
+    </div>
+    <div class="sum" style="--c:var(--cyan)">
+      <div class="lbl">Total Pagu September</div>
+      <div class="val">${shortRp(totSep)}</div>
+      <div class="sub">${rows.length} OPD</div>
+    </div>
+    <div class="sum" style="--c:${delta>=0?'var(--grn)':'var(--red)'}">
+      <div class="lbl">Selisih Jan → Sep</div>
+      <div class="val" style="color:${delta>=0?'var(--grn)':'var(--red)'}">
+        ${delta>=0?'+':''}${shortRp(delta)}
+      </div>
+      <div class="sub">${delta>=0?'+':''}${pct(p)} dari Januari</div>
+    </div>
+    <div class="sum" style="--c:var(--grn)">
+      <div class="lbl">OPD Naik / Turun / Tetap</div>
+      <div class="val">${naik} <span style="color:var(--mut);font-weight:600">/</span> ${turun} <span style="color:var(--mut);font-weight:600">/</span> ${tetap}</div>
+      <div class="sub">dari ${rows.length} OPD</div>
+    </div>
+  `;
+}
+
+/* ================= GRID ================= */
+function sortRows(rows){
+  const s = state.sort;
+  const arr = [...rows];
+  if(s==='delta_desc') return arr.sort((a,b)=>b.delta-a.delta);
+  if(s==='delta_asc')  return arr.sort((a,b)=>a.delta-b.delta);
+  if(s==='pct_desc')   return arr.sort((a,b)=>b.pct-a.pct);
+  if(s==='pct_asc')    return arr.sort((a,b)=>a.pct-b.pct);
+  if(s==='pagu_desc')  return arr.sort((a,b)=>b.sep-a.sep);
+  if(s==='pagu_asc')   return arr.sort((a,b)=>a.sep-b.sep);
+  if(s==='nama')       return arr.sort((a,b)=>a.nama.localeCompare(b.nama,'id'));
+  return arr;
+}
+
+const getRows = () => {
+  const q = state.q.trim().toLowerCase();
+  return DATA.filter(d =>
+    (state.kat==='all' || d.kat===state.kat) &&
+    (!q || d.nama.toLowerCase().includes(q))
+  );
+};
+
+function renderGrid(){
+  const rows = sortRows(getRows());
+  $('#count').textContent = rows.length + ' OPD';
+  $('#badgeCount').textContent = rows.length + ' OPD';
+
+  const grid = $('#grid');
+
+  /* hancurkan chart lama */
+  Object.keys(chartInstances).forEach(k=>{ 
+    try { chartInstances[k].destroy(); } catch(e){} 
+    delete chartInstances[k];
+  });
+
+  if(!rows.length){
+    grid.innerHTML = `
+      <div class="empty">
+        <div class="ico">🔍</div>
+        <p>Tidak ada OPD yang cocok dengan filter.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = rows.map((d,i)=>{
+    const cls = d.delta>0 ? 'up' : (d.delta<0 ? 'down' : 'flat');
+    const sign = d.delta>0 ? '+' : '';
+    const deltaText = sign + shortRp(d.delta);
+    const pctText = (d.pct>=0?'+':'')+pct(d.pct);
+    const trendIcon = d.delta>0 ? '▲' : (d.delta<0 ? '▼' : '■');
+    const canvasId = `c_${i}`;
+
+    return `
+      <div class="opdcard ${cls}">
+        <div class="oc-head">
+          <div class="oc-title">
+            <div class="oc-name">${d.nama}</div>
+            <div class="oc-meta">
+              <span class="pill ${d.kat}">${d.kat}</span>
+            </div>
+          </div>
+          <span class="delta-badge ${cls}" title="Perubahan Januari → September">
+            ${trendIcon} ${deltaText}
+          </span>
+        </div>
+        <div class="oc-chart"><canvas id="${canvasId}"></canvas></div>
+        <div class="oc-foot">
+          <div class="foot-item">
+            Januari
+            <span class="v">${shortRp(d.jan)}</span>
+          </div>
+          <div class="foot-item" style="text-align:center">
+            Relatif
+            <span class="v" style="color:${d.delta>0?'var(--grn)':(d.delta<0?'var(--red)':'var(--mut)')}">${pctText}</span>
+          </div>
+          <div class="foot-item" style="text-align:right">
+            September
+            <span class="v">${shortRp(d.sep)}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  /* render chart setelah DOM ada */
+  requestAnimationFrame(()=>{
+    rows.forEach((d,i)=>{
+      const canvas = document.getElementById(`c_${i}`);
+      if(!canvas) return;
+
+      const pts = MONTHS.map(m => d[m]);
+      const minV = Math.min(...pts);
+      const maxV = Math.max(...pts);
+      const pad = (maxV - minV) * 0.18 || maxV * 0.03;
+
+      /* warna garis berdasarkan tren */
+      const lineColor = d.delta>0 ? '#34d399' : (d.delta<0 ? '#f87171' : '#a78bfa');
+      const fillTop = d.delta>0 ? 'rgba(52,211,153,.22)' : (d.delta<0 ? 'rgba(248,113,113,.22)' : 'rgba(167,139,250,.22)');
+      const fillBot = d.delta>0 ? 'rgba(52,211,153,.01)' : (d.delta<0 ? 'rgba(248,113,113,.01)' : 'rgba(167,139,250,.01)');
+
+      const ctx = canvas.getContext('2d');
+      const grad = ctx.createLinearGradient(0, 0, 0, canvas.parentElement.offsetHeight || 130);
+      grad.addColorStop(0, fillTop);
+      grad.addColorStop(1, fillBot);
+
+      /* kecilkan label sumbu untuk chart mini */
+      const isLarge = maxV >= 1e9;
+      const tickFontSize = 9;
+
+      chartInstances[`c_${i}`] = new Chart(canvas,{
+        type:'line',
+        data:{
+          labels: MONTH_LABELS,
+          datasets:[{
+            data: pts,
+            borderColor: lineColor,
+            backgroundColor: grad,
+            borderWidth: 2.2,
+            fill: true,
+            tension: 0.35,
+            pointRadius: 2.5,
+            pointHoverRadius: 5,
+            pointBackgroundColor: '#0d1524',
+            pointBorderColor: lineColor,
+            pointBorderWidth: 1.5
+          }]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          animation:{ duration: 500 },
+          interaction:{ mode:'index', intersect:false },
+          plugins:{
+            legend:{ display:false },
+            tooltip:{
+              backgroundColor:'rgba(13,21,36,.96)',
+              borderColor:'rgba(120,155,215,.3)',
+              borderWidth:1,
+              titleColor:'#e8eefb',
+              titleFont:{size:11, weight:'700'},
+              bodyColor:'#e8eefb',
+              bodyFont:{size:11},
+              padding:9,
+              displayColors:false,
+              callbacks:{
+                title: c => `${MONTH_LABELS[c[0].dataIndex]} 2026`,
+                label: c => {
+                  const cur = c.raw;
+                  const prev = c.dataIndex>0 ? pts[c.dataIndex-1] : null;
+                  const lines = [` Pagu: ${rp(cur)}`];
+                  if(prev!=null){
+                    const dd = cur - prev;
+                    if(dd !== 0){
+                      lines.push(` Δ vs bln lalu: ${dd>=0?'+':''}${shortRp(dd)}`);
+                    }
+                  }
+                  if(c.dataIndex === pts.length-1 && pts[0]){
+                    const dt = cur - pts[0];
+                    lines.push(` Total Δ Jan→Sep: ${dt>=0?'+':''}${shortRp(dt)}`);
+                  }
+                  return lines;
+                }
+              }
+            }
+          },
+          scales:{
+            x:{
+              grid:{ display:false, drawBorder:false },
+              ticks:{
+                color:'#6b7f9e', font:{size: tickFontSize, weight:'600'},
+                maxRotation: 0, autoSkip:false,
+                padding: 2
+              },
+              border:{ display:false }
+            },
+            y:{
+              grid:{ color:'rgba(140,170,215,.06)', drawBorder:false },
+              ticks:{
+                color:'#6b7f9e', font:{size: tickFontSize}, maxTicksLimit:3,
+                callback: v => isLarge ? shortRp(v).replace('Rp ','') : (v/1e6).toFixed(0)+'Jt',
+                padding: 4
+              },
+              border:{ display:false },
+              min: minV - pad,
+              max: maxV + pad
+            }
+          }
+        }
+      });
+    });
+  });
+}
+
+/* ================= EVENTS ================= */
+$('#q').addEventListener('input', e=>{ state.q = e.target.value; renderGrid(); });
+
+$('#chips').addEventListener('click', e=>{
+  const b = e.target.closest('.chipbtn'); if(!b) return;
+  document.querySelectorAll('#chips .chipbtn').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  state.kat = b.dataset.k;
+  renderGrid();
+});
+
+$('#sortSel').addEventListener('change', e=>{
+  state.sort = e.target.value;
+  renderGrid();
+});
+
+/* ================= INIT ================= */
+Chart.defaults.color = '#7f94b8';
+Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+Chart.defaults.borderColor = 'rgba(140,170,215,.08)';
+
+renderSummary(DATA);
+renderGrid();
+</script>
+</body>
+</html>
