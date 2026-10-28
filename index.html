@@ -4,245 +4,175 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Realisasi APBD Kab. Tulungagung — September 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#f4f6fb;--card:#fff;--line:#e2e7f1;--txt:#13203a;--mut:#62718f;--soft:#eef2f9;
---ok:#12a06b;--warn:#e29a0b;--bad:#e0453f;--acc:#2563eb;--okb:#dcf5ea;--warnb:#fdf1d6;--badb:#fde5e3;
+:root{--bg:#f3f6fc;--card:#fff;--line:#e2e7f1;--txt:#13203a;--mut:#62718f;--soft:#eef2f9;
+--ok:#12a06b;--warn:#e29a0b;--bad:#e0453f;--acc:#2563eb;--okb:#dcf5ea;--warnb:#fdf1d6;--badb:#fde5e3;--sh:0 6px 22px -14px rgba(20,40,90,.35);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131d33;--line:#243251;--txt:#e8eefb;--mut:#8fa2c4;--soft:#1a2641;
---ok:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#60a5fa;--okb:#10382d;--warnb:#3b2f0d;--badb:#3d1a1c}}
+--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#60a5fa;--okb:#10382d;--warnb:#3b2f0d;--badb:#3d1a1c;--sh:none}}
 :root[data-theme="dark"]{--bg:#0b1220;--card:#131d33;--line:#243251;--txt:#e8eefb;--mut:#8fa2c4;--soft:#1a2641;
---ok:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#60a5fa;--okb:#10382d;--warnb:#3b2f0d;--badb:#3d1a1c}
+--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#60a5fa;--okb:#10382d;--warnb:#3b2f0d;--badb:#3d1a1c;--sh:none}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);padding:18px 16px 56px;line-height:1.5}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);padding:0 16px 56px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:20}
 .wrap{max-width:1180px;margin:0 auto}
-h1{font-size:22px;letter-spacing:-.3px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:19;background:var(--bg);padding:10px 0;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line)}
+nav a{flex:none;padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:700;color:var(--mut);text-decoration:none;background:var(--card);border:1px solid var(--line)}
+nav a:hover{color:var(--acc);border-color:var(--acc)}
+header{padding:20px 0 4px}
+h1{font-size:24px;letter-spacing:-.4px}
 .sub{color:var(--mut);font-size:13px;margin-top:2px}
-.hero{margin:16px 0;padding:22px;border-radius:18px;background:linear-gradient(135deg,#1d4ed8,#0ea5e9);color:#fff}
-.hero .lead{font-size:15px;opacity:.9}
-.hero .big{font-size:44px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin:6px 0 2px}
-.hero p{font-size:14px;max-width:760px;opacity:.95;line-height:1.6}
-.track{position:relative;height:16px;border-radius:99px;background:rgba(255,255,255,.28);margin:20px 0 6px}
+h2{display:flex;align-items:center;gap:10px;font-size:17px;margin:34px 0 6px}
+h2 i{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;background:linear-gradient(135deg,#1d4ed8,#0ea5e9)}
+.tip{background:var(--soft);border-left:3px solid var(--acc);padding:10px 13px;border-radius:8px;font-size:12.5px;color:var(--mut);margin-bottom:14px;line-height:1.65}
+.tip b{color:var(--txt)}
+.hero{margin:14px 0;padding:24px;border-radius:20px;background:linear-gradient(135deg,#1e40af,#0ea5e9);color:#fff;box-shadow:var(--sh)}
+.hero .lead{font-size:14px;opacity:.9}
+.hero .big{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1.1;margin:4px 0}
+.hero p{font-size:14px;max-width:760px;opacity:.96}
+.track{position:relative;height:16px;border-radius:99px;background:rgba(255,255,255,.28);margin:22px 0 6px}
 .track i{display:block;height:100%;border-radius:99px;background:#fff}
 .track b{position:absolute;top:-6px;bottom:-6px;width:3px;background:#ffd45e;border-radius:3px}
 .tlab{display:flex;justify-content:space-between;font-size:11.5px;opacity:.9}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:8px}
-.kpi,.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.stack{display:flex;height:12px;border-radius:99px;overflow:hidden;margin:20px 0 8px;background:rgba(255,255,255,.2)}
+.stack i{display:block;height:100%}
+.stl{display:flex;gap:16px;flex-wrap:wrap;font-size:12px}
+.stl span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--c)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.kpi,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--sh)}
+.kpi{border-top:3px solid var(--c,var(--acc))}
 .kpi small{color:var(--mut);font-size:12px;display:block}
-.kpi strong{font-size:16px;display:block;margin:4px 0;line-height:1.3;word-break:break-word}
+.kpi strong{font-size:17px;display:block;margin:4px 0;line-height:1.3;word-break:break-word}
 .kpi span{font-size:12px;color:var(--mut)}
-h2{font-size:16px;margin:26px 0 4px}
 .hint{color:var(--mut);font-size:12.5px;margin-bottom:12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
-.card h3{font-size:14px;margin-bottom:10px}
-.row{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin-bottom:12px;font-size:13px}
+.card h3{font-size:14px;margin-bottom:12px}
+.row{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin-bottom:13px;font-size:13px}
 .row .n{font-weight:600}.row .v{font-weight:800;text-align:right}
 .row .m{color:var(--mut);font-size:11.5px;grid-column:1/-1}
-.bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;grid-column:1/-1;position:relative}
+.bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;grid-column:1/-1}
 .bar i{display:block;height:100%;border-radius:99px}
-.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin:0 0 12px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-bottom:12px}
 .legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:var(--c)}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 input{flex:1;min-width:180px;max-width:320px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:13px}
 button{padding:9px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--mut);font-size:12.5px;font-weight:600;cursor:pointer}
 button.on{background:var(--acc);border-color:var(--acc);color:#fff}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);max-height:620px;overflow-y:auto}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--card);max-height:620px;overflow-y:auto;box-shadow:var(--sh)}
 table{width:100%;border-collapse:collapse;font-size:13px;min-width:860px}
 th{position:sticky;top:0;background:var(--soft);text-align:left;font-size:11.5px;color:var(--mut);padding:11px 12px;cursor:pointer;white-space:nowrap}
 th.r,td.r{text-align:right}
 td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:middle}
+tbody tr:hover{background:var(--soft)}
 td small{display:block;color:var(--mut);font-size:11px}
 .pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap}
 .ok{background:var(--okb);color:var(--ok)}.warn{background:var(--warnb);color:var(--warn)}.bad{background:var(--badb);color:var(--bad)}
 .mini{height:6px;border-radius:99px;background:var(--soft);margin-top:5px;min-width:90px;overflow:hidden}.mini i{display:block;height:100%}
 .note{margin-top:16px;font-size:12px;color:var(--mut);padding:14px;border-radius:12px;background:var(--soft)}
-
-/* ===== SECTION PANGSA ANGGARAN ===== */
-.share-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
-.share-sum{background:var(--soft);padding:11px 13px;border-radius:10px;border:1px solid var(--line)}
-.share-sum small{font-size:10px;color:var(--mut);display:block;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
-.share-sum strong{font-size:13px;display:block;margin-top:4px;font-variant-numeric:tabular-nums;color:var(--txt);line-height:1.3;word-break:break-word}
-.share-sum span{font-size:10.5px;color:var(--mut);display:block;margin-top:2px;line-height:1.3}
-.share-list{display:flex;flex-direction:column}
-.share-row{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
-.share-row:last-child{border-bottom:0;padding-bottom:0}
-.share-row.more{padding-top:14px;margin-top:4px;border-top:2px dashed var(--line);border-bottom:0}
-.share-rk{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:11px;font-weight:800;background:var(--soft);color:var(--mut);flex-shrink:0}
-.share-rk.top1{background:linear-gradient(135deg,#ffd45e,#f59e0b);color:#3a2500;box-shadow:0 0 12px rgba(255,212,94,.4)}
-.share-rk.top2{background:linear-gradient(135deg,#e2e8f0,#94a3b8);color:#1e293b}
-.share-rk.top3{background:linear-gradient(135deg,#f0b27a,#c2703b);color:#3a1c00}
-.share-info{min-width:0}
-.share-info .nm{font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--txt);line-height:1.3}
-.share-info .meta{font-size:10.5px;color:var(--mut);margin-top:2px;font-weight:500}
-.share-bar{height:7px;border-radius:99px;background:var(--soft);margin-top:6px;overflow:hidden;position:relative}
-.share-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--acc),#0ea5e9);transition:width .3s}
-.share-bar.other i{background:linear-gradient(90deg,var(--mut),var(--mut));opacity:.6}
-.share-val{text-align:right;font-variant-numeric:tabular-nums;white-space:normal;flex-shrink:0;max-width:130px;word-break:break-word}
-.share-val .amt{font-weight:800;font-size:11.5px;display:block;color:var(--txt);line-height:1.3}
-.share-val .pct{font-size:11px;color:var(--mut);font-weight:700;display:block;margin-top:2px}
-.share-val .pct.hi{color:var(--acc)}
-
-@media (max-width:600px){
-  .share-row{grid-template-columns:24px 1fr auto;gap:9px}
-  .share-rk{width:22px;height:22px;font-size:10px}
-  .share-info .nm{font-size:12px}
-  .share-val{max-width:105px}
-  .share-val .amt{font-size:10.5px}
-  .share-val .pct{font-size:10px}
-  .share-summary{grid-template-columns:repeat(2,1fr)}
-  .share-sum strong{font-size:11.5px}
-}
-
-/* ===== SECTION PENYUSUN ===== */
-.author-section{
-  margin-top:26px;padding:0;border-radius:18px;overflow:hidden;
-  border:1px solid var(--line);background:var(--card);
-  box-shadow:0 4px 20px -12px rgba(0,0,0,.15);
-}
-.author-header{
-  padding:14px 20px;
-  background:linear-gradient(90deg,rgba(37,99,235,.10),rgba(14,165,233,.06));
-  border-bottom:1px solid var(--line);
-  display:flex;align-items:center;gap:10px;
-}
-.author-header .badge-icon{
-  width:26px;height:26px;border-radius:8px;
-  display:grid;place-items:center;font-size:13px;
-  background:linear-gradient(135deg,var(--acc),#0ea5e9);
-  color:#fff;flex-shrink:0;
-}
-.author-header .badge-title{
-  font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
-  color:var(--acc);
-}
-.author-body{
-  padding:22px 20px;
-  display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;
-}
-.author-avatar{
-  width:90px;height:110px;
-  border-radius:12px;flex-shrink:0;
-  display:grid;place-items:center;
-  font-size:26px;font-weight:800;letter-spacing:-1px;
-  color:#fff;
-  background:linear-gradient(135deg,#1d4ed8,#0ea5e9);
-  box-shadow:0 8px 24px -8px rgba(37,99,235,.5);
-  position:relative; overflow:hidden;
-}
-.author-avatar img{
-  width:100%;height:100%;object-fit:cover;object-position:top center;
-  position:absolute;inset:0;
-}
-.author-info{min-width:0}
-.author-name{
-  font-size:18px;font-weight:800;letter-spacing:-.2px;
-  color:var(--txt);margin-bottom:2px;
-  line-height:1.25;
-}
-.author-nip{
-  font-size:13px; color:var(--mut); font-weight:600;
-  margin-bottom:8px; font-variant-numeric:tabular-nums;
-}
-.author-role{
-  font-size:13.5px;font-weight:600;color:var(--acc);
-  margin-bottom:4px;
-}
-.author-unit{
-  font-size:12.5px;color:var(--mut);line-height:1.5;
-}
-.author-unit strong{color:var(--txt);font-weight:700}
-.author-desc{
-  grid-column:1/-1;
-  margin-top:6px;padding-top:16px;
-  border-top:1px dashed var(--line);
-  font-size:12.5px;color:var(--mut);line-height:1.7;
-}
-.author-desc b{color:var(--txt)}
-.author-tag{
-  display:inline-block;margin-top:10px;padding:4px 10px;border-radius:99px;
-  font-size:11px;font-weight:700;
-  background:var(--soft);color:var(--mut);
-  border:1px solid var(--line);
-}
-
-@media (max-width:600px){
-  .author-body{grid-template-columns:1fr;text-align:center;gap:14px}
-  .author-avatar{width:80px;height:100px;margin:0 auto;border-radius:10px}
-  .author-name{font-size:16px}
-  .author-nip{font-size:12px}
-  .author-role{font-size:12.5px}
-  .author-unit{font-size:11.5px}
-}
+.ss{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ss div{background:var(--soft);padding:11px 13px;border-radius:10px}
+.ss small{font-size:10px;color:var(--mut);display:block;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.ss strong{font-size:13px;display:block;margin-top:4px;line-height:1.3;word-break:break-word}
+.ss span{font-size:10.5px;color:var(--mut)}
+.sl{display:flex;flex-direction:column}
+.sr{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.sr:last-child{border:0}
+.rk{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:11px;font-weight:800;background:var(--soft);color:var(--mut)}
+.rk.t1{background:linear-gradient(135deg,#ffd45e,#f59e0b);color:#3a2500}
+.rk.t2{background:linear-gradient(135deg,#e2e8f0,#94a3b8);color:#1e293b}
+.rk.t3{background:linear-gradient(135deg,#f0b27a,#c2703b);color:#3a1c00}
+.sr .nm{font-weight:600;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr .mt{font-size:10.5px;color:var(--mut)}
+.sb{height:7px;border-radius:99px;background:var(--soft);margin-top:5px;overflow:hidden}
+.sb i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--acc),#0ea5e9)}
+.sv{text-align:right;max-width:140px;font-variant-numeric:tabular-nums}
+.sv b{font-size:11.5px;display:block;line-height:1.3;word-break:break-word}
+.sv span{font-size:11px;color:var(--mut);font-weight:700}
+.more{width:100%;margin-top:12px;color:var(--acc)}
+.cs{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.cs span{display:flex;align-items:center;gap:6px}
+.cs .d{width:8px;height:8px;border-radius:50%}
+.cw{position:relative;height:420px}
+.cl{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--mut);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.cl span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--c)}
+.au{margin-top:34px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--sh)}
+.ah{padding:13px 20px;background:linear-gradient(90deg,rgba(37,99,235,.12),rgba(14,165,233,.05));border-bottom:1px solid var(--line);font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--acc)}
+.ab{padding:22px 20px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.av{width:90px;height:110px;border-radius:12px;display:grid;place-items:center;font-size:26px;font-weight:800;color:#fff;background:linear-gradient(135deg,#1d4ed8,#0ea5e9);position:relative;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover;object-position:top center;position:absolute;inset:0}
+.an{font-size:18px;font-weight:800}.anip{font-size:13px;color:var(--mut);font-weight:600;margin:2px 0 8px}
+.ar{font-size:13.5px;font-weight:600;color:var(--acc)}.au2{font-size:12.5px;color:var(--mut)}.au2 strong{color:var(--txt)}
+.ad{grid-column:1/-1;padding-top:16px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--mut);line-height:1.7}.ad b{color:var(--txt)}
+@media(max-width:600px){
+ h1{font-size:20px}.hero .big{font-size:42px}.sr{grid-template-columns:26px 1fr auto;gap:9px}.sv{max-width:110px}.cw{height:340px}
+ .ab{grid-template-columns:1fr;text-align:center}.av{margin:0 auto;width:80px;height:100px}}
 </style>
 </head>
 <body><div class="wrap">
-<h1>Realisasi APBD Kab. Tulungagung 2026</h1>
-<p class="sub">Data s.d. September 2026 · 53 OPD</p>
+<nav><a href="#ringkasan">Ringkasan</a><a href="#kategori">Kategori</a><a href="#pangsa">Pangsa Anggaran</a><a href="#sorotan">Sorotan</a><a href="#banding">Perbandingan</a><a href="#data">Data Lengkap</a></nav>
+<header><h1>Realisasi APBD Kab. Tulungagung 2026</h1><p class="sub">Data s.d. September 2026 · 53 OPD</p></header>
 
-<section class="hero" id="hero"></section>
+<section id="ringkasan">
+<div class="hero" id="hero"></div>
 <div class="kpis" id="kpis"></div>
-
-<h2>Cara membaca warna</h2>
+<h2 style="font-size:14px;margin:22px 0 8px">Cara membaca warna</h2>
 <div class="legend">
  <span style="--c:var(--ok)">Sesuai target (≥ 65%)</span>
  <span style="--c:var(--warn)">Agak lambat (45–65%)</span>
  <span style="--c:var(--bad)">Tertinggal (&lt; 45%)</span>
 </div>
-
-<h2>Per kategori OPD</h2>
-<p class="hint">Persentase uang yang sudah terpakai dari pagu masing-masing kategori.</p>
-<div class="grid" id="kat"></div>
-
-<!-- ================= SECTION PANGSA ANGGARAN ================= -->
-<h2>Pangsa Anggaran per OPD</h2>
-<p class="hint" id="shareHint">Urutan OPD dengan pagu terbesar dibandingkan pagu global Kabupaten Tulungagung.</p>
-<div class="card" id="shareCard"></div>
-<!-- ================= /SECTION PANGSA ANGGARAN ================= -->
-
-<h2>Sorotan</h2>
-<p class="hint">OPD dengan pagu di atas Rp 1 miliar.</p>
-<div class="grid" id="lists"></div>
-
-<h2>Data lengkap</h2>
-<div class="tools">
- <input id="q" placeholder="Cari nama OPD…">
- <span id="chips"></span>
-</div>
-<div class="tw"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table></div>
-
-<div class="note"><b>Catatan.</b> %Keuangan = Realisasi ÷ Pagu × 100. Target 75% adalah patokan linier (9 dari 12 bulan). %Fisik diambil dari laporan; rata-rata fisik dihitung sederhana (tidak dibobot pagu). Data fisik Kecamatan Tanggunggunung dan Kecamatan Tulungagung telah disesuaikan berdasarkan koreksi data (masing-masing 62% dan 60%).</div>
-
-<!-- ================= SECTION PENYUSUN ================= -->
-<section class="author-section" aria-label="Informasi penyusun laporan">
-  <div class="author-header">
-    <div class="badge-icon">👤</div>
-    <div class="badge-title">Laporan Kinerja · Penyusun Dashboard Laporan Realisasi Fisik dan Keuangan APBD</div>
-  </div>
-  <div class="author-body">
-    
-    <div class="author-avatar">
-      <img src="foto-nanang.jpg" alt="Foto Nanang Agus Subekti" 
-           onerror="this.style.display='none'; this.parentElement.innerText='NAS';">
-    </div>
-    
-    <div class="author-info">
-      <div class="author-name">NANANG AGUS SUBEKTI</div>
-      <div class="author-nip">NIP. 198508282009011003</div>
-      <div class="author-role">Penelaah Teknis Kebijakan</div>
-      <div class="author-unit">
-        <strong>Bagian Administrasi Pembangunan</strong><br>
-        Sekretariat Daerah Kabupaten Tulungagung
-      </div>
-    </div>
-    <div class="author-desc">
-      Dashboard <b>Realisasi APBD Kabupaten Tulungagung</b> ini disusun sebagai bagian dari <b>laporan kinerja</b> yang bersangkutan dalam melaksanakan tugas dan fungsi sebagai <b>Penelaah Teknis Kebijakan</b> pada <b>Bagian Administrasi Pembangunan Setda Kabupaten Tulungagung</b>.
-      <br><br>
-      Penyajian data dimaksudkan untuk memberikan gambaran capaian realisasi fisik dan keuangan seluruh OPD di lingkungan Pemerintah Kabupaten Tulungagung, sekaligus sebagai bahan evaluasi dan pengambilan keputusan dalam rangka percepatan penyerapan anggaran serta peningkatan kinerja pelaksanaan program dan kegiatan APBD.
-     
-    </div>
-  </div>
 </section>
-<!-- ================= /SECTION PENYUSUN ================= -->
 
+<section id="kategori">
+<h2><i>1</i>Per kategori OPD</h2>
+<div class="tip"><b>Apa artinya?</b> Persentase uang yang sudah terpakai dari pagu masing-masing kategori. Makin panjang bar, makin banyak anggaran yang terserap.</div>
+<div class="grid" id="kat"></div>
+</section>
+
+<section id="pangsa">
+<h2><i>2</i>Pangsa Anggaran per OPD</h2>
+<div class="tip"><b>Apa artinya?</b> Urutan seluruh OPD (53 OPD) berdasarkan pagu anggaran terbesar dibandingkan pagu global Kabupaten Tulungagung. Angka persen di kanan adalah porsi OPD tersebut dari total pagu.</div>
+<div class="card" id="shareCard"></div>
+</section>
+
+<section id="sorotan">
+<h2><i>3</i>Sorotan</h2>
+<div class="tip"><b>Apa artinya?</b> Daftar singkat OPD yang paling perlu dilihat lebih dulu. Hanya OPD dengan pagu di atas Rp 1 miliar.</div>
+<div class="grid" id="lists"></div>
+</section>
+
+<section id="banding">
+<h2><i>4</i>Perbandingan Realisasi OPD vs Rata-Rata Global</h2>
+<div class="tip"><b>Cara membaca:</b> setiap titik mewakili satu OPD, diurutkan dari <b>%Keuangan tertinggi (kiri)</b> ke terendah (kanan). Garis putus-putus kuning adalah <b>rata-rata global Kabupaten Tulungagung</b>. Titik <b style="color:var(--ok)">hijau</b> = di atas rata-rata, <b style="color:var(--bad)">merah</b> = di bawah. Arahkan kursor ke titik untuk detail.</div>
+<div class="card">
+ <div class="cs" id="cmpStats"></div>
+ <div class="cw"><canvas id="cmpChart"></canvas></div>
+ <div class="cl"><span style="--c:#2563eb">Realisasi per OPD</span><span style="--c:#e29a0b">Rata-rata global</span><span style="--c:#12a06b">Di atas rata-rata</span><span style="--c:#e0453f">Di bawah rata-rata</span></div>
+</div>
+</section>
+
+<section id="data">
+<h2><i>5</i>Data lengkap</h2>
+<div class="tip"><b>Tips:</b> ketik nama OPD di kolom pencarian, pilih kategori, atau klik judul kolom untuk mengurutkan.</div>
+<div class="tools"><input id="q" placeholder="Cari nama OPD…"><span id="chips"></span></div>
+<div class="tw"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="note"><b>Catatan.</b> %Keuangan = Realisasi ÷ Pagu × 100. Target 75% adalah patokan linier (9 dari 12 bulan). %Fisik diambil dari laporan; rata-rata fisik dihitung sederhana (tidak dibobot pagu). Data fisik Kecamatan Tanggunggunung dan Kecamatan Tulungagung telah disesuaikan berdasarkan koreksi data (masing-masing 62% dan 60%).</div>
+</section>
+
+<section class="au" aria-label="Informasi penyusun laporan">
+ <div class="ah">👤 Laporan Kinerja · Penyusun Dashboard Laporan Realisasi Fisik dan Keuangan APBD</div>
+ <div class="ab">
+  <div class="av"><img src="foto-nanang.jpg" alt="Foto Nanang Agus Subekti" onerror="this.style.display='none'; this.parentElement.innerText='NAS';"></div>
+  <div>
+   <div class="an">NANANG AGUS SUBEKTI</div><div class="anip">NIP. 198508282009011003</div>
+   <div class="ar">Penelaah Teknis Kebijakan</div>
+   <div class="au2"><strong>Bagian Administrasi Pembangunan</strong><br>Sekretariat Daerah Kabupaten Tulungagung</div>
+  </div>
+  <div class="ad">Dashboard <b>Realisasi APBD Kabupaten Tulungagung</b> ini disusun sebagai bagian dari <b>laporan kinerja</b> yang bersangkutan dalam melaksanakan tugas dan fungsi sebagai <b>Penelaah Teknis Kebijakan</b> pada <b>Bagian Administrasi Pembangunan Setda Kabupaten Tulungagung</b>.<br><br>Penyajian data dimaksudkan untuk memberikan gambaran capaian realisasi fisik dan keuangan seluruh OPD di lingkungan Pemerintah Kabupaten Tulungagung, sekaligus sebagai bahan evaluasi dan pengambilan keputusan dalam rangka percepatan penyerapan anggaran serta peningkatan kinerja pelaksanaan program dan kegiatan APBD.</div>
+ </div>
+</section>
 </div>
 
 <script>
@@ -276,123 +206,51 @@ const RAW=[
 ["Badan Kesatuan Bangsa dan Politik",16603738360,11836078577,73.25]];
 const kat=n=>/^Sekretariat/.test(n)?"Sekretariat":/^Kecamatan/.test(n)?"Kecamatan":/^(Badan|Inspektorat)/.test(n)?"Badan":"Dinas";
 const D=RAW.map(([n,p,r,f])=>({n,p,r,f,k:kat(n),keu:r/p*100,sisa:Math.max(0,p-r)}));
-const $=s=>document.querySelector(s), TARGET=75;
+const $=s=>document.querySelector(s),TARGET=75;
 const sum=(a,k)=>a.reduce((s,d)=>s+d[k],0);
-const pc=v=>v.toFixed(1).replace(".",",")+"%";
-const pc2=v=>v.toFixed(2).replace(".",",")+"%";
-
-// FUNGSI FORMAT ANGKA DIRUBAH: Tidak ada singkatan T/M/Jt, tampil full
-const full=v=>"Rp "+new Intl.NumberFormat("id-ID").format(Math.round(v));
-const rp=full; // Menimpa fungsi rp() lama agar seluruh dashboard otomatis menggunakan format penuh
-
+const pc=v=>v.toFixed(1).replace(".",",")+"%",pc2=v=>v.toFixed(2).replace(".",",")+"%";
+const rp=v=>"Rp "+new Intl.NumberFormat("id-ID").format(Math.round(v)),full=rp;
 const st=v=>v>=TARGET-10?["ok","Sesuai target","var(--ok)"]:v>=TARGET-30?["warn","Agak lambat","var(--warn)"]:["bad","Tertinggal","var(--bad)"];
 
-// ringkasan
 const P=sum(D,"p"),R=sum(D,"r"),K=R/P*100,gap=K-TARGET;
-const lag=D.filter(d=>d.keu<TARGET-30).length;
+const cnt={ok:0,warn:0,bad:0};D.forEach(d=>cnt[st(d.keu)[0]]++);
+const lag=cnt.bad;
 $("#hero").innerHTML=`<div class="lead">Anggaran yang sudah terpakai</div><div class="big">${pc(K)}</div>
 <p>Dari pagu ${rp(P)}, sebanyak ${rp(R)} sudah terealisasi. Posisi September idealnya sekitar ${TARGET}%, sehingga capaian saat ini ${Math.abs(gap).toFixed(1).replace(".",",")} poin ${gap<0?"di bawah":"di atas"} patokan. Ada <b>${lag} OPD</b> yang tergolong tertinggal.</p>
 <div class="track"><i style="width:${Math.min(100,K)}%"></i><b style="left:${TARGET}%"></b></div>
-<div class="tlab"><span>0%</span><span>▲ Target ${TARGET}%</span><span>100%</span></div>`;
+<div class="tlab"><span>0%</span><span>▲ Target ${TARGET}%</span><span>100%</span></div>
+<div class="stack"><i style="width:${cnt.ok/D.length*100}%;background:#34d399"></i><i style="width:${cnt.warn/D.length*100}%;background:#fbbf24"></i><i style="width:${cnt.bad/D.length*100}%;background:#f87171"></i></div>
+<div class="stl"><span style="--c:#34d399">${cnt.ok} OPD sesuai target</span><span style="--c:#fbbf24">${cnt.warn} agak lambat</span><span style="--c:#f87171">${cnt.bad} tertinggal</span></div>`;
 const fis=D.filter(d=>d.f!=null);
-$("#kpis").innerHTML=[["Total pagu",rp(P),"Anggaran setahun"],["Sudah terealisasi",rp(R),pc(K)+" dari pagu"],["Belum terserap",rp(sum(D,"sisa")),pc(100-K)+" dari pagu"],["Rata-rata fisik",pc(sum(fis,"f")/fis.length),"dari "+fis.length+" OPD terdata"]]
- .map(([a,b,c])=>`<div class="kpi"><small>${a}</small><strong>${b}</strong><span>${c}</span></div>`).join("");
+$("#kpis").innerHTML=[["Total pagu",rp(P),"Anggaran setahun","var(--acc)"],["Sudah terealisasi",rp(R),pc(K)+" dari pagu","var(--ok)"],["Belum terserap",rp(sum(D,"sisa")),pc(100-K)+" dari pagu","var(--warn)"],["Rata-rata fisik",pc(sum(fis,"f")/fis.length),"dari "+fis.length+" OPD terdata","#8b5cf6"]]
+ .map(([a,b,c,l])=>`<div class="kpi" style="--c:${l}"><small>${a}</small><strong>${b}</strong><span>${c}</span></div>`).join("");
 
-// kategori
 $("#kat").innerHTML=["Dinas","Badan","Sekretariat","Kecamatan"].map(k=>{
  const a=D.filter(d=>d.k===k),p=sum(a,"p"),r=sum(a,"r"),v=r/p*100,s=st(v);
- return `<div class="card"><div class="row"><span class="n">${k} (${a.length})</span><span class="v" style="color:${s[2]}">${pc(v)}</span>
- <div class="bar"><i style="width:${v}%;background:${s[2]}"></i></div><span class="m">${rp(r)} dari ${rp(p)}</span></div></div>`}).join("");
+ return `<div class="card"><div class="row"><span class="n">${k} (${a.length} OPD)</span><span class="v" style="color:${s[2]}">${pc(v)}</span>
+ <div class="bar"><i style="width:${v}%;background:${s[2]}"></i></div><span class="m">${rp(r)} dari ${rp(p)} · ${s[1]}</span></div></div>`}).join("");
 
-/* ================= PANGSA ANGGARAN PER OPD ================= */
-(function renderShare(){
-  const totalPagu = sum(D, "p");
-  const totalReal = sum(D, "r");
-  const sorted = [...D].sort((a,b)=>b.p-a.p);
-  const topCount = 15;
-  const top = sorted.slice(0, topCount);
-  const rest = sorted.slice(topCount);
-  const restPagu = sum(rest, "p");
-  const maxPct = top[0].p / totalPagu * 100;
-
-  const avgPagu = totalPagu / D.length;
-  const aboveAvg = D.filter(d=>d.p > avgPagu).length;
-  const topOne = top[0];
-  const topPct = topOne.p / totalPagu * 100;
-  const cumTop5 = sorted.slice(0,5).reduce((s,d)=>s+d.p,0) / totalPagu * 100;
-
-  $("#shareHint").innerHTML =
-    `Total pagu APBD Kabupaten Tulungagung: <b>${full(totalPagu)}</b> · Urutan 15 OPD pagu terbesar`;
-
-  let html = `
-    <div class="share-summary">
-      <div class="share-sum">
-        <small>Total Pagu APBD</small>
-        <strong>${rp(totalPagu)}</strong>
-        <span>Keseluruhan OPD</span>
-      </div>
-      <div class="share-sum">
-        <small>OPD Terbesar</small>
-        <strong>${pc2(topPct)}</strong>
-        <span>${topOne.n}</span>
-      </div>
-      <div class="share-sum">
-        <small>5 OPD Teratas</small>
-        <strong>${pc2(cumTop5)}</strong>
-        <span>dari total APBD</span>
-      </div>
-      <div class="share-sum">
-        <small>Rata-rata per OPD</small>
-        <strong>${rp(avgPagu)}</strong>
-        <span>${aboveAvg} OPD di atas rata-rata</span>
-      </div>
-    </div>
-    <div class="share-list">
-  `;
-
-  top.forEach((d, i) => {
-    const pct = d.p / totalPagu * 100;
-    const barW = Math.min(100, pct / maxPct * 100);
-    const rkCls = i===0 ? 'top1' : i===1 ? 'top2' : i===2 ? 'top3' : '';
-    const pctCls = i < 3 ? 'hi' : '';
-    html += `
-      <div class="share-row">
-        <div class="share-rk ${rkCls}">${i+1}</div>
-        <div class="share-info">
-          <div class="nm" title="${d.n}">${d.n}</div>
-          <div class="meta">${d.k} · realisasi ${pc(d.keu)}</div>
-          <div class="share-bar"><i style="width:${barW}%"></i></div>
-        </div>
-        <div class="share-val">
-          <span class="amt">${rp(d.p)}</span>
-          <span class="pct ${pctCls}">${pc2(pct)}</span>
-        </div>
-      </div>`;
-  });
-
-  const restPct = restPagu / totalPagu * 100;
-  const restBarW = Math.min(100, restPct / maxPct * 100);
-  html += `
-      <div class="share-row more">
-        <div class="share-rk">+</div>
-        <div class="share-info">
-          <div class="nm">${rest.length} OPD lainnya</div>
-          <div class="meta">Dinas, Badan, Sekretariat, dan Kecamatan</div>
-          <div class="share-bar other"><i style="width:${restBarW}%"></i></div>
-        </div>
-        <div class="share-val">
-          <span class="amt">${rp(restPagu)}</span>
-          <span class="pct">${pc2(restPct)}</span>
-        </div>
-      </div>
-    </div>
-  `;
-
-  $("#shareCard").innerHTML = html;
+/* pangsa anggaran */
+(function(){
+ const tot=sum(D,"p"),so=[...D].sort((a,b)=>b.p-a.p),mx=so[0].p/tot*100,avg=tot/D.length,ab=D.filter(d=>d.p>avg).length,c5=so.slice(0,5).reduce((s,d)=>s+d.p,0)/tot*100;
+ let all=false;
+ function draw(){
+  const rows=all?so:so.slice(0,10);
+  $("#shareCard").innerHTML=`<div class="ss">
+   <div><small>Total Pagu APBD</small><strong>${rp(tot)}</strong><span>Keseluruhan OPD</span></div>
+   <div><small>OPD Terbesar</small><strong>${pc2(so[0].p/tot*100)}</strong><span>${so[0].n}</span></div>
+   <div><small>5 OPD Teratas</small><strong>${pc2(c5)}</strong><span>dari total APBD</span></div>
+   <div><small>Rata-rata per OPD</small><strong>${rp(avg)}</strong><span>${ab} OPD di atas rata-rata</span></div></div>
+  <div class="sl">${rows.map((d,i)=>{const pct=d.p/tot*100;return `<div class="sr"><div class="rk ${i<3?"t"+(i+1):""}">${i+1}</div>
+   <div style="min-width:0"><div class="nm" title="${d.n}">${d.n}</div><div class="mt">${d.k} · realisasi ${pc(d.keu)}</div><div class="sb"><i style="width:${Math.min(100,pct/mx*100)}%"></i></div></div>
+   <div class="sv"><b>${rp(d.p)}</b><span>${pc2(pct)}</span></div></div>`}).join("")}</div>
+  <button class="more" id="more">${all?"Tampilkan 10 teratas saja":"Tampilkan semua 53 OPD"}</button>`;
+  $("#more").onclick=()=>{all=!all;draw()};
+ }
+ draw();
 })();
-/* ================= /PANGSA ANGGARAN PER OPD ================= */
 
-// sorotan
+/* sorotan */
 const big=D.filter(d=>d.p>1e9);
 const list=(t,rows,f)=>`<div class="card"><h3>${t}</h3>${rows.map(d=>{const s=st(d.keu);return `<div class="row"><span class="n">${d.n}</span><span class="v" style="color:${s[2]}">${pc(d.keu)}</span>
 <div class="bar"><i style="width:${Math.min(100,d.keu)}%;background:${s[2]}"></i></div><span class="m">${f(d)}</span></div>`}).join("")}</div>`;
@@ -401,7 +259,25 @@ $("#lists").innerHTML=
  list("🏆 Terserap paling tinggi",[...big].sort((a,b)=>b.keu-a.keu).slice(0,5),d=>`${rp(d.r)} dari ${rp(d.p)}`)+
  list("💰 Pagu terbesar",[...D].sort((a,b)=>b.p-a.p).slice(0,5),d=>`Pagu ${rp(d.p)} · sisa ${rp(d.sisa)}`);
 
-// tabel
+/* perbandingan */
+(function(){
+ if(typeof Chart==="undefined"){document.querySelector(".cw").innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--mut);font-size:13px;text-align:center">Grafik tidak dapat dimuat (Chart.js CDN tidak tersedia).</div>';return}
+ const so=[...D].sort((a,b)=>b.keu-a.keu),g=K,ab=so.filter(d=>d.keu>=g),be=so.filter(d=>d.keu<g),top=so[0],bot=so[so.length-1];
+ const sn=n=>n.replace(/^Dinas /,"").replace(/^Badan /,"").replace(/^Kecamatan /,"Kec. ").split(" dan ")[0].split(",")[0];
+ $("#cmpStats").innerHTML=`<span><i class="d" style="background:#e29a0b"></i>Rata-rata global: <b>${pc(g)}</b></span><span><i class="d" style="background:#12a06b"></i><b>${ab.length}</b> OPD di atas</span><span><i class="d" style="background:#e0453f"></i><b>${be.length}</b> OPD di bawah</span><span>🏆 Tertinggi: <b>${sn(top.n)}</b> (${pc(top.keu)})</span><span>📉 Terendah: <b>${sn(bot.n)}</b> (${pc(bot.keu)})</span>`;
+ const dk=matchMedia("(prefers-color-scheme: dark)").matches,gc=dk?"rgba(255,255,255,.08)":"rgba(0,0,0,.06)",tc=dk?"#8fa2c4":"#62718f";
+ new Chart($("#cmpChart").getContext("2d"),{type:"line",data:{labels:so.map((d,i)=>""+(i+1)),datasets:[
+  {label:"Realisasi per OPD",data:so.map(d=>d.keu),borderColor:"#2563eb",backgroundColor:"rgba(37,99,235,.10)",borderWidth:2.2,fill:true,tension:.35,pointRadius:4,pointHoverRadius:9,pointBackgroundColor:so.map(d=>d.keu>=g?"#12a06b":"#e0453f"),pointBorderColor:"#fff",pointBorderWidth:1.5,order:2},
+  {label:"Rata-rata global",data:so.map(()=>g),borderColor:"#e29a0b",borderWidth:2,borderDash:[8,4],fill:false,pointRadius:0,pointHoverRadius:0,tension:0,order:1}]},
+ options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},
+  plugins:{legend:{position:"top",labels:{color:tc,usePointStyle:true,pointStyle:"circle",padding:14,font:{size:12,weight:"600"}}},
+   tooltip:{backgroundColor:dk?"rgba(19,29,51,.97)":"rgba(255,255,255,.98)",titleColor:dk?"#e8eefb":"#13203a",bodyColor:dk?"#c4d2ea":"#4a566f",borderColor:dk?"rgba(120,155,215,.3)":"#e2e7f1",borderWidth:1,padding:12,displayColors:false,
+    callbacks:{title:t=>`#${t[0].dataIndex+1} · ${so[t[0].dataIndex].n}`,label:t=>{if(t.datasetIndex===0){const d=so[t.dataIndex],x=d.keu-g;return [`Realisasi OPD: ${pc(d.keu)}`,`Rata-rata global: ${pc(g)}`,`Selisih: ${x>=0?"+":""}${pc(x)} (${x>=0?"▲ di atas":"▼ di bawah"} rata-rata)`,"—",`Pagu: ${rp(d.p)}`,`Realisasi: ${rp(d.r)}`]}return `Rata-rata global: ${pc(g)}`}}}},
+  scales:{x:{grid:{display:false},ticks:{color:tc,font:{size:10,weight:"600"},autoSkip:false,callback:function(v,i){return i%3===0||i===so.length-1?this.getLabelForValue(v):""}},title:{display:true,text:"Peringkat OPD (%Keuangan tertinggi → terendah)",color:tc,font:{size:11,weight:"600"},padding:{top:8}}},
+   y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v+"%",stepSize:20},beginAtZero:true,max:100,title:{display:true,text:"% Realisasi Keuangan",color:tc,font:{size:11,weight:"600"}}}}}});
+})();
+
+/* tabel */
 const S={k:"all",q:"",s:"keu",dir:-1};
 const COLS=[["n","Nama OPD"],["p","Pagu","r"],["r","Realisasi","r"],["sisa","Sisa","r"],["keu","% Keuangan","r"],["f","% Fisik","r"],["st","Status"]];
 $("#chips").innerHTML=["all","Dinas","Badan","Sekretariat","Kecamatan"].map(k=>`<button data-k="${k}" class="${k==="all"?"on":""}">${k==="all"?"Semua":k}</button>`).join(" ");
