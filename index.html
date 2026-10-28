@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Realisasi APBD Kab. Tulungagung — September 2026</title>
+<title>Realisasi APBD Kab. Tulungagung 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{--bg:#f3f6fc;--card:#fff;--line:#e2e7f1;--txt:#13203a;--mut:#62718f;--soft:#eef2f9;
@@ -21,17 +21,22 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:19;background:var(--bg);padding:10px 0;display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line)}
 nav a{flex:none;padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:700;color:var(--mut);text-decoration:none;background:var(--card);border:1px solid var(--line)}
 nav a:hover{color:var(--acc);border-color:var(--acc)}
-header{padding:20px 0 4px}
+header{padding:20px 0 10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
 h1{font-size:24px;letter-spacing:-.4px}
 .sub{color:var(--mut);font-size:13px;margin-top:2px}
 h2{display:flex;align-items:center;gap:10px;font-size:17px;margin:34px 0 6px}
 h2 i{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;background:linear-gradient(135deg,#1d4ed8,#0ea5e9)}
+.period-toggle{display:flex;gap:4px;padding:4px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh)}
+.period-toggle button{border:0;cursor:pointer;padding:9px 16px;border-radius:9px;font-size:13px;font-weight:700;font-family:inherit;background:transparent;color:var(--mut);transition:.2s}
+.period-toggle button:hover{color:var(--txt)}
+.period-toggle button.on{background:linear-gradient(135deg,#1d4ed8,#0ea5e9);color:#fff;box-shadow:0 5px 16px -5px rgba(37,99,235,.6)}
 .tip{background:var(--soft);border-left:3px solid var(--acc);padding:10px 13px;border-radius:8px;font-size:12.5px;color:var(--mut);margin-bottom:14px;line-height:1.65}
 .tip b{color:var(--txt)}
 .hero{margin:14px 0;padding:24px;border-radius:20px;background:linear-gradient(135deg,#1e40af,#0ea5e9);color:#fff;box-shadow:var(--sh)}
 .hero .lead{font-size:14px;opacity:.9}
 .hero .big{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1.1;margin:4px 0}
 .hero p{font-size:14px;max-width:760px;opacity:.96}
+.hero .period-badge{display:inline-block;background:rgba(255,255,255,.2);padding:4px 12px;border-radius:99px;font-size:11.5px;font-weight:800;letter-spacing:.5px;margin-bottom:10px;text-transform:uppercase}
 .track{position:relative;height:16px;border-radius:99px;background:rgba(255,255,255,.28);margin:22px 0 6px}
 .track i{display:block;height:100%;border-radius:99px;background:#fff}
 .track b{position:absolute;top:-6px;bottom:-6px;width:3px;background:#ffd45e;border-radius:3px}
@@ -71,7 +76,7 @@ td small{display:block;color:var(--mut);font-size:11px}
 .ok{background:var(--okb);color:var(--ok)}.warn{background:var(--warnb);color:var(--warn)}.bad{background:var(--badb);color:var(--bad)}
 .mini{height:6px;border-radius:99px;background:var(--soft);margin-top:5px;min-width:90px;overflow:hidden}.mini i{display:block;height:100%}
 .note{margin-top:16px;font-size:12px;color:var(--mut);padding:14px;border-radius:12px;background:var(--soft)}
-.ss{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ss{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .ss div{background:var(--soft);padding:11px 13px;border-radius:10px}
 .ss small{font-size:10px;color:var(--mut);display:block;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
 .ss strong{font-size:13px;display:block;margin-top:4px;line-height:1.3;word-break:break-word}
@@ -107,22 +112,34 @@ td small{display:block;color:var(--mut);font-size:11px}
 .ad{grid-column:1/-1;padding-top:16px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--mut);line-height:1.7}.ad b{color:var(--txt)}
 @media(max-width:600px){
  h1{font-size:20px}.hero .big{font-size:42px}.sr{grid-template-columns:26px 1fr auto;gap:9px}.sv{max-width:110px}.cw{height:340px}
- .ab{grid-template-columns:1fr;text-align:center}.av{margin:0 auto;width:80px;height:100px}}
+ .ab{grid-template-columns:1fr;text-align:center}.av{margin:0 auto;width:80px;height:100px}
+ header{flex-direction:column;align-items:flex-start}
+ .period-toggle{width:100%;justify-content:space-between}
+ .period-toggle button{flex:1;font-size:11px;padding:9px 6px}
+}
 </style>
 </head>
 <body><div class="wrap">
-<nav><a href="#ringkasan">Ringkasan</a><a href="#kategori">Kategori</a><a href="#pangsa">Pangsa Anggaran</a><a href="#sorotan">Sorotan</a><a href="#banding">Perbandingan</a><a href="#data">Data Lengkap</a></nav>
-<header><h1>Realisasi APBD Kab. Tulungagung 2026</h1><p class="sub">Data s.d. September 2026 · 53 OPD</p></header>
+<header>
+  <div>
+    <h1>Realisasi APBD Kab. Tulungagung 2026</h1>
+    <p class="sub">Data s.d. <span id="periodLabel">September 2026</span> · 53 OPD</p>
+  </div>
+  <div class="period-toggle" id="periodToggle">
+    <button data-p="jun">Juni</button>
+    <button data-p="jul">Juli</button>
+    <button data-p="aug">Agustus</button>
+    <button data-p="sep" class="on">September</button>
+  </div>
+</header>
+
+<nav><a href="#ringkasan">Ringkasan</a><a href="#kategori">Kategori</a><a href="#pangsa">Pangsa Anggaran</a><a href="#riwayat">Riwayat Pagu</a><a href="#sorotan">Sorotan</a><a href="#banding">Perbandingan</a><a href="#data">Data Lengkap</a></nav>
 
 <section id="ringkasan">
 <div class="hero" id="hero"></div>
 <div class="kpis" id="kpis"></div>
 <h2 style="font-size:14px;margin:22px 0 8px">Cara membaca warna</h2>
-<div class="legend">
- <span style="--c:var(--ok)">Sesuai target (≥ 65%)</span>
- <span style="--c:var(--warn)">Agak lambat (45–65%)</span>
- <span style="--c:var(--bad)">Tertinggal (&lt; 45%)</span>
-</div>
+<div class="legend" id="legendColors"></div>
 </section>
 
 <section id="kategori">
@@ -133,18 +150,33 @@ td small{display:block;color:var(--mut);font-size:11px}
 
 <section id="pangsa">
 <h2><i>2</i>Pangsa Anggaran per OPD</h2>
-<div class="tip"><b>Apa artinya?</b> Urutan seluruh OPD (53 OPD) berdasarkan pagu anggaran terbesar dibandingkan pagu global Kabupaten Tulungagung. Angka persen di kanan adalah porsi OPD tersebut dari total pagu.</div>
+<div class="tip"><b>Apa artinya?</b> Urutan OPD berdasarkan pagu anggaran terbesar dibandingkan pagu global Kabupaten Tulungagung. Angka persen di kanan adalah porsi OPD tersebut dari total pagu.</div>
 <div class="card" id="shareCard"></div>
 </section>
 
+<section id="riwayat">
+<h2><i>3</i>Riwayat Perubahan Pagu Anggaran</h2>
+<div class="tip"><b>Apa artinya?</b> Menampilkan perubahan pagu anggaran setiap OPD dari <b>Juni → Juli → Agustus → September 2026</b>. Grafik menampilkan 10 OPD dengan perubahan absolut terbesar. Klik judul kolom tabel untuk mengurutkan.</div>
+<div class="card">
+  <div class="ss" id="riwayatStats"></div>
+  <div class="cw" style="height:520px"><canvas id="riwayatChart"></canvas></div>
+</div>
+<div class="tw" style="margin-top:12px">
+  <table>
+    <thead><tr id="riwayatTh"></tr></thead>
+    <tbody id="riwayatTb"></tbody>
+  </table>
+</div>
+</section>
+
 <section id="sorotan">
-<h2><i>3</i>Sorotan</h2>
+<h2><i>4</i>Sorotan</h2>
 <div class="tip"><b>Apa artinya?</b> Daftar singkat OPD yang paling perlu dilihat lebih dulu. Hanya OPD dengan pagu di atas Rp 1 miliar.</div>
 <div class="grid" id="lists"></div>
 </section>
 
 <section id="banding">
-<h2><i>4</i>Perbandingan Realisasi OPD vs Rata-Rata Global</h2>
+<h2><i>5</i>Perbandingan Realisasi OPD vs Rata-Rata Global</h2>
 <div class="tip"><b>Cara membaca:</b> setiap titik mewakili satu OPD, diurutkan dari <b>%Keuangan tertinggi (kiri)</b> ke terendah (kanan). Garis putus-putus kuning adalah <b>rata-rata global Kabupaten Tulungagung</b>. Titik <b style="color:var(--ok)">hijau</b> = di atas rata-rata, <b style="color:var(--bad)">merah</b> = di bawah. Arahkan kursor ke titik untuk detail.</div>
 <div class="card">
  <div class="cs" id="cmpStats"></div>
@@ -154,11 +186,11 @@ td small{display:block;color:var(--mut);font-size:11px}
 </section>
 
 <section id="data">
-<h2><i>5</i>Data lengkap</h2>
+<h2><i>6</i>Data lengkap</h2>
 <div class="tip"><b>Tips:</b> ketik nama OPD di kolom pencarian, pilih kategori, atau klik judul kolom untuk mengurutkan.</div>
 <div class="tools"><input id="q" placeholder="Cari nama OPD…"><span id="chips"></span></div>
 <div class="tw"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table></div>
-<div class="note"><b>Catatan.</b> %Keuangan = Realisasi ÷ Pagu × 100. Target 75% adalah patokan linier (9 dari 12 bulan). %Fisik diambil dari laporan; rata-rata fisik dihitung sederhana (tidak dibobot pagu). Data fisik Kecamatan Tanggunggunung dan Kecamatan Tulungagung telah disesuaikan berdasarkan koreksi data (masing-masing 62% dan 60%).</div>
+<div class="note" id="noteText"></div>
 </section>
 
 <section class="au" aria-label="Informasi penyusun laporan">
@@ -176,126 +208,736 @@ td small{display:block;color:var(--mut);font-size:11px}
 </div>
 
 <script>
-const RAW=[
-["Dinas Pendidikan",900554703368,376194941756,49.6],["Dinas Kesehatan",859324853661,666668775841,71.02],
-["Dinas Pekerjaan Umum dan Penataan Ruang",349722633104,110026764184,40],["Dinas Perumahan dan Kawasan Permukiman",28807697847,7925013219,62.09],
-["Dinas Lingkungan Hidup",36417210016,20153988929,60],["Badan Penanggulangan Bencana Daerah",7296463743,4574927304,65],
-["Satuan Polisi Pamong Praja",14648516365,10105740554,70],["Dinas Pemadam Kebakaran dan Penyelamatan",8038639905,4941705055,70.91],
-["Dinas Sosial",12013899683,5105055123,43.57],["Dinas Tenaga Kerja dan Transmigrasi",10536359337,4589683123,65],
-["Dinas KB, Pemberdayaan Perempuan dan Perlindungan Anak",17303378777,9945228504,57.48],["Dinas Ketahanan Pangan",7984928852,4668693692,60.44],
-["Dinas Kependudukan dan Pencatatan Sipil",10968657857,6885217669,73.53],["Dinas Pemberdayaan Masyarakat dan Desa",14353632137,8420594261,63.04],
-["Dinas Perhubungan",48523878433,35530986790,77.56],["Dinas Komunikasi dan Informatika",13926438407,5911111157,45],
-["Dinas Koperasi dan Usaha Mikro",9028638164,5782397295,72.89],["Dinas Penanaman Modal dan PTSP",5809656142,3299415566,57],
-["Dinas Pemuda dan Olahraga",17487378117,9348325371,53.46],["Dinas Kebudayaan dan Pariwisata",15257572701,8146790387,53.4],
-["Dinas Perpustakaan dan Kearsipan",6075305470,3866829511,63.65],["Dinas Perikanan",8472072663,5496875073,64.88],
-["Dinas Pertanian",39299895964,6673086008,16.54],["Dinas Peternakan dan Kesehatan Hewan",14649115359,7981383124,68.21],
-["Dinas Perindustrian dan Perdagangan",26996126215,15215383074,56.36],["Sekretariat Daerah",96583049790,54574616162,58.23],
-["Sekretariat DPRD",90612554275,62329471362,68.79],["Badan Perencanaan Pembangunan Daerah",16773671361,11352915043,67.68],
-["Badan Pengelolaan Keuangan dan Aset Daerah",489761450647,224404542149,45.82],["Badan Pendapatan Daerah",34588998608,18530806423,70.03],
-["Badan Kepegawaian dan Pengembangan SDM",12461341618,7454275193,63.2],["Badan Riset dan Inovasi Daerah",3905791513,2416795868,77],
-["Inspektorat Daerah",17411576756,9183365236,52.74],["Kecamatan Bandung",4051289837,2403782038,59.33],
-["Kecamatan Besuki",3577364151,1957442304,70.83],["Kecamatan Boyolangu",3306416462,1846771749,67.94],
-["Kecamatan Campurdarat",3110352957,2142222949,70.87],["Kecamatan Gondang",4344603456,2864392793,69.95],
-["Kecamatan Kalidawir",3673666435,2285499768,65],["Kecamatan Karangrejo",3678577493,2567749493,70.8],
-["Kecamatan Kauman",4063324279,2294377999,57.15],["Kecamatan Kedungwaru",3821778515,2245700102,65.36],
-["Kecamatan Ngantru",3394959993,2021661321,60.05],["Kecamatan Ngunut",3822401957,2381541658,64.3],
-["Kecamatan Pagerwojo",3625776739,2343013136,64.62],["Kecamatan Pakel",3889489983,2410617896,65],
-["Kecamatan Pucanglaban",3147304067,2087661531,68.33],["Kecamatan Rejotangan",3473855771,2286264792,68.81],
-["Kecamatan Sendang",3036209560,2057712398,67.77],["Kecamatan Sumbergempol",3574883749,2209402132,67.34],
-["Kecamatan Tanggunggunung",3918443570,2306006168,62],["Kecamatan Tulungagung",27563235858,15481918349,60],
-["Badan Kesatuan Bangsa dan Politik",16603738360,11836078577,73.25]];
-const kat=n=>/^Sekretariat/.test(n)?"Sekretariat":/^Kecamatan/.test(n)?"Kecamatan":/^(Badan|Inspektorat)/.test(n)?"Badan":"Dinas";
-const D=RAW.map(([n,p,r,f])=>({n,p,r,f,k:kat(n),keu:r/p*100,sisa:Math.max(0,p-r)}));
-const $=s=>document.querySelector(s),TARGET=75;
-const sum=(a,k)=>a.reduce((s,d)=>s+d[k],0);
-const pc=v=>v.toFixed(1).replace(".",",")+"%",pc2=v=>v.toFixed(2).replace(".",",")+"%";
-const rp=v=>"Rp "+new Intl.NumberFormat("id-ID").format(Math.round(v)),full=rp;
-const st=v=>v>=TARGET-10?["ok","Sesuai target","var(--ok)"]:v>=TARGET-30?["warn","Agak lambat","var(--warn)"]:["bad","Tertinggal","var(--bad)"];
+/* ============================================================
+   DATA EMPAT PERIODE — Juni, Juli, Agustus, September 2026
+   ============================================================ */
+const DATA_ALL = {
+  jun: {
+    label: "Juni 2026", target: 50.00, bulan: "Juni", bulanAngka: 6,
+    raw: [
+      ["Sekretariat Daerah",94642049790,24472348832,26.44],
+      ["Sekretariat DPRD",89832585875,32444346041,30.73],
+      ["Dinas Pekerjaan Umum dan Penataan Ruang",410853267084,23187958688,5.14],
+      ["Dinas Perumahan dan Kawasan Permukiman",28208697847,2761398445,14.25],
+      ["Dinas Kesehatan",852002536708,165718706727,28.11],
+      ["Dinas Pendidikan",890556855194,358830056246,42.04],
+      ["Dinas Kependudukan dan Pencatatan Sipil",10644688857,3652808547,37.24],
+      ["Dinas Perindustrian dan Perdagangan",26996126215,6855731990,15.89],
+      ["Dinas Kebudayaan dan Pariwisata",15257572701,3597483822,14.42],
+      ["Dinas Perhubungan",48523878433,18942331749,39.05],
+      ["Dinas Komunikasi dan Informatika",13854352447,2967673764,30.95],
+      ["Dinas Tenaga Kerja dan Transmigrasi",10535864337,2117370008,28.63],
+      ["Dinas Perikanan",8472072663,2155756960,25.58],
+      ["Dinas Pertanian",38674895964,2319217850,31.11],
+      ["Dinas Peternakan dan Kesehatan Hewan",14604115359,3285878713,36.48],
+      ["Dinas Koperasi dan Usaha Mikro",9028638164,2697956275,39.81],
+      ["Dinas Sosial",11656899683,1881849412,17.83],
+      ["Dinas Ketahanan Pangan",7984928852,2230705068,29.91],
+      ["Dinas Pemberdayaan Masyarakat dan Desa",11742575237,4171737729,42.48],
+      ["Dinas Lingkungan Hidup",32941444676,9043441408,32.50],
+      ["Dinas Perpustakaan dan Kearsipan",6069095470,1868470329,69.23],
+      ["Dinas Penanaman Modal dan PTSP",5735180142,1488685069,25.96],
+      ["Satuan Polisi Pamong Praja",14648516365,5150660613,36.25],
+      ["Badan Perencanaan Pembangunan Daerah",16473671361,5729581327,23.06],
+      ["Inspektorat Daerah",17411576756,4403922964,16.50],
+      ["Badan Kepegawaian dan Pengembangan SDM",12361341618,3094578331,40.16],
+      ["Badan Pengelolaan Keuangan dan Aset Daerah",439208718995,153976798283,35.06],
+      ["Badan Pendapatan Daerah",34588998608,10514791530,37.30],
+      ["Kecamatan Tulungagung",27395551434,6327879053,16.30],
+      ["Kecamatan Kedungwaru",3814788515,1142306856,37.03],
+      ["Kecamatan Boyolangu",3306416462,906616284,29.27],
+      ["Kecamatan Ngantru",3390579993,1066479013,31.64],
+      ["Kecamatan Sumbergempol",3574883749,1070598766,30.84],
+      ["Kecamatan Ngunut",3822401957,2088321840,22.17],
+      ["Kecamatan Rejotangan",3473855771,1167116154,35.59],
+      ["Kecamatan Pucanglaban",3145254067,1062231160,21.86],
+      ["Kecamatan Kalidawir",3668666435,1161107246,42.43],
+      ["Kecamatan Tanggunggunung",3918443570,1169291018,10.02],
+      ["Kecamatan Besuki",3577364151,951826733,54.83],
+      ["Kecamatan Campurdarat",3110352957,1090665159,37.06],
+      ["Kecamatan Pakel",3888343983,1256430046,34.07],
+      ["Kecamatan Bandung",4051289837,1240352133,33.37],
+      ["Kecamatan Gondang",4340353456,1459192147,22.17],
+      ["Kecamatan Kauman",4063324279,1153970592,29.08],
+      ["Kecamatan Pagerwojo",3625776739,1155871393,32.02],
+      ["Kecamatan Karangrejo",3678577493,1330941990,37.18],
+      ["Kecamatan Sendang",3036209560,1017403789,24.05],
+      ["Badan Kesatuan Bangsa dan Politik",16603738360,1998319223,20.34],
+      ["Badan Penanggulangan Bencana Daerah",7296463743,2368890894,20.80],
+      ["Dinas KB, Pemberdayaan Perempuan dan Perlindungan Anak",17303378777,2347164313,20.58],
+      ["Dinas Pemadam Kebakaran dan Penyelamatan",7928889905,2537224662,40.42],
+      ["Dinas Pemuda dan Olahraga",17256150389,3630238344,12.02],
+      ["Badan Riset dan Inovasi Daerah",3830791513,1080667398,33.67]
+    ]
+  },
+  jul: {
+    label: "Juli 2026", target: 58.33, bulan: "Juli", bulanAngka: 7,
+    raw: [
+      ["Dinas Pendidikan",894637537943,322443169033,51.79],
+      ["Dinas Kesehatan",859324853661,265692577899,33.81],
+      ["Dinas Pekerjaan Umum dan Penataan Ruang",349722633104,64673005868,21.04],
+      ["Dinas Perumahan dan Kawasan Permukiman",28807697847,5227727104,39.00],
+      ["Dinas Lingkungan Hidup",36417210016,15126764370,47.17],
+      ["Dinas Pemadam Kebakaran dan Penyelamatan",8038639905,4076861027,56.24],
+      ["Badan Penanggulangan Bencana Daerah",7296463743,3640628318,50.73],
+      ["Satuan Polisi Pamong Praja",14648516365,7990763553,55.62],
+      ["Dinas Sosial",12013899683,4196773682,38.17],
+      ["Dinas Tenaga Kerja dan Transmigrasi",10536359337,3747149625,52.97],
+      ["Dinas KB, Pemberdayaan Perempuan dan Perlindungan Anak",17303378777,6727840458,50.26],
+      ["Dinas Ketahanan Pangan",7984928852,3587628104,46.93],
+      ["Dinas Kependudukan dan Pencatatan Sipil",10968657857,5211063538,57.73],
+      ["Dinas Pemberdayaan Masyarakat dan Desa",14353632137,6454498644,54.33],
+      ["Dinas Perhubungan",48523878433,27694638252,57.39],
+      ["Dinas Komunikasi dan Informatika",13854352447,4964811573,37.79],
+      ["Dinas Koperasi dan Usaha Mikro",9028638164,4503874288,52.37],
+      ["Dinas Penanaman Modal dan PTSP",5809656142,2549921647,43.89],
+      ["Dinas Pemuda dan Olahraga",17487378117,6607574078,38.82],
+      ["Dinas Kebudayaan dan Pariwisata",15257572701,6268701594,44.80],
+      ["Dinas Perpustakaan dan Kearsipan",6075305470,3066151328,53.66],
+      ["Dinas Perikanan",8472072663,3520235854,41.63],
+      ["Dinas Pertanian",39299895964,4348407077,32.99],
+      ["Dinas Peternakan dan Kesehatan Hewan",14649115359,5651828206,51.98],
+      ["Dinas Perindustrian dan Perdagangan",26996126215,11543622771,51.13],
+      ["Sekretariat Daerah",96583049790,39170655907,41.30],
+      ["Sekretariat DPRD",90612554275,47211249673,52.94],
+      ["Badan Perencanaan Pembangunan Daerah",16773671361,8924180528,54.08],
+      ["Badan Pengelolaan Keuangan dan Aset Daerah",489761450647,193988766370,39.61],
+      ["Badan Pendapatan Daerah",34588998608,16966227299,54.69],
+      ["Badan Kepegawaian dan Pengembangan SDM",12461341618,5707277743,54.45],
+      ["Badan Riset dan Inovasi Daerah",3905791513,1801376013,49.37],
+      ["Inspektorat Daerah",17411576756,6931707126,39.84],
+      ["Kecamatan Bandung",4051289837,1927235250,48.54],
+      ["Kecamatan Besuki",3577364151,1510019042,57.52],
+      ["Kecamatan Boyolangu",3306416462,1459022856,47.96],
+      ["Kecamatan Campurdarat",3110352957,1709234919,57.48],
+      ["Kecamatan Gondang",4344603456,2304713192,53.14],
+      ["Kecamatan Kalidawir",3673666435,1806098872,65.38],
+      ["Kecamatan Karangrejo",3678577493,2032053000,56.23],
+      ["Kecamatan Kauman",4063324279,1794762767,44.85],
+      ["Kecamatan Kedungwaru",3821778515,1768591384,57.72],
+      ["Kecamatan Ngantru",3394959993,1601013120,47.82],
+      ["Kecamatan Ngunut",3822401957,1911761941,57.42],
+      ["Kecamatan Pagerwojo",3625776739,1862206631,51.44],
+      ["Kecamatan Pakel",3888343983,1937114721,55.31],
+      ["Kecamatan Pucanglaban",3147304067,1674258478,54.66],
+      ["Kecamatan Rejotangan",3473855771,1801244377,53.84],
+      ["Kecamatan Sendang",3036209560,1605322086,60.57],
+      ["Kecamatan Sumbergempol",3574883749,1734781235,49.56],
+      ["Kecamatan Tanggunggunung",3918443570,1441120600,39.70],
+      ["Kecamatan Tulungagung",27563235858,11748153212,46.78],
+      ["Badan Kesatuan Bangsa dan Politik",16603738360,8463554897,59.64]
+    ]
+  },
+  aug: {
+    label: "Agustus 2026", target: 66.67, bulan: "Agustus", bulanAngka: 8,
+    raw: [
+      ["Dinas Pendidikan",899574391943,323336322370,51.64],
+      ["Dinas Kesehatan",859324853661,644956843121,76.59],
+      ["Dinas Pekerjaan Umum dan Penataan Ruang",349722633104,83948080295,24.07],
+      ["Dinas Perumahan dan Kawasan Permukiman",28807697847,5782814150,59.81],
+      ["Dinas Lingkungan Hidup",36417210016,17666514389,54.33],
+      ["Dinas Pemadam Kebakaran dan Penyelamatan",8038639905,4487941585,63.77],
+      ["Badan Penanggulangan Bencana Daerah",7296463743,4062224663,59.20],
+      ["Satuan Polisi Pamong Praja",14648516365,8997742089,61.87],
+      ["Dinas Sosial",12013899683,4703989238,40.68],
+      ["Dinas Tenaga Kerja dan Transmigrasi",10536359337,4122629406,56.53],
+      ["Dinas KB, Pemberdayaan Perempuan dan Perlindungan Anak",17303378777,8904155584,64.13],
+      ["Dinas Ketahanan Pangan",7984928852,4189010001,54.46],
+      ["Dinas Kependudukan dan Pencatatan Sipil",10968657857,6221518637,65.18],
+      ["Dinas Pemberdayaan Masyarakat dan Desa",14353632137,7228307225,63.04],
+      ["Dinas Perhubungan",48523878433,31440098440,66.37],
+      ["Dinas Komunikasi dan Informatika",13926438407,5421683472,40.74],
+      ["Dinas Koperasi dan Usaha Mikro",9028638164,5173121054,66.23],
+      ["Dinas Penanaman Modal dan PTSP",5809656142,2836425393,48.83],
+      ["Dinas Pemuda dan Olahraga",17487378117,7153306713,41.21],
+      ["Dinas Kebudayaan dan Pariwisata",15257572701,7293986972,48.21],
+      ["Dinas Perpustakaan dan Kearsipan",6075305470,3442555848,60.75],
+      ["Dinas Perikanan",8472072663,4369165619,52.14],
+      ["Dinas Pertanian",39299895964,5216540765,40.64],
+      ["Dinas Peternakan dan Kesehatan Hewan",14649115359,6720220796,60.77],
+      ["Dinas Perindustrian dan Perdagangan",26996126215,13327497884,52.27],
+      ["Sekretariat Daerah",96583049790,45216953367,48.98],
+      ["Sekretariat DPRD",90612554275,54598193919,61.68],
+      ["Badan Perencanaan Pembangunan Daerah",16773671361,10442759064,62.86],
+      ["Badan Pengelolaan Keuangan dan Aset Daerah",489761450647,205071965616,41.87],
+      ["Badan Pendapatan Daerah",34588998608,17945351542,62.38],
+      ["Badan Kepegawaian dan Pengembangan SDM",12461341618,6385777540,55.30],
+      ["Badan Riset dan Inovasi Daerah",3905791513,2123007720,61.32],
+      ["Inspektorat Daerah",17411576756,7964694091,45.77],
+      ["Kecamatan Bandung",4051289837,2188395776,54.91],
+      ["Kecamatan Besuki",3577364151,1758992622,49.21],
+      ["Kecamatan Boyolangu",3306416462,1675806756,54.11],
+      ["Kecamatan Campurdarat",3110352957,1963065597,65.06],
+      ["Kecamatan Gondang",4344603456,2572525478,67.57],
+      ["Kecamatan Kalidawir",3673666435,2067644649,67.63],
+      ["Kecamatan Karangrejo",3678577493,2337101114,64.53],
+      ["Kecamatan Kauman",4063324279,2053325646,51.22],
+      ["Kecamatan Kedungwaru",3821778515,2044440101,62.08],
+      ["Kecamatan Ngantru",3394959993,1833158317,54.65],
+      ["Kecamatan Ngunut",3822401957,2151280965,57.42],
+      ["Kecamatan Pagerwojo",3625776739,2117854878,58.55],
+      ["Kecamatan Pakel",3889489983,2195475729,60.31],
+      ["Kecamatan Pucanglaban",3147304067,1904047051,62.13],
+      ["Kecamatan Rejotangan",3473855771,2068674484,62.48],
+      ["Kecamatan Sendang",3036209560,1846755156,66.41],
+      ["Kecamatan Sumbergempol",3574883749,1990208689,56.94],
+      ["Kecamatan Tanggunggunung",3918443570,1706627811,59.71],
+      ["Kecamatan Tulungagung",27558235858,13532252859,51.50],
+      ["Badan Kesatuan Bangsa dan Politik",16603738360,9745184747,63.90]
+    ]
+  },
+  sep: {
+    label: "September 2026", target: 75, bulan: "September", bulanAngka: 9,
+    raw: [
+      ["Dinas Pendidikan",900554703368,376194941756,49.6],
+      ["Dinas Kesehatan",859324853661,666668775841,71.02],
+      ["Dinas Pekerjaan Umum dan Penataan Ruang",349722633104,110026764184,40],
+      ["Dinas Perumahan dan Kawasan Permukiman",28807697847,7925013219,62.09],
+      ["Dinas Lingkungan Hidup",36417210016,20153988929,60],
+      ["Badan Penanggulangan Bencana Daerah",7296463743,4574927304,65],
+      ["Satuan Polisi Pamong Praja",14648516365,10105740554,70],
+      ["Dinas Pemadam Kebakaran dan Penyelamatan",8038639905,4941705055,70.91],
+      ["Dinas Sosial",12013899683,5105055123,43.57],
+      ["Dinas Tenaga Kerja dan Transmigrasi",10536359337,4589683123,65],
+      ["Dinas KB, Pemberdayaan Perempuan dan Perlindungan Anak",17303378777,9945228504,57.48],
+      ["Dinas Ketahanan Pangan",7984928852,4668693692,60.44],
+      ["Dinas Kependudukan dan Pencatatan Sipil",10968657857,6885217669,73.53],
+      ["Dinas Pemberdayaan Masyarakat dan Desa",14353632137,8420594261,63.04],
+      ["Dinas Perhubungan",48523878433,35530986790,77.56],
+      ["Dinas Komunikasi dan Informatika",13926438407,5911111157,45],
+      ["Dinas Koperasi dan Usaha Mikro",9028638164,5782397295,72.89],
+      ["Dinas Penanaman Modal dan PTSP",5809656142,3299415566,57],
+      ["Dinas Pemuda dan Olahraga",17487378117,9348325371,53.46],
+      ["Dinas Kebudayaan dan Pariwisata",15257572701,8146790387,53.4],
+      ["Dinas Perpustakaan dan Kearsipan",6075305470,3866829511,63.65],
+      ["Dinas Perikanan",8472072663,5496875073,64.88],
+      ["Dinas Pertanian",39299895964,6673086008,16.54],
+      ["Dinas Peternakan dan Kesehatan Hewan",14649115359,7981383124,68.21],
+      ["Dinas Perindustrian dan Perdagangan",26996126215,15215383074,56.36],
+      ["Sekretariat Daerah",96583049790,54574616162,58.23],
+      ["Sekretariat DPRD",90612554275,62329471362,68.79],
+      ["Badan Perencanaan Pembangunan Daerah",16773671361,11352915043,67.68],
+      ["Badan Pengelolaan Keuangan dan Aset Daerah",489761450647,224404542149,45.82],
+      ["Badan Pendapatan Daerah",34588998608,18530806423,70.03],
+      ["Badan Kepegawaian dan Pengembangan SDM",12461341618,7454275193,63.2],
+      ["Badan Riset dan Inovasi Daerah",3905791513,2416795868,77],
+      ["Inspektorat Daerah",17411576756,9183365236,52.74],
+      ["Kecamatan Bandung",4051289837,2403782038,59.33],
+      ["Kecamatan Besuki",3577364151,1957442304,70.83],
+      ["Kecamatan Boyolangu",3306416462,1846771749,67.94],
+      ["Kecamatan Campurdarat",3110352957,2142222949,70.87],
+      ["Kecamatan Gondang",4344603456,2864392793,69.95],
+      ["Kecamatan Kalidawir",3673666435,2285499768,65],
+      ["Kecamatan Karangrejo",3678577493,2567749493,70.8],
+      ["Kecamatan Kauman",4063324279,2294377999,57.15],
+      ["Kecamatan Kedungwaru",3821778515,2245700102,65.36],
+      ["Kecamatan Ngantru",3394959993,2021661321,60.05],
+      ["Kecamatan Ngunut",3822401957,2381541658,64.3],
+      ["Kecamatan Pagerwojo",3625776739,2343013136,64.62],
+      ["Kecamatan Pakel",3889489983,2410617896,65],
+      ["Kecamatan Pucanglaban",3147304067,2087661531,68.33],
+      ["Kecamatan Rejotangan",3473855771,2286264792,68.81],
+      ["Kecamatan Sendang",3036209560,2057712398,67.77],
+      ["Kecamatan Sumbergempol",3574883749,2209402132,67.34],
+      ["Kecamatan Tanggunggunung",3918443570,2306006168,62],
+      ["Kecamatan Tulungagung",27563235858,15481918349,60],
+      ["Badan Kesatuan Bangsa dan Politik",16603738360,11836078577,73.25]
+    ]
+  }
+};
 
-const P=sum(D,"p"),R=sum(D,"r"),K=R/P*100,gap=K-TARGET;
-const cnt={ok:0,warn:0,bad:0};D.forEach(d=>cnt[st(d.keu)[0]]++);
-const lag=cnt.bad;
-$("#hero").innerHTML=`<div class="lead">Anggaran yang sudah terpakai</div><div class="big">${pc(K)}</div>
-<p>Dari pagu ${rp(P)}, sebanyak ${rp(R)} sudah terealisasi. Posisi September idealnya sekitar ${TARGET}%, sehingga capaian saat ini ${Math.abs(gap).toFixed(1).replace(".",",")} poin ${gap<0?"di bawah":"di atas"} patokan. Ada <b>${lag} OPD</b> yang tergolong tertinggal.</p>
-<div class="track"><i style="width:${Math.min(100,K)}%"></i><b style="left:${TARGET}%"></b></div>
-<div class="tlab"><span>0%</span><span>▲ Target ${TARGET}%</span><span>100%</span></div>
-<div class="stack"><i style="width:${cnt.ok/D.length*100}%;background:#34d399"></i><i style="width:${cnt.warn/D.length*100}%;background:#fbbf24"></i><i style="width:${cnt.bad/D.length*100}%;background:#f87171"></i></div>
-<div class="stl"><span style="--c:#34d399">${cnt.ok} OPD sesuai target</span><span style="--c:#fbbf24">${cnt.warn} agak lambat</span><span style="--c:#f87171">${cnt.bad} tertinggal</span></div>`;
-const fis=D.filter(d=>d.f!=null);
-$("#kpis").innerHTML=[["Total pagu",rp(P),"Anggaran setahun","var(--acc)"],["Sudah terealisasi",rp(R),pc(K)+" dari pagu","var(--ok)"],["Belum terserap",rp(sum(D,"sisa")),pc(100-K)+" dari pagu","var(--warn)"],["Rata-rata fisik",pc(sum(fis,"f")/fis.length),"dari "+fis.length+" OPD terdata","#8b5cf6"]]
- .map(([a,b,c,l])=>`<div class="kpi" style="--c:${l}"><small>${a}</small><strong>${b}</strong><span>${c}</span></div>`).join("");
+/* ================= UTIL ================= */
+const $ = s => document.querySelector(s);
+const fmt = n => new Intl.NumberFormat("id-ID").format(Math.round(n));
+const rp = n => "Rp " + fmt(n);
+const pc = n => n.toFixed(1).replace(".",",") + "%";
+const pc2 = n => n.toFixed(2).replace(".",",") + "%";
+const sum = (a,k) => a.reduce((s,d)=>s+d[k],0);
+const kat = n => /^Sekretariat/.test(n) ? "Sekretariat" : /^Kecamatan/.test(n) ? "Kecamatan" : /^(Badan|Inspektorat)/.test(n) ? "Badan" : "Dinas";
 
-$("#kat").innerHTML=["Dinas","Badan","Sekretariat","Kecamatan"].map(k=>{
- const a=D.filter(d=>d.k===k),p=sum(a,"p"),r=sum(a,"r"),v=r/p*100,s=st(v);
- return `<div class="card"><div class="row"><span class="n">${k} (${a.length} OPD)</span><span class="v" style="color:${s[2]}">${pc(v)}</span>
- <div class="bar"><i style="width:${v}%;background:${s[2]}"></i></div><span class="m">${rp(r)} dari ${rp(p)} · ${s[1]}</span></div></div>`}).join("");
+/* ================= STATE ================= */
+const state = {
+  period: "sep",
+  shareAll: false,
+  sort: { k:"all", q:"", s:"keu", dir:-1 },
+  chartInstance: null
+};
 
-/* pangsa anggaran */
-(function(){
- const tot=sum(D,"p"),so=[...D].sort((a,b)=>b.p-a.p),mx=so[0].p/tot*100,avg=tot/D.length,ab=D.filter(d=>d.p>avg).length,c5=so.slice(0,5).reduce((s,d)=>s+d.p,0)/tot*100;
- let all=false;
- function draw(){
-  const rows=all?so:so.slice(0,10);
-  $("#shareCard").innerHTML=`<div class="ss">
-   <div><small>Total Pagu APBD</small><strong>${rp(tot)}</strong><span>Keseluruhan OPD</span></div>
-   <div><small>OPD Terbesar</small><strong>${pc2(so[0].p/tot*100)}</strong><span>${so[0].n}</span></div>
-   <div><small>5 OPD Teratas</small><strong>${pc2(c5)}</strong><span>dari total APBD</span></div>
-   <div><small>Rata-rata per OPD</small><strong>${rp(avg)}</strong><span>${ab} OPD di atas rata-rata</span></div></div>
-  <div class="sl">${rows.map((d,i)=>{const pct=d.p/tot*100;return `<div class="sr"><div class="rk ${i<3?"t"+(i+1):""}">${i+1}</div>
-   <div style="min-width:0"><div class="nm" title="${d.n}">${d.n}</div><div class="mt">${d.k} · realisasi ${pc(d.keu)}</div><div class="sb"><i style="width:${Math.min(100,pct/mx*100)}%"></i></div></div>
-   <div class="sv"><b>${rp(d.p)}</b><span>${pc2(pct)}</span></div></div>`}).join("")}</div>
-  <button class="more" id="more">${all?"Tampilkan 10 teratas saja":"Tampilkan semua 53 OPD"}</button>`;
-  $("#more").onclick=()=>{all=!all;draw()};
- }
- draw();
-})();
+const riwayatSort = { key: "absDelta", dir: -1 };
+let riwayatChartInst = null;
 
-/* sorotan */
-const big=D.filter(d=>d.p>1e9);
-const list=(t,rows,f)=>`<div class="card"><h3>${t}</h3>${rows.map(d=>{const s=st(d.keu);return `<div class="row"><span class="n">${d.n}</span><span class="v" style="color:${s[2]}">${pc(d.keu)}</span>
-<div class="bar"><i style="width:${Math.min(100,d.keu)}%;background:${s[2]}"></i></div><span class="m">${f(d)}</span></div>`}).join("")}</div>`;
-$("#lists").innerHTML=
- list("⚠️ Paling tertinggal",[...big].sort((a,b)=>a.keu-b.keu).slice(0,5),d=>`${rp(d.r)} dari ${rp(d.p)}`)+
- list("🏆 Terserap paling tinggi",[...big].sort((a,b)=>b.keu-a.keu).slice(0,5),d=>`${rp(d.r)} dari ${rp(d.p)}`)+
- list("💰 Pagu terbesar",[...D].sort((a,b)=>b.p-a.p).slice(0,5),d=>`Pagu ${rp(d.p)} · sisa ${rp(d.sisa)}`);
-
-/* perbandingan */
-(function(){
- if(typeof Chart==="undefined"){document.querySelector(".cw").innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--mut);font-size:13px;text-align:center">Grafik tidak dapat dimuat (Chart.js CDN tidak tersedia).</div>';return}
- const so=[...D].sort((a,b)=>b.keu-a.keu),g=K,ab=so.filter(d=>d.keu>=g),be=so.filter(d=>d.keu<g),top=so[0],bot=so[so.length-1];
- const sn=n=>n.replace(/^Dinas /,"").replace(/^Badan /,"").replace(/^Kecamatan /,"Kec. ").split(" dan ")[0].split(",")[0];
- $("#cmpStats").innerHTML=`<span><i class="d" style="background:#e29a0b"></i>Rata-rata global: <b>${pc(g)}</b></span><span><i class="d" style="background:#12a06b"></i><b>${ab.length}</b> OPD di atas</span><span><i class="d" style="background:#e0453f"></i><b>${be.length}</b> OPD di bawah</span><span>🏆 Tertinggi: <b>${sn(top.n)}</b> (${pc(top.keu)})</span><span>📉 Terendah: <b>${sn(bot.n)}</b> (${pc(bot.keu)})</span>`;
- const dk=matchMedia("(prefers-color-scheme: dark)").matches,gc=dk?"rgba(255,255,255,.08)":"rgba(0,0,0,.06)",tc=dk?"#8fa2c4":"#62718f";
- new Chart($("#cmpChart").getContext("2d"),{type:"line",data:{labels:so.map((d,i)=>""+(i+1)),datasets:[
-  {label:"Realisasi per OPD",data:so.map(d=>d.keu),borderColor:"#2563eb",backgroundColor:"rgba(37,99,235,.10)",borderWidth:2.2,fill:true,tension:.35,pointRadius:4,pointHoverRadius:9,pointBackgroundColor:so.map(d=>d.keu>=g?"#12a06b":"#e0453f"),pointBorderColor:"#fff",pointBorderWidth:1.5,order:2},
-  {label:"Rata-rata global",data:so.map(()=>g),borderColor:"#e29a0b",borderWidth:2,borderDash:[8,4],fill:false,pointRadius:0,pointHoverRadius:0,tension:0,order:1}]},
- options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},
-  plugins:{legend:{position:"top",labels:{color:tc,usePointStyle:true,pointStyle:"circle",padding:14,font:{size:12,weight:"600"}}},
-   tooltip:{backgroundColor:dk?"rgba(19,29,51,.97)":"rgba(255,255,255,.98)",titleColor:dk?"#e8eefb":"#13203a",bodyColor:dk?"#c4d2ea":"#4a566f",borderColor:dk?"rgba(120,155,215,.3)":"#e2e7f1",borderWidth:1,padding:12,displayColors:false,
-    callbacks:{title:t=>`#${t[0].dataIndex+1} · ${so[t[0].dataIndex].n}`,label:t=>{if(t.datasetIndex===0){const d=so[t.dataIndex],x=d.keu-g;return [`Realisasi OPD: ${pc(d.keu)}`,`Rata-rata global: ${pc(g)}`,`Selisih: ${x>=0?"+":""}${pc(x)} (${x>=0?"▲ di atas":"▼ di bawah"} rata-rata)`,"—",`Pagu: ${rp(d.p)}`,`Realisasi: ${rp(d.r)}`]}return `Rata-rata global: ${pc(g)}`}}}},
-  scales:{x:{grid:{display:false},ticks:{color:tc,font:{size:10,weight:"600"},autoSkip:false,callback:function(v,i){return i%3===0||i===so.length-1?this.getLabelForValue(v):""}},title:{display:true,text:"Peringkat OPD (%Keuangan tertinggi → terendah)",color:tc,font:{size:11,weight:"600"},padding:{top:8}}},
-   y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>v+"%",stepSize:20},beginAtZero:true,max:100,title:{display:true,text:"% Realisasi Keuangan",color:tc,font:{size:11,weight:"600"}}}}}});
-})();
-
-/* tabel */
-const S={k:"all",q:"",s:"keu",dir:-1};
-const COLS=[["n","Nama OPD"],["p","Pagu","r"],["r","Realisasi","r"],["sisa","Sisa","r"],["keu","% Keuangan","r"],["f","% Fisik","r"],["st","Status"]];
-$("#chips").innerHTML=["all","Dinas","Badan","Sekretariat","Kecamatan"].map(k=>`<button data-k="${k}" class="${k==="all"?"on":""}">${k==="all"?"Semua":k}</button>`).join(" ");
-function table(){
- const q=S.q.toLowerCase();
- let rows=D.filter(d=>(S.k==="all"||d.k===S.k)&&d.n.toLowerCase().includes(q));
- const key=S.s==="st"?"keu":S.s;
- rows.sort((a,b)=>key==="n"?a.n.localeCompare(b.n,"id")*S.dir:((a[key]??-1)-(b[key]??-1))*S.dir);
- $("#th").innerHTML=COLS.map(([k,l,c])=>`<th data-s="${k}" class="${c||""}">${l}${S.s===k?(S.dir>0?" ▲":" ▼"):""}</th>`).join("");
- $("#tb").innerHTML=rows.map(d=>{const s=st(d.keu);return `<tr><td>${d.n}<small>${d.k}</small></td>
- <td class="r">${full(d.p)}</td><td class="r">${full(d.r)}</td><td class="r">${full(d.sisa)}</td>
- <td class="r"><b style="color:${s[2]}">${pc(d.keu)}</b><div class="mini"><i style="width:${Math.min(100,d.keu)}%;background:${s[2]}"></i></div></td>
- <td class="r">${d.f==null?"—":pc(d.f)}${d.f!=null&&d.f<5?" ⚠️":""}</td><td><span class="pill ${s[0]}">${s[1]}</span></td></tr>`}).join("")||`<tr><td colspan="7">Tidak ada OPD yang cocok.</td></tr>`;
+/* ================= BUILD DATA ================= */
+function buildData(period) {
+  return DATA_ALL[period].raw.map(([n,p,r,f]) => ({
+    n, p, r, f,
+    k: kat(n),
+    keu: r/p*100,
+    sisa: Math.max(0, p-r)
+  }));
 }
-$("#q").oninput=e=>{S.q=e.target.value;table()};
-$("#chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll("#chips button").forEach(x=>x.classList.remove("on"));b.classList.add("on");S.k=b.dataset.k;table()};
-$("#th").onclick=e=>{const t=e.target.closest("th");if(!t)return;const k=t.dataset.s;if(S.s===k)S.dir*=-1;else{S.s=k;S.dir=k==="n"?1:-1}table()};
-table();
+
+function getRiwayat() {
+  const map = {};
+  DATA_ALL.sep.raw.forEach(([n]) => { map[n] = { n, jun:0, jul:0, aug:0, sep:0 }; });
+  DATA_ALL.jun.raw.forEach(([n,p]) => { if(map[n]) map[n].jun = p; });
+  DATA_ALL.jul.raw.forEach(([n,p]) => { if(map[n]) map[n].jul = p; });
+  DATA_ALL.aug.raw.forEach(([n,p]) => { if(map[n]) map[n].aug = p; });
+  DATA_ALL.sep.raw.forEach(([n,p]) => { if(map[n]) map[n].sep = p; });
+  return Object.values(map).map(d => ({
+    ...d,
+    delta: d.sep - d.jun,
+    pct: d.jun ? (d.sep - d.jun)/d.jun*100 : 0,
+    absDelta: Math.abs(d.sep - d.jun)
+  }));
+}
+
+let D = [];
+let TARGET = 75;
+
+function st(v) {
+  return v >= TARGET-10 ? ["ok","Sesuai target","var(--ok)"]
+       : v >= TARGET-30 ? ["warn","Agak lambat","var(--warn)"]
+       : ["bad","Tertinggal","var(--bad)"];
+}
+
+/* ================= RENDER: HERO ================= */
+function renderHero() {
+  const cfg = DATA_ALL[state.period];
+  const P = sum(D,"p"), R = sum(D,"r"), K = R/P*100, gap = K - TARGET;
+  const cnt = {ok:0, warn:0, bad:0};
+  D.forEach(d => cnt[st(d.keu)[0]]++);
+
+  $("#hero").innerHTML = `
+    <div class="period-badge">📅 Data s.d. ${cfg.label}</div>
+    <div class="lead">Anggaran yang sudah terpakai</div>
+    <div class="big">${pc(K)}</div>
+    <p>Dari pagu <b>${rp(P)}</b>, sebanyak <b>${rp(R)}</b> sudah terealisasi. Posisi ${cfg.bulan} idealnya sekitar <b>${pc(cfg.target)}</b> (${cfg.bulanAngka} dari 12 bulan), sehingga capaian saat ini <b>${Math.abs(gap).toFixed(1).replace(".",",")} poin ${gap<0?"di bawah":"di atas"}</b> patokan. Ada <b>${cnt.bad} OPD</b> yang tergolong tertinggal.</p>
+    <div class="track"><i style="width:${Math.min(100,K)}%"></i><b style="left:${cfg.target}%"></b></div>
+    <div class="tlab"><span>0%</span><span>▲ Target ${pc(cfg.target)}</span><span>100%</span></div>
+    <div class="stack">
+      <i style="width:${cnt.ok/D.length*100}%;background:#34d399"></i>
+      <i style="width:${cnt.warn/D.length*100}%;background:#fbbf24"></i>
+      <i style="width:${cnt.bad/D.length*100}%;background:#f87171"></i>
+    </div>
+    <div class="stl">
+      <span style="--c:#34d399">${cnt.ok} OPD sesuai target</span>
+      <span style="--c:#fbbf24">${cnt.warn} agak lambat</span>
+      <span style="--c:#f87171">${cnt.bad} tertinggal</span>
+    </div>`;
+}
+
+/* ================= RENDER: LEGEND ================= */
+function renderLegend() {
+  const tOk = TARGET - 10;
+  const tWarn = TARGET - 30;
+  $("#legendColors").innerHTML = `
+    <span style="--c:var(--ok)">Sesuai target (≥ ${pc(tOk)})</span>
+    <span style="--c:var(--warn)">Agak lambat (${pc(tWarn)}–${pc(tOk)})</span>
+    <span style="--c:var(--bad)">Tertinggal (&lt; ${pc(tWarn)})</span>`;
+}
+
+/* ================= RENDER: KPI ================= */
+function renderKPI() {
+  const P = sum(D,"p"), R = sum(D,"r"), K = R/P*100;
+  const fis = D.filter(d=>d.f!=null);
+  const avgFis = fis.length ? sum(fis,"f")/fis.length : 0;
+
+  $("#kpis").innerHTML = [
+    ["Total pagu", rp(P), "Anggaran setahun", "var(--acc)"],
+    ["Sudah terealisasi", rp(R), pc(K) + " dari pagu", "var(--ok)"],
+    ["Belum terserap", rp(sum(D,"sisa")), pc(100-K) + " dari pagu", "var(--warn)"],
+    ["Rata-rata fisik", pc(avgFis), "dari " + fis.length + " OPD terdata", "#8b5cf6"]
+  ].map(([a,b,c,l]) => `<div class="kpi" style="--c:${l}"><small>${a}</small><strong>${b}</strong><span>${c}</span></div>`).join("");
+}
+
+/* ================= RENDER: KATEGORI ================= */
+function renderKategori() {
+  $("#kat").innerHTML = ["Dinas","Badan","Sekretariat","Kecamatan"].map(k => {
+    const a = D.filter(d=>d.k===k);
+    const p = sum(a,"p"), r = sum(a,"r"), v = r/p*100, s = st(v);
+    return `<div class="card"><div class="row"><span class="n">${k} (${a.length} OPD)</span><span class="v" style="color:${s[2]}">${pc(v)}</span>
+      <div class="bar"><i style="width:${v}%;background:${s[2]}"></i></div>
+      <span class="m">${rp(r)} dari ${rp(p)} · ${s[1]}</span></div></div>`;
+  }).join("");
+}
+
+/* ================= RENDER: PANGSA ANGGARAN ================= */
+function renderShare() {
+  const tot = sum(D,"p");
+  const so = [...D].sort((a,b)=>b.p-a.p);
+  const mx = so[0].p / tot * 100;
+  const avg = tot / D.length;
+  const ab = D.filter(d=>d.p>avg).length;
+  const c5 = so.slice(0,5).reduce((s,d)=>s+d.p,0) / tot * 100;
+  const rows = state.shareAll ? so : so.slice(0,10);
+
+  $("#shareCard").innerHTML = `
+    <div class="ss">
+      <div><small>Total Pagu APBD</small><strong>${rp(tot)}</strong><span>Keseluruhan OPD</span></div>
+      <div><small>OPD Terbesar</small><strong>${pc2(so[0].p/tot*100)}</strong><span>${so[0].n}</span></div>
+      <div><small>5 OPD Teratas</small><strong>${pc2(c5)}</strong><span>dari total APBD</span></div>
+      <div><small>Rata-rata per OPD</small><strong>${rp(avg)}</strong><span>${ab} OPD di atas rata-rata</span></div>
+    </div>
+    <div class="sl">${rows.map((d,i)=>{
+      const pct = d.p/tot*100;
+      return `<div class="sr">
+        <div class="rk ${i<3?"t"+(i+1):""}">${i+1}</div>
+        <div style="min-width:0">
+          <div class="nm" title="${d.n}">${d.n}</div>
+          <div class="mt">${d.k} · realisasi ${pc(d.keu)}</div>
+          <div class="sb"><i style="width:${Math.min(100,pct/mx*100)}%"></i></div>
+        </div>
+        <div class="sv"><b>${rp(d.p)}</b><span>${pc2(pct)}</span></div>
+      </div>`;
+    }).join("")}</div>
+    <button class="more" id="more">${state.shareAll ? "Tampilkan 10 teratas saja" : "Tampilkan semua 53 OPD"}</button>`;
+
+  $("#more").onclick = () => { state.shareAll = !state.shareAll; renderShare(); };
+}
+
+/* ================= RENDER: RIWAYAT PERUBAHAN PAGU ================= */
+function renderRiwayat() {
+  const RIWAYAT = getRiwayat();
+
+  const totalJun = RIWAYAT.reduce((s,d) => s + d.jun, 0);
+  const totalJul = RIWAYAT.reduce((s,d) => s + d.jul, 0);
+  const totalAug = RIWAYAT.reduce((s,d) => s + d.aug, 0);
+  const totalSep = RIWAYAT.reduce((s,d) => s + d.sep, 0);
+  const totalDelta = totalSep - totalJun;
+  const naik = RIWAYAT.filter(d => d.delta > 0).length;
+  const turun = RIWAYAT.filter(d => d.delta < 0).length;
+  const tetap = RIWAYAT.filter(d => d.delta === 0).length;
+
+  $("#riwayatStats").innerHTML = `
+    <div><small>Total Pagu Juni</small><strong>${rp(totalJun)}</strong><span>53 OPD</span></div>
+    <div><small>Total Pagu Juli</small><strong>${rp(totalJul)}</strong><span>${(totalJul-totalJun>=0?'+':'')}${rp(totalJul-totalJun)} vs Juni</span></div>
+    <div><small>Total Pagu Agustus</small><strong>${rp(totalAug)}</strong><span>${(totalAug-totalJul>=0?'+':'')}${rp(totalAug-totalJul)} vs Juli</span></div>
+    <div><small>Total Pagu September</small><strong>${rp(totalSep)}</strong><span>${(totalSep-totalAug>=0?'+':'')}${rp(totalSep-totalAug)} vs Agustus</span></div>
+    <div><small>Perubahan Total Jun→Sep</small><strong style="color:${totalDelta>=0?'var(--ok)':'var(--bad)'}">${(totalDelta>=0?'+':'')}${rp(totalDelta)}</strong><span>${((totalDelta/totalJun)*100).toFixed(2).replace('.',',')}% dari pagu Juni</span></div>
+    <div><small>OPD Naik / Turun / Tetap</small><strong>${naik} / ${turun} / ${tetap}</strong><span>dari 53 OPD</span></div>
+  `;
+
+  const top10 = [...RIWAYAT].sort((a,b) => b.absDelta - a.absDelta).slice(0,10).reverse();
+  const dk = matchMedia("(prefers-color-scheme: dark)").matches;
+  const gc = dk ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.06)";
+  const tc = dk ? "#8fa2c4" : "#62718f";
+
+  if (riwayatChartInst) riwayatChartInst.destroy();
+  riwayatChartInst = new Chart($("#riwayatChart").getContext("2d"), {
+    type: "bar",
+    data: {
+      labels: top10.map(d => d.n.length > 30 ? d.n.slice(0,29)+"…" : d.n),
+      datasets: [
+        { label: "Juni",       data: top10.map(d => d.jun), backgroundColor: "rgba(96,165,250,.7)",  borderColor: "#60a5fa", borderWidth: 1, borderRadius: 3, maxBarThickness: 11 },
+        { label: "Juli",       data: top10.map(d => d.jul), backgroundColor: "rgba(167,139,250,.75)", borderColor: "#a78bfa", borderWidth: 1, borderRadius: 3, maxBarThickness: 11 },
+        { label: "Agustus",    data: top10.map(d => d.aug), backgroundColor: "rgba(251,191,36,.8)",   borderColor: "#fbbf24", borderWidth: 1, borderRadius: 3, maxBarThickness: 11 },
+        { label: "September",  data: top10.map(d => d.sep), backgroundColor: "rgba(52,211,153,.85)",  borderColor: "#34d399", borderWidth: 1, borderRadius: 3, maxBarThickness: 11 }
+      ]
+    },
+    options: {
+      indexAxis: "y", responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "bottom", labels: { color: tc, usePointStyle: true, pointStyle: "circle", padding: 12, font: { size: 11.5 } } },
+        tooltip: {
+          backgroundColor: dk ? "rgba(19,29,51,.97)" : "rgba(255,255,255,.98)",
+          titleColor: dk ? "#e8eefb" : "#13203a",
+          bodyColor: dk ? "#c4d2ea" : "#4a566f",
+          borderColor: dk ? "rgba(120,155,215,.3)" : "#e2e7f1",
+          borderWidth: 1, padding: 10, displayColors: true,
+          callbacks: {
+            title: t => top10[t[0].dataIndex].n,
+            label: c => ` ${c.dataset.label}: ${rp(c.raw)}`,
+            afterBody: c => {
+              const d = top10[c[0].dataIndex];
+              return [`Δ Jun→Sep: ${(d.delta>=0?'+':'')}${rp(d.delta)}`, `Pct: ${(d.pct>=0?'+':'')}${d.pct.toFixed(2).replace('.',',')}%`];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: gc },
+          ticks: { color: tc, font: { size: 10 }, callback: v => v >= 1e9 ? (v/1e9).toFixed(0)+'M' : (v/1e6).toFixed(0)+'Jt' }
+        },
+        y: { grid: { display: false }, ticks: { color: tc, font: { size: 10 } } }
+      }
+    }
+  });
+
+  renderRiwayatTable(RIWAYAT);
+}
+
+function renderRiwayatTable(RIWAYAT) {
+  const sorted = [...RIWAYAT].sort((a,b) => {
+    const k = riwayatSort.key;
+    if (k === "n") return a.n.localeCompare(b.n, "id") * riwayatSort.dir;
+    const va = k === "absDelta" ? a.absDelta : (a[k] || 0);
+    const vb = k === "absDelta" ? b.absDelta : (b[k] || 0);
+    return (va - vb) * riwayatSort.dir;
+  });
+
+  const COLS = [
+    ["n","Nama OPD"],
+    ["jun","Pagu Juni","r"],
+    ["jul","Pagu Juli","r"],
+    ["aug","Pagu Agustus","r"],
+    ["sep","Pagu September","r"],
+    ["delta","Δ Jun→Sep","r"],
+    ["pct","% Perubahan","r"]
+  ];
+
+  $("#riwayatTh").innerHTML = COLS.map(([k,l,c]) =>
+    `<th data-s="${k}" class="${c||''}">${l}${riwayatSort.key===k?(riwayatSort.dir>0?" ▲":" ▼"):""}</th>`
+  ).join("");
+
+  $("#riwayatTb").innerHTML = sorted.map(d => {
+    const color = d.delta > 0 ? "var(--ok)" : d.delta < 0 ? "var(--bad)" : "var(--mut)";
+    const sign = d.delta > 0 ? "+" : "";
+    return `<tr>
+      <td>${d.n}</td>
+      <td class="r">${rp(d.jun)}</td>
+      <td class="r">${rp(d.jul)}</td>
+      <td class="r">${rp(d.aug)}</td>
+      <td class="r">${rp(d.sep)}</td>
+      <td class="r" style="color:${color};font-weight:700">${sign}${rp(d.delta)}</td>
+      <td class="r" style="color:${color};font-weight:700">${sign}${d.pct.toFixed(2).replace('.',',')}%</td>
+    </tr>`;
+  }).join("");
+}
+
+/* ================= RENDER: SOROTAN ================= */
+function renderSorotan() {
+  const big = D.filter(d=>d.p>1e9);
+  const list = (t, rows, f) => `<div class="card"><h3>${t}</h3>${rows.map(d=>{
+    const s = st(d.keu);
+    return `<div class="row"><span class="n">${d.n}</span><span class="v" style="color:${s[2]}">${pc(d.keu)}</span>
+      <div class="bar"><i style="width:${Math.min(100,d.keu)}%;background:${s[2]}"></i></div>
+      <span class="m">${f(d)}</span></div>`;
+  }).join("")}</div>`;
+
+  $("#lists").innerHTML =
+    list("⚠️ Paling tertinggal", [...big].sort((a,b)=>a.keu-b.keu).slice(0,5), d=>`${rp(d.r)} dari ${rp(d.p)}`) +
+    list("🏆 Terserap paling tinggi", [...big].sort((a,b)=>b.keu-a.keu).slice(0,5), d=>`${rp(d.r)} dari ${rp(d.p)}`) +
+    list("💰 Pagu terbesar", [...D].sort((a,b)=>b.p-a.p).slice(0,5), d=>`Pagu ${rp(d.p)} · sisa ${rp(d.sisa)}`);
+}
+
+/* ================= RENDER: PERBANDINGAN CHART ================= */
+function renderComparison() {
+  const cw = $(".cw");
+  if (typeof Chart === "undefined") {
+    cw.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--mut);font-size:13px;text-align:center">Grafik tidak dapat dimuat (Chart.js CDN tidak tersedia).</div>';
+    return;
+  }
+
+  const P = sum(D,"p"), R = sum(D,"r"), g = R/P*100;
+  const so = [...D].sort((a,b)=>b.keu-a.keu);
+  const ab = so.filter(d=>d.keu>=g), be = so.filter(d=>d.keu<g);
+  const top = so[0], bot = so[so.length-1];
+  const sn = n => n.replace(/^Dinas /,"").replace(/^Badan /,"").replace(/^Kecamatan /,"Kec. ").split(" dan ")[0].split(",")[0];
+
+  $("#cmpStats").innerHTML =
+    `<span><i class="d" style="background:#e29a0b"></i>Rata-rata global: <b>${pc(g)}</b></span>` +
+    `<span><i class="d" style="background:#12a06b"></i><b>${ab.length}</b> OPD di atas</span>` +
+    `<span><i class="d" style="background:#e0453f"></i><b>${be.length}</b> OPD di bawah</span>` +
+    `<span>🏆 Tertinggi: <b>${sn(top.n)}</b> (${pc(top.keu)})</span>` +
+    `<span>📉 Terendah: <b>${sn(bot.n)}</b> (${pc(bot.keu)})</span>`;
+
+  const dk = matchMedia("(prefers-color-scheme: dark)").matches;
+  const gc = dk ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.06)";
+  const tc = dk ? "#8fa2c4" : "#62718f";
+
+  if (state.chartInstance) state.chartInstance.destroy();
+
+  state.chartInstance = new Chart($("#cmpChart").getContext("2d"), {
+    type: "line",
+    data: {
+      labels: so.map((d,i) => "" + (i+1)),
+      datasets: [
+        {
+          label: "Realisasi per OPD",
+          data: so.map(d=>d.keu),
+          borderColor: "#2563eb",
+          backgroundColor: "rgba(37,99,235,.10)",
+          borderWidth: 2.2, fill: true, tension: .35,
+          pointRadius: 4, pointHoverRadius: 9,
+          pointBackgroundColor: so.map(d=>d.keu>=g?"#12a06b":"#e0453f"),
+          pointBorderColor: "#fff", pointBorderWidth: 1.5, order: 2
+        },
+        {
+          label: "Rata-rata global",
+          data: so.map(() => g),
+          borderColor: "#e29a0b", borderWidth: 2, borderDash: [8,4],
+          fill: false, pointRadius: 0, pointHoverRadius: 0, tension: 0, order: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          position: "top",
+          labels: { color: tc, usePointStyle: true, pointStyle: "circle", padding: 14, font: { size: 12, weight: "600" } }
+        },
+        tooltip: {
+          backgroundColor: dk ? "rgba(19,29,51,.97)" : "rgba(255,255,255,.98)",
+          titleColor: dk ? "#e8eefb" : "#13203a",
+          bodyColor: dk ? "#c4d2ea" : "#4a566f",
+          borderColor: dk ? "rgba(120,155,215,.3)" : "#e2e7f1",
+          borderWidth: 1, padding: 12, displayColors: false,
+          callbacks: {
+            title: t => `#${t[0].dataIndex+1} · ${so[t[0].dataIndex].n}`,
+            label: t => {
+              if (t.datasetIndex === 0) {
+                const d = so[t.dataIndex], x = d.keu - g;
+                return [
+                  `Realisasi OPD: ${pc(d.keu)}`,
+                  `Rata-rata global: ${pc(g)}`,
+                  `Selisih: ${x>=0?"+":""}${pc(x)} (${x>=0?"▲ di atas":"▼ di bawah"} rata-rata)`,
+                  "—",
+                  `Pagu: ${rp(d.p)}`,
+                  `Realisasi: ${rp(d.r)}`
+                ];
+              }
+              return `Rata-rata global: ${pc(g)}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: {
+            color: tc, font: { size: 10, weight: "600" }, autoSkip: false,
+            callback: function(v,i) { return i%3===0 || i===so.length-1 ? this.getLabelForValue(v) : ""; }
+          },
+          title: { display: true, text: "Peringkat OPD (%Keuangan tertinggi → terendah)", color: tc, font: { size: 11, weight: "600" }, padding: { top: 8 } }
+        },
+        y: {
+          grid: { color: gc },
+          ticks: { color: tc, font: { size: 11 }, callback: v=>v+"%", stepSize: 20 },
+          beginAtZero: true, max: 100,
+          title: { display: true, text: "% Realisasi Keuangan", color: tc, font: { size: 11, weight: "600" } }
+        }
+      }
+    }
+  });
+}
+
+/* ================= RENDER: TABEL ================= */
+function renderTable() {
+  const S = state.sort;
+  const COLS = [
+    ["n","Nama OPD"],
+    ["p","Pagu","r"],
+    ["r","Realisasi","r"],
+    ["sisa","Sisa","r"],
+    ["keu","% Keuangan","r"],
+    ["f","% Fisik","r"],
+    ["st","Status"]
+  ];
+
+  $("#chips").innerHTML = ["all","Dinas","Badan","Sekretariat","Kecamatan"].map(k =>
+    `<button data-k="${k}" class="${k===S.k?"on":""}">${k==="all"?"Semua":k}</button>`
+  ).join(" ");
+
+  const q = S.q.toLowerCase();
+  let rows = D.filter(d => (S.k==="all" || d.k===S.k) && d.n.toLowerCase().includes(q));
+  const key = S.s==="st" ? "keu" : S.s;
+  rows.sort((a,b) => key==="n"
+    ? a.n.localeCompare(b.n,"id")*S.dir
+    : ((a[key]??-1) - (b[key]??-1))*S.dir);
+
+  $("#th").innerHTML = COLS.map(([k,l,c]) =>
+    `<th data-s="${k}" class="${c||""}">${l}${S.s===k?(S.dir>0?" ▲":" ▼"):""}</th>`
+  ).join("");
+
+  $("#tb").innerHTML = rows.map(d => {
+    const s = st(d.keu);
+    return `<tr>
+      <td>${d.n}<small>${d.k}</small></td>
+      <td class="r">${rp(d.p)}</td>
+      <td class="r">${rp(d.r)}</td>
+      <td class="r">${rp(d.sisa)}</td>
+      <td class="r"><b style="color:${s[2]}">${pc(d.keu)}</b>
+        <div class="mini"><i style="width:${Math.min(100,d.keu)}%;background:${s[2]}"></i></div>
+      </td>
+      <td class="r">${d.f==null?"—":pc(d.f)}</td>
+      <td><span class="pill ${s[0]}">${s[1]}</span></td>
+    </tr>`;
+  }).join("") || `<tr><td colspan="7">Tidak ada OPD yang cocok.</td></tr>`;
+}
+
+/* ================= RENDER: NOTE ================= */
+function renderNote() {
+  const cfg = DATA_ALL[state.period];
+  $("#noteText").innerHTML =
+    `<b>Catatan.</b> %Keuangan = Realisasi ÷ Pagu × 100. Target ${pc(cfg.target)} adalah patokan linier (${cfg.bulanAngka} dari 12 bulan). %Fisik diambil dari laporan; rata-rata fisik dihitung sederhana (tidak dibobot pagu). Data fisik Kecamatan Tanggunggunung dan Kecamatan Tulungagung telah disesuaikan berdasarkan koreksi data pada periode September 2026.`;
+}
+
+/* ================= RENDER: ALL ================= */
+function renderAll() {
+  const cfg = DATA_ALL[state.period];
+  D = buildData(state.period);
+  TARGET = cfg.target;
+
+  $("#periodLabel").textContent = cfg.label;
+
+  renderHero();
+  renderKPI();
+  renderLegend();
+  renderKategori();
+  renderShare();
+  renderRiwayat();
+  renderSorotan();
+  renderComparison();
+  renderTable();
+  renderNote();
+}
+
+/* ================= EVENTS ================= */
+$("#periodToggle").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b || b.classList.contains("on")) return;
+  document.querySelectorAll("#periodToggle button").forEach(x => x.classList.remove("on"));
+  b.classList.add("on");
+  state.period = b.dataset.p;
+  state.shareAll = false;
+  renderAll();
+});
+
+$("#q").addEventListener("input", e => {
+  state.sort.q = e.target.value;
+  renderTable();
+});
+
+$("#chips").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  state.sort.k = b.dataset.k;
+  renderTable();
+});
+
+$("#th").addEventListener("click", e => {
+  const t = e.target.closest("th");
+  if (!t) return;
+  const k = t.dataset.s;
+  if (state.sort.s === k) state.sort.dir *= -1;
+  else { state.sort.s = k; state.sort.dir = k === "n" ? 1 : -1; }
+  renderTable();
+});
+
+document.querySelector("#riwayat table").addEventListener("click", e => {
+  const t = e.target.closest("th");
+  if (!t || !t.dataset.s) return;
+  const k = t.dataset.s;
+  if (riwayatSort.key === k) riwayatSort.dir *= -1;
+  else { riwayatSort.key = k; riwayatSort.dir = k === "n" ? 1 : -1; }
+  renderRiwayatTable(getRiwayat());
+});
+
+/* ================= INIT ================= */
+renderAll();
 </script>
 </body>
 </html>
