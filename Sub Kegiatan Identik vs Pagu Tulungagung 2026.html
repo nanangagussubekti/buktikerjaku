@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Persentase Sub Kegiatan Identik vs Pagu Tulungagung 2026</title>
+<style>
+:root{--bg:#f3f6fb;--card:#fff;--ink:#14203a;--mut:#62718f;--line:#e3e8f2;--soft:#eef2f9;--acc:#2563eb;--acc2:#0ea5e9;--vio:#7c3aed;--sky:#7dd3fc;--gry:#cbd5e1;--sh:0 1px 2px rgba(20,35,80,.06),0 12px 30px -20px rgba(20,35,80,.4);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0f1c;--card:#121a2d;--ink:#e8eefb;--mut:#8fa0c2;--line:#222f4d;--soft:#19233b;--acc:#6aa3ff;--sky:#38bdf8;--gry:#3a4767;--sh:none}}
+:root[data-theme="dark"]{--bg:#0a0f1c;--card:#121a2d;--ink:#e8eefb;--mut:#8fa0c2;--line:#222f4d;--soft:#19233b;--acc:#6aa3ff;--sky:#38bdf8;--gry:#3a4767;--sh:none}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;padding:0 clamp(12px,3vw,24px) 60px}
+.wrap{max-width:1120px;margin:0 auto}
+.hero{margin-top:18px;border-radius:22px;padding:clamp(18px,3vw,32px);color:#fff;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(16px,3vw,36px);align-items:center;background:linear-gradient(135deg,#1e3a8a,#2563eb 55%,#0ea5e9);box-shadow:0 24px 50px -28px rgba(37,99,235,.8)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;font-size:11.5px;font-weight:700;letter-spacing:.3px}
+.hero h1{font-size:clamp(20px,3.4vw,30px);letter-spacing:-.6px;line-height:1.2;margin:12px 0 8px}
+.hero p{font-size:13.5px;opacity:.94;max-width:560px}
+.say{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.14);font-size:13.5px;line-height:1.7}
+.say b{background:rgba(255,255,255,.22);padding:1px 7px;border-radius:6px}
+.ringbox{display:grid;place-items:center}
+.ring{position:relative;width:min(260px,70vw);aspect-ratio:1}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:17;transition:stroke-dasharray 1.2s cubic-bezier(.2,.8,.2,1),opacity .2s;cursor:pointer}
+.ring .c{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring .c b{font-size:clamp(30px,5vw,40px);letter-spacing:-1.5px;line-height:1}.ring .c span{font-size:11.5px;opacity:.9;margin-top:4px}
+.dim circle,.dim .lg>div{opacity:.35}.dim circle.hl,.dim .lg>div.hl{opacity:1}
+.lg{display:grid;gap:6px;margin-top:14px;width:100%;font-size:12px}
+.lg>div{display:flex;align-items:center;gap:8px;cursor:pointer;transition:opacity .2s}.lg i{width:11px;height:11px;border-radius:4px;flex:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--sh);border-top:3px solid var(--c);transition:transform .2s}.card:hover{transform:translateY(-3px)}
+.card .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.card .v{font-size:clamp(16px,2.2vw,19px);font-weight:800;margin-top:6px;line-height:1.3;word-break:break-word}.card .v small{font-size:12.5px;font-weight:700;color:var(--c)}
+.sec{margin-top:30px}.sec h2{display:flex;align-items:center;gap:10px;font-size:clamp(16px,2vw,19px);letter-spacing:-.3px}
+.sec h2 i{font-style:normal;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--acc),var(--vio));flex:none}
+.sec>p{font-size:12.5px;color:var(--mut);margin:4px 0 14px 38px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.2vw,22px);box-shadow:var(--sh)}
+.ctl{display:flex;gap:10px 14px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.grp{display:flex;gap:3px;padding:3px;border-radius:11px;background:var(--soft);border:1px solid var(--line)}
+.grp button,.sw{border:0;background:transparent;color:var(--mut);padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;transition:.15s;white-space:nowrap}
+.grp button.on{background:var(--card);color:var(--acc);box-shadow:0 2px 6px rgba(20,35,80,.15)}
+.sw{border:1px solid var(--line);background:var(--card);border-radius:99px}.sw.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.ctl label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.tip{font-size:12px;color:var(--mut);background:var(--soft);border-left:3px solid var(--acc);padding:9px 12px;border-radius:8px;margin-bottom:12px;line-height:1.65}.tip b{color:var(--ink)}
+.r{border-bottom:1px dashed var(--line);cursor:pointer;transition:background .15s}.r:last-child{border:0}.r:hover{background:var(--soft)}
+.rm{display:grid;grid-template-columns:30px minmax(0,1.1fr) minmax(0,1.3fr) minmax(150px,200px);gap:12px;align-items:center;padding:11px 6px}
+.rk{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:11px;font-weight:800;background:var(--soft);color:var(--mut)}.rk.t{background:linear-gradient(135deg,#ffd45e,#f59e0b);color:#3a2500}
+.nm{font-size:13px;font-weight:700;line-height:1.3}.nm span{display:inline-block;margin-top:4px;font-size:10.5px;font-weight:700;background:var(--soft);color:var(--mut);padding:2px 8px;border-radius:99px}
+.trk{height:20px;border-radius:8px;background:var(--soft);overflow:hidden}.trk i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.nu{text-align:right;font-variant-numeric:tabular-nums}.nu b{display:block;font-size:12px}.nu span{font-size:11.5px;font-weight:800;color:var(--acc)}
+.det{display:none;margin:0 6px 12px 42px;padding:12px;border-radius:12px;background:var(--soft);font-size:12px}
+.r.open .det{display:block}.r.open{background:transparent}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:8px}
+.dg div{background:var(--card);border-radius:10px;padding:8px 10px}.dg small{display:block;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}.dg b{font-size:13px}
+.stack{display:flex;height:56px;border-radius:12px;overflow:hidden;font-size:12px;font-weight:800;margin-bottom:12px}
+.stack div{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;color:#fff;cursor:pointer;transition:flex-grow .8s,opacity .2s;min-width:0;padding:0 6px}
+.s1{background:linear-gradient(90deg,#1d4ed8,#3b82f6)}.s2{background:var(--sky);color:#0c4a6e!important}.s3{background:var(--gry);color:var(--ink)!important}
+.leg{display:grid;gap:8px;font-size:12.5px}.leg>div{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .15s}.leg>div:hover,.leg>div.hl{background:var(--soft)}.leg i{width:12px;height:12px;border-radius:4px;margin-top:4px;flex:none}.leg b{display:block}.leg span{color:var(--mut);font-size:11.5px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:700px}
+th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);padding:10px 8px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none}th:hover{color:var(--acc)}th.n,td.n{text-align:right}
+td{padding:10px 8px;border-bottom:1px dashed var(--line);font-variant-numeric:tabular-nums;vertical-align:middle}td.n{white-space:nowrap}td.p{font-weight:800;color:var(--acc)}
+tr.tot td{border:0;font-weight:800;background:var(--soft);font-size:12.5px}tr.tot td:first-child{border-radius:10px 0 0 10px}tr.tot td:last-child{border-radius:0 10px 10px 0}
+.mb{height:8px;background:var(--soft);border-radius:5px;overflow:hidden;min-width:70px}.mb i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:5px}
+.callout{margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--acc);font-size:12.5px;line-height:1.7}.callout b{color:var(--acc)}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.rm{grid-template-columns:28px 1fr;gap:6px 10px}.rm .tw2{grid-column:1/-1;order:3}.rm .nu{grid-column:1/-1;order:4;text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:baseline}.det{margin-left:6px}.sec>p{margin-left:0}.stack{flex-direction:column;height:auto}.stack div{padding:12px 8px;flex:none!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body><div class="wrap">
+
+<section class="hero">
+ <div>
+  <span class="tag">📊 Tulungagung · TA 2026 · s.d. September 2026</span>
+  <h1>Persentase Sub Kegiatan Identik terhadap Pagu Anggaran</h1>
+  <p>Rekapitulasi Laporan Realisasi Fisik &amp; Keuangan Kab. Tulungagung. Perbandingan setiap kelompok sub kegiatan yang <b>namanya identik</b> (muncul lebih dari 1 kali) terhadap <b>pagu anggaran total Tulungagung</b>.</p>
+  <div class="say" id="say"></div>
+ </div>
+ <div class="ringbox"><div id="ringwrap" style="width:100%;display:grid;place-items:center">
+  <div class="ring"><svg viewBox="0 0 200 200" id="ring"></svg><div class="c"><b id="rc">0%</b><span>pagu berupa sub kegiatan identik</span></div></div>
+  <div class="lg" id="lg"></div>
+ </div></div>
+</section>
+
+<div class="cards" id="cards"></div>
+
+<section class="sec"><h2><i>1</i>Total Pagu per Nama Sub Kegiatan</h2><p>Klik baris untuk melihat rincian. Ubah skala atau sembunyikan Gaji ASN agar 14 kelompok lain terlihat jelas.</p>
+ <div class="panel">
+  <div class="ctl">
+   <label>Skala</label><div class="grp" id="gScale"><button data-v="log" class="on">Logaritma</button><button data-v="lin">Linear</button></div>
+   <label>Urutkan</label><div class="grp" id="gSort"><button data-v="pagu" class="on">Total pagu</button><button data-v="kem">Kemunculan</button><button data-v="avg">Rata-rata</button></div>
+   <button class="sw" id="swG">Sembunyikan Gaji ASN</button>
+  </div>
+  <div class="tip" id="tipScale"></div>
+  <div id="rows"></div>
+ </div>
+</section>
+
+<section class="sec"><h2><i>2</i>Komposisi Keseluruhan Pagu Tulungagung</h2><p>Pagu total = Rp3.354.667.818.622,00 (34 SKPD + 19 Kecamatan). Sentuh atau klik bagian untuk menyorot.</p>
+ <div class="panel"><div class="stack" id="stack"></div><div class="leg" id="leg"></div></div>
+</section>
+
+<section class="sec"><h2><i>3</i>Rincian Persentase per Sub Kegiatan Identik</h2><p>Persentase = total pagu sub kegiatan ÷ pagu total Tulungagung. Klik judul kolom untuk mengurutkan.</p>
+ <div class="panel"><div class="tw"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table></div>
+ <div class="callout" id="callout"></div></div>
+</section>
+
+</div>
+<script>
+const TOTAL=3354667818622, IDENT=1389943322764;
+const G=[["Penyediaan Gaji dan Tunjangan ASN",53,1283096668291,"53 OPD"],["Penyediaan Jasa Pelayanan Umum Kantor",50,53343474773],["Penyediaan Peralatan dan Perlengkapan Kantor",53,10431752029],["Penyediaan Jasa Komunikasi, SDA dan Listrik",52,10284664066],["Penyelenggaraan Rapat Koordinasi dan Konsultasi SKPD",52,8163405200],["Pemeliharaan Kendaraan Dinas Operasional / Lapangan",33,7467258646],["Penyediaan Administrasi Pelaksanaan Tugas ASN",48,6707779600],["Pemeliharaan Kendaraan Perorangan Dinas / Jabatan",31,4199289300],["Penyediaan Barang Cetakan dan Penggandaan",48,2320174228],["Fasilitasi Kunjungan Tamu",44,1072535300],["Penyusunan Dokumen Perencanaan Perangkat Daerah",31,1018150100],["Pemeliharaan Peralatan dan Mesin Lainnya",25,783735091],["Penyediaan Peralatan Rumah Tangga",37,581750740],["Penyediaan Komponen Instalasi Listrik / Penerangan",47,373706900],["Evaluasi Kinerja Perangkat Daerah",21,98978500]].map(([n,k,v,u],i)=>({i,n,k,v,u:u||k+" kemunculan",pct:v/TOTAL*100,avg:v/k,sh:v/IDENT*100}));
+const $=s=>document.querySelector(s),rp=v=>"Rp"+new Intl.NumberFormat("id-ID").format(Math.round(v))+",00",rpn=v=>"Rp"+new Intl.NumberFormat("id-ID").format(Math.round(v));
+const pcs=v=>(v<0.01?v.toFixed(3):v.toFixed(2)).replace(".",",")+"%",pc1=v=>v.toFixed(1).replace(".",",")+"%";
+const compact=v=>v>=1e12?(v/1e12).toFixed(2).replace(".",",")+" T":v>=1e9?(v/1e9).toFixed(2).replace(".",",")+" M":(v/1e6).toFixed(1).replace(".",",")+" Jt";
+const gaji=G[0],lain=IDENT-gaji.v,non=TOTAL-IDENT,pG=gaji.v/TOTAL*100,pL=lain/TOTAL*100,pN=non/TOTAL*100,pI=IDENT/TOTAL*100;
+const S={scale:"log",sort:"pagu",hideG:false,open:new Set(),ts:{k:"v",d:-1}};
+
+/* hero */
+$("#say").innerHTML=`Dari setiap <b>Rp100</b> pagu Tulungagung: <b>Rp${pG.toFixed(2).replace(".",",")}</b> untuk gaji &amp; tunjangan ASN, <b>Rp${pL.toFixed(2).replace(".",",")}</b> untuk 14 sub kegiatan identik lain, dan <b>Rp${pN.toFixed(2).replace(".",",")}</b> untuk sub kegiatan unik per OPD.`;
+const SEG=[["Gaji dan Tunjangan ASN",pG,gaji.v,"#ffffff"],["14 identik lainnya",pL,lain,"#7dd3fc"],["Non-identik (unik per OPD)",pN,non,"rgba(255,255,255,.28)"]];
+const C=2*Math.PI*80;let off=0;
+$("#ring").innerHTML=SEG.map(([l,p,v,c],i)=>{const len=p/100*C,s=`<circle data-i="${i}" cx="100" cy="100" r="80" stroke="${c}" stroke-dasharray="0 ${C}" stroke-dashoffset="${-off}" data-len="${len}"><title>${l}: ${pcs(p)}</title></circle>`;off+=len;return s}).join("");
+requestAnimationFrame(()=>setTimeout(()=>document.querySelectorAll("#ring circle").forEach(c=>c.style.strokeDasharray=`${Math.max(0,c.dataset.len-2)} ${C}`),80));
+$("#lg").innerHTML=SEG.map(([l,p,v,c],i)=>`<div data-i="${i}"><i style="background:${c}"></i><span>${l} · <b>${pcs(p)}</b></span></div>`).join("");
+(function(){const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1100);$("#rc").textContent=pcs(pI*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})();
+function hl(i){const w=$("#ringwrap");document.querySelectorAll("#ring circle,#lg>div").forEach(e=>e.classList.toggle("hl",e.dataset.i==i));w.classList.toggle("dim",i!=null)}
+["#ring","#lg"].forEach(s=>{$(s).onmouseover=e=>{const t=e.target.closest("[data-i]");if(t)hl(t.dataset.i)};$(s).onmouseleave=()=>hl(null)});
+
+/* cards */
+$("#cards").innerHTML=[["Pagu total Tulungagung",rp(TOTAL),"","#2563eb"],["Total 15 kelompok identik",rp(IDENT),pcs(pI),"#7c3aed"],["Sisa pagu non-identik",rp(non),pcs(pN),"#64748b"]].map(([k,v,s,c])=>`<div class="card" style="--c:${c}"><div class="k">${k}</div><div class="v">${v} ${s?`<small>· ${s}</small>`:""}</div></div>`).join("");
+
+/* bar rows */
+function bars(){
+ let a=G.filter(g=>!(S.hideG&&g.i===0));
+ const key={pagu:"v",kem:"k",avg:"avg"}[S.sort];a.sort((x,y)=>y[key]-x[key]);
+ const mx=Math.max(...a.map(g=>g.v)),lo=7.9,hi=Math.log10(mx)+.1;
+ const w=v=>S.scale==="log"?Math.max(1.5,(Math.log10(v)-lo)/(hi-lo)*100):v/mx*100;
+ $("#tipScale").innerHTML=S.scale==="log"?"<b>Skala logaritma:</b> setiap kenaikan satu tingkat panjang batang berarti nilainya sekitar 10 kali lipat. Cocok agar kelompok kecil tetap terbaca, tetapi panjang batang tidak sebanding langsung dengan nilainya.":"<b>Skala linear:</b> panjang batang sebanding langsung dengan nilai pagu"+(S.hideG?" (Gaji ASN disembunyikan agar kelompok lain lebih jelas).":". Gaji ASN begitu besar sehingga kelompok lain tampak sangat pendek; coba sembunyikan Gaji ASN.");
+ $("#rows").innerHTML=a.map((g,j)=>`<div class="r ${S.open.has(g.i)?"open":""}" data-i="${g.i}"><div class="rm"><div class="rk ${j<3?"t":""}">${j+1}</div><div class="nm">${g.n}<br><span>${g.u}</span></div><div class="trk tw2"><i style="width:${w(g.v)}%"></i></div><div class="nu"><b>${rp(g.v)}</b><span>${pcs(g.pct)} dari pagu total</span></div></div>
+ <div class="det"><div class="dg"><div><small>Rata-rata per kemunculan</small><b>${rpn(g.avg)}</b></div><div><small>Porsi dari 15 kelompok identik</small><b>${pc1(g.sh)}</b></div><div><small>Porsi dari pagu total</small><b>${pcs(g.pct)}</b></div></div>Dari setiap <b>Rp1 juta</b> pagu Tulungagung, sekitar <b>Rp${(g.v/TOTAL*1e6).toLocaleString("id-ID",{maximumFractionDigits:g.v/TOTAL*1e6<100?1:0})}</b> ada di sub kegiatan ini, tersebar pada ${g.u.replace("kemunculan","kemunculan (OPD/Kecamatan)")}.</div></div>`).join("");
+}
+$("#rows").onclick=e=>{const r=e.target.closest(".r");if(!r)return;const i=+r.dataset.i;S.open.has(i)?S.open.delete(i):S.open.add(i);r.classList.toggle("open")};
+function grp(id,k){$(id).onclick=e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll(id+" button").forEach(x=>x.classList.toggle("on",x===b));S[k]=b.dataset.v;bars()}}
+grp("#gScale","scale");grp("#gSort","sort");
+$("#swG").onclick=e=>{S.hideG=!S.hideG;e.target.classList.toggle("on",S.hideG);e.target.textContent=S.hideG?"Gaji ASN disembunyikan":"Sembunyikan Gaji ASN";if(S.hideG&&S.scale==="log"){}bars()};
+
+/* komposisi */
+$("#stack").innerHTML=SEG.map(([l,p],i)=>`<div class="s${i+1}" data-i="${i}" style="flex:${p} 1 0" title="${l}">${i===1?"14 identik lain · ":i===0?"Gaji ASN · ":"Non-identik · "}${pcs(p)}</div>`).join("");
+$("#leg").innerHTML=[["#2563eb","Penyediaan Gaji dan Tunjangan ASN",gaji.v,pG],["#7dd3fc","14 kelompok identik lainnya",lain,pL],["#cbd5e1","Sisa pagu non-identik",non,pN]].map(([c,l,v,p],i)=>`<div data-i="${i}"><i style="background:${c}"></i><div><b>${l}</b><span>${rp(v)} (${pcs(p)})</span></div></div>`).join("");
+["#stack","#leg"].forEach(s=>{$(s).onmouseover=e=>{const t=e.target.closest("[data-i]");if(!t)return;document.querySelectorAll("#stack>div").forEach(x=>x.style.opacity=x.dataset.i===t.dataset.i?1:.4);document.querySelectorAll("#leg>div").forEach(x=>x.classList.toggle("hl",x.dataset.i===t.dataset.i))};$(s).onmouseleave=()=>{document.querySelectorAll("#stack>div").forEach(x=>x.style.opacity=1);document.querySelectorAll("#leg>div").forEach(x=>x.classList.remove("hl"))}});
+
+/* tabel */
+function table(){const {k,d}=S.ts,cols=[["i","#"],["n","Sub Kegiatan Identik"],["k","Kemunculan","n"],["v","Total Pagu","n"],["pct","% vs Total","n"],["x",""]];
+ const a=[...G].sort((x,y)=>k==="n"?x.n.localeCompare(y.n,"id")*d:k==="i"||k==="x"?(x.i-y.i)*d:(x[k]-y[k])*d),mx=G[0].v;
+ $("#th").innerHTML=cols.map(([c,l,t])=>`<th class="${t||""}" data-k="${c}">${l}${S.ts.k===c?(d>0?" ▲":" ▼"):""}</th>`).join("");
+ $("#tb").innerHTML=a.map(g=>`<tr><td style="color:var(--mut);font-weight:700;width:28px">${g.i+1}</td><td>${g.n}</td><td class="n">${g.u.replace(" kemunculan","")}</td><td class="n">${rp(g.v)}</td><td class="n p">${pcs(g.pct)}</td><td style="width:110px"><div class="mb"><i style="width:${Math.max(1.5,g.v/mx*100)}%"></i></div></td></tr>`).join("")+`<tr class="tot"><td></td><td>TOTAL 15 KELOMPOK IDENTIK</td><td class="n">—</td><td class="n">${rp(IDENT)}</td><td class="n p">${pcs(pI)}</td><td><div class="mb"><i style="width:100%"></i></div></td></tr>`}
+$("#th").onclick=e=>{const t=e.target.closest("th");if(!t||!t.dataset.k||t.dataset.k==="x")return;const k=t.dataset.k;if(S.ts.k===k)S.ts.d*=-1;else{S.ts.k=k;S.ts.d=k==="n"||k==="i"?1:-1}table()};
+$("#callout").innerHTML=`<b>Catatan:</b> Sub kegiatan “Penyediaan Gaji dan Tunjangan ASN” saja menyerap <b>${pcs(pG)}</b> dari seluruh pagu Tulungagung, mendominasi dibanding 14 kelompok identik lainnya yang bila digabung hanya <b>${pcs(pL)}</b>. Total 15 kelompok identik menyumbang <b>${pcs(pI)}</b>, sedangkan <b>${pcs(pN)}</b> pagu sisanya berada pada sub kegiatan yang namanya tidak identik (kegiatan unik per OPD).`;
+bars();table();
+</script>
+</body>
+</html>
