@@ -30,6 +30,11 @@ h2 i{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;pla
 .period-toggle button{border:0;cursor:pointer;padding:9px 14px;border-radius:9px;font-size:13px;font-weight:700;font-family:inherit;background:transparent;color:var(--mut);transition:.2s}
 .period-toggle button:hover{color:var(--txt)}
 .period-toggle button.on{background:linear-gradient(135deg,#1d4ed8,#0ea5e9);color:#fff;box-shadow:0 5px 16px -5px rgba(37,99,235,.6)}
+/* tombol home */
+.home{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--mut);text-decoration:none;flex-shrink:0;transition:.2s;box-shadow:var(--sh)}
+.home:hover{color:var(--acc);border-color:var(--acc);background:var(--soft)}
+.home svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.title-row{display:flex;align-items:center;gap:12px}
 .tip{background:var(--soft);border-left:3px solid var(--acc);padding:10px 13px;border-radius:8px;font-size:12.5px;color:var(--mut);margin-bottom:14px;line-height:1.65}
 .tip b{color:var(--txt)}
 .hero{margin:14px 0;padding:24px;border-radius:20px;background:linear-gradient(135deg,#1e40af,#0ea5e9);color:#fff;box-shadow:var(--sh)}
@@ -121,9 +126,14 @@ td small{display:block;color:var(--mut);font-size:11px}
 </head>
 <body><div class="wrap">
 <header>
-  <div>
-    <h1>Realisasi APBD Kab. Tulungagung 2026</h1>
-    <p class="sub">Data s.d. <span id="periodLabel">Oktober 2026</span> · 53 OPD</p>
+  <div class="title-row">
+    <a class="home" href="https://inibuktikerjaku.vercel.app/" title="Beranda" aria-label="Beranda">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 3l9 8.5"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>
+    </a>
+    <div>
+      <h1>Realisasi APBD Kab. Tulungagung 2026</h1>
+      <p class="sub">Data s.d. <span id="periodLabel">Oktober 2026</span> · 53 OPD</p>
+    </div>
   </div>
   <div class="period-toggle" id="periodToggle">
     <button data-p="jun">Juni</button>
@@ -211,8 +221,6 @@ td small{display:block;color:var(--mut);font-size:11px}
 <script>
 /* ============================================================
    DATA LIMA PERIODE — Juni, Juli, Agustus, September, Oktober 2026
-   Oktober: realisasi = kolom F (kumulatif), fisik = kolom I dari
-   sheet "RFK sd OKTOBER 2026" apa adanya.
    ============================================================ */
 const DATA_ALL = {
   jun: {
@@ -449,8 +457,6 @@ const DATA_ALL = {
   },
   okt: {
     label: "Oktober 2026", target: 83.33, bulan: "Oktober", bulanAngka: 10,
-    /* Realisasi = kolom F (kumulatif s.d. bulan ini); fisik = kolom I dari
-       sheet "RFK sd OKTOBER 2026" apa adanya. */
     raw: [
       ["Dinas Pendidikan",886830328305,409128173386,81.39],
       ["Dinas Kesehatan",859324853661,686545050258,84.77],
