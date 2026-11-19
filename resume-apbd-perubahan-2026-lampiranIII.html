@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resume Lampiran III Perubahan APBD Kab. Tulungagung 2026</title>
+<style>
+:root{--bg1:#0b1530;--bg2:#12306b;--card:rgba(255,255,255,.07);--card2:rgba(255,255,255,.12);--line:rgba(255,255,255,.16);--txt:#eef3ff;--mut:#a9b8d8;--acc:#5aa2ff;--acc2:#22d3ee;--ok:#34d399;--bad:#fb7185;--warn:#fbbf24;--vio:#a78bfa;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:radial-gradient(1100px 600px at 12% -10%,#2150b8 0%,transparent 60%),radial-gradient(900px 600px at 100% 100%,#6d3fd1 0%,transparent 55%),linear-gradient(160deg,var(--bg1),var(--bg2));line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg1);z-index:90}
+#prog{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:4px;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0;transition:width .4s;z-index:80}
+.deck{position:fixed;inset:0;top:env(safe-area-inset-top,0px);bottom:calc(58px + env(safe-area-inset-bottom,0px))}
+.slide{position:absolute;inset:0;overflow-y:auto;opacity:0;visibility:hidden;transform:translateX(40px);transition:opacity .45s,transform .45s,visibility .45s;padding:clamp(18px,4vw,44px) clamp(14px,4vw,56px) 30px}
+.slide.on{opacity:1;visibility:visible;transform:none}.slide.prev{transform:translateX(-40px)}
+.in{max-width:1120px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;justify-content:center}
+.kick{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--acc2)}
+h1{font-size:clamp(28px,5.4vw,56px);letter-spacing:-1.5px;line-height:1.08;margin:12px 0}
+h2{font-size:clamp(22px,3.4vw,34px);letter-spacing:-.8px;line-height:1.15;margin:6px 0 6px}
+.lead{font-size:clamp(14px,1.7vw,17px);color:var(--mut);max-width:780px;margin-bottom:18px}
+.lead b,.txt b{color:var(--txt)}
+.g{display:grid;gap:12px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.c{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;backdrop-filter:blur(8px)}
+.c small{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.c .v{font-size:clamp(20px,2.8vw,30px);font-weight:800;letter-spacing:-.8px;margin:4px 0;word-break:break-word}.c .s{font-size:12.5px;color:var(--mut)}
+.up{color:var(--ok)}.dn{color:var(--bad)}.fl{color:var(--mut)}
+.chip{display:inline-block;padding:4px 11px;border-radius:99px;font-size:12px;font-weight:700;background:var(--card2);border:1px solid var(--line);margin:0 6px 6px 0}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:800}.tag.up{background:rgba(52,211,153,.16)}.tag.dn{background:rgba(251,113,133,.16)}.tag.fl{background:var(--card2)}
+.eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}.eq .op{display:grid;place-items:center;font-size:30px;font-weight:800;color:var(--mut)}
+.eq .c{display:flex;flex-direction:column;justify-content:center}
+.seg{display:inline-flex;gap:3px;padding:3px;border-radius:12px;background:var(--card);border:1px solid var(--line);margin-bottom:12px}
+.seg button,.btn{border:0;background:transparent;color:var(--mut);padding:7px 14px;border-radius:9px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;white-space:nowrap}
+.seg button.on{background:var(--acc);color:#06142e}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--txt)}.btn:hover{background:var(--card2)}
+.tw{overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--card);max-height:56vh}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th{position:sticky;top:0;background:#1a2f66;color:var(--mut);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:11px 12px;text-align:right;cursor:pointer;white-space:nowrap;z-index:1}th:first-child,td:first-child{text-align:left}
+td{padding:9px 12px;border-top:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}td:first-child{white-space:normal}
+tr:hover td{background:rgba(255,255,255,.05)}tr.tot td{font-weight:800;background:var(--card2)}tr.l1 td:first-child{padding-left:28px;color:var(--mut)}
+.dv{display:grid;gap:7px}.dr{display:grid;grid-template-columns:minmax(120px,230px) 1fr minmax(110px,150px);gap:10px;align-items:center;font-size:12.5px}
+.dr .lb{font-weight:600;line-height:1.25}.dr .vl{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.tk{height:20px;position:relative;background:var(--card);border-radius:8px}.tk:before{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line)}
+.tk i{position:absolute;top:3px;bottom:3px;border-radius:5px;transition:width .7s}
+.bars{display:grid;gap:8px}.br{display:grid;grid-template-columns:minmax(120px,250px) 1fr minmax(120px,170px);gap:10px;align-items:center;font-size:12.5px}
+.br .t{height:22px;border-radius:8px;background:var(--card);overflow:hidden}.br .t i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .7s}
+.br .vl{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.stk{display:flex;height:46px;border-radius:12px;overflow:hidden;margin:6px 0 10px;font-size:12px;font-weight:800}.stk div{display:flex;align-items:center;justify-content:center;color:#06142e;overflow:hidden;white-space:nowrap;transition:flex-grow .7s}
+.hier{display:grid;gap:6px;margin:6px 0}.hier div{display:flex;gap:10px;align-items:center;padding:8px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:13px}.hier b{min-width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--acc);color:#06142e;font-size:12px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+input{flex:1;min-width:170px;max-width:320px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:13px;font-family:inherit;outline:0}
+input:focus{border-color:var(--acc)}
+ul.pts{list-style:none;display:grid;gap:10px}ul.pts li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:14px}
+ul.pts li>i{font-style:normal;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--acc),var(--vio));color:#fff;font-size:13px}
+ul.pts.sm li{font-size:13px}.note{font-size:12px;color:var(--mut);margin-top:10px}
+.bar{position:fixed;left:0;right:0;bottom:0;height:calc(58px + env(safe-area-inset-bottom,0px));padding:0 clamp(10px,3vw,24px) env(safe-area-inset-bottom,0px);display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(8,16,40,.78);backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:85}
+.bar .mid{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mut);min-width:0}.bar .mid b{color:var(--txt)}.bar #ttl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34vw}
+.dots{display:flex;gap:5px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:.2s}.dots i.on{background:var(--acc2);width:22px;border-radius:99px}
+#ov{position:fixed;inset:0;z-index:95;background:rgba(5,10,28,.94);padding:calc(20px + env(safe-area-inset-top,0px)) 20px 20px;overflow:auto;display:none}#ov.on{display:block}
+#ov .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+#ov button{text-align:left;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--txt);font:inherit;cursor:pointer;min-height:84px}#ov button:hover,#ov button.on{border-color:var(--acc2);background:var(--card2)}#ov button b{display:block;color:var(--acc2);font-size:12px;margin-bottom:4px}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}.eq{grid-template-columns:1fr}.eq .op{font-size:22px}.dr,.br{grid-template-columns:1fr auto;gap:4px 10px}.dr .tk,.br .t{grid-column:1/-1;order:3}.dots{display:none}.bar #ttl{max-width:44vw}}
+@media(max-width:520px){.g2,.g3,.g4{grid-template-columns:1fr}}
+@media print{html,body{overflow:visible;height:auto}.deck{position:static}.slide{position:static;opacity:1;visibility:visible;transform:none;page-break-after:always}.bar,#prog{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="deck" id="deck">
+
+<section class="slide" data-title="Sampul"><div class="in">
+ <span class="kick">Resume · Lampiran III · Tahun Anggaran 2026</span>
+ <h1>Rincian Perubahan APBD<br>Kabupaten Tulungagung 2026</h1>
+ <p class="lead">Ringkasan dari <b>Lampiran III Peraturan Daerah Nomor 6 Tahun 2026</b> (15 Oktober 2026): rincian APBD menurut urusan pemerintahan daerah, organisasi, program, kegiatan, sub kegiatan, kelompok, jenis pendapatan, belanja, dan pembiayaan, dengan perbandingan <b>sebelum</b> dan <b>sesudah</b> perubahan.</p>
+ <div><span class="chip">📄 668 halaman PDF</span><span class="chip">🏛️ 53 organisasi</span><span class="chip">🔒 SIPD-RI · Penetapan APBD Perubahan 2026</span></div>
+ <p class="note">Tekan → atau geser untuk lanjut · G untuk daftar slide · F layar penuh</p>
+</div></section>
+
+<section class="slide" data-title="Mengenal dokumen"><div class="in">
+ <span class="kick">Panduan membaca</span><h2>Cara membaca dokumen ini</h2>
+ <p class="lead">Setiap sub kegiatan ditampilkan bersama rekening anggarannya dalam dua kolom <b>JUMLAH: SEBELUM</b> dan <b>SESUDAH</b> (perubahan). Selisih keduanya adalah arti dari “perubahan”.</p>
+ <div class="g g2">
+  <div class="c"><small>Tiga kelompok kode rekening</small><div class="hier"><div><b>4</b>Pendapatan Daerah (PAD dan Transfer)</div><div><b>5</b>Belanja Daerah (operasi, modal, tidak terduga, transfer)</div><div><b>6</b>Pembiayaan Daerah (penerimaan pembiayaan)</div></div></div>
+  <div class="c"><small>Hierarki rincian belanja</small><div class="hier"><div><b>1</b>Urusan → Bidang Urusan</div><div><b>2</b>Organisasi / Unit Organisasi (OPD)</div><div><b>3</b>Program → Kegiatan → Sub Kegiatan</div><div><b>4</b>Rekening: kelompok → jenis belanja</div></div></div>
+ </div>
+ <div class="g g4" style="margin-top:12px" id="cnt"></div>
+</div></section>
+
+<section class="slide" data-title="Gambaran besar"><div class="in">
+ <span class="kick">Ringkasan angka utama</span><h2>Gambaran besar: dari mana uang datang, ke mana dibelanjakan</h2>
+ <p class="lead">Belanja daerah setelah perubahan sama dengan pendapatan ditambah penerimaan pembiayaan. Hasil penjumlahan seluruh baris belanja dalam PDF cocok persis dengan angka itu.</p>
+ <div class="eq" id="eq"></div>
+ <p class="note">Di bawah tiap angka: nilai sebelum perubahan, lalu selisih terhadap sesudah perubahan.</p>
+</div></section>
+
+<section class="slide" data-title="Pendapatan Daerah"><div class="in">
+ <span class="kick">Rekening 4 · Pendapatan Daerah</span><h2>Pendapatan: PAD naik, transfer turun</h2>
+ <p class="lead" id="pdLead"></p>
+ <div class="tw"><table><thead><tr><th>Uraian</th><th>Sebelum</th><th>Sesudah</th><th>Selisih</th><th>%</th></tr></thead><tbody id="pdT"></tbody></table></div>
+</div></section>
+
+<section class="slide" data-title="Perubahan pendapatan"><div class="in">
+ <span class="kick">Rekening 4 · Selisih per jenis</span><h2>Apa yang berubah pada pendapatan</h2>
+ <p class="lead">Batang hijau ke kanan berarti naik, merah ke kiri berarti turun (sesudah dikurangi sebelum). Arahkan kursor atau sentuh untuk rincian.</p>
+ <div class="dv" id="pdD"></div>
+</div></section>
+
+<section class="slide" data-title="Belanja per kelompok"><div class="in">
+ <span class="kick">Rekening 5 · Belanja Daerah</span><h2>Belanja daerah menurut kelompok</h2>
+ <p class="lead" id="blLead"></p>
+ <div class="seg" id="blSeg"><button data-v="b">Sebelum</button><button data-v="a" class="on">Sesudah</button></div>
+ <div class="stk" id="blStk"></div><div id="blLeg"></div>
+ <div class="tw" style="margin-top:8px"><table><thead><tr><th>Kelompok</th><th>Sebelum</th><th>Sesudah</th><th>Selisih</th><th>%</th></tr></thead><tbody id="blT"></tbody></table></div>
+</div></section>
+
+<section class="slide" data-title="Belanja per jenis"><div class="in">
+ <span class="kick">Rekening 5 · Selisih per jenis belanja</span><h2>Jenis belanja mana yang naik dan turun</h2>
+ <p class="lead" id="jnLead"></p>
+ <div class="dv" id="jnD"></div>
+</div></section>
+
+<section class="slide" data-title="Pembiayaan Daerah"><div class="in">
+ <span class="kick">Rekening 6 · Pembiayaan Daerah</span><h2>Pembiayaan: SiLPA tahun sebelumnya</h2>
+ <p class="lead">Bagian Pembiayaan Daerah pada lampiran ini hanya memuat <b>6.1 Penerimaan Pembiayaan</b>, yaitu satu baris <b>6.1.01 Sisa Lebih Perhitungan Anggaran (SiLPA) Tahun Sebelumnya</b>.</p>
+ <div class="g g3" id="pbC"></div>
+ <div class="bars" id="pbB" style="margin-top:14px"></div>
+</div></section>
+
+<section class="slide" data-title="Belanja per OPD"><div class="in">
+ <span class="kick">Per organisasi · 10 terbesar</span><h2>OPD dengan belanja terbesar</h2>
+ <p class="lead" id="topLead"></p>
+ <div class="seg" id="tpSeg"><button data-v="b">Sebelum</button><button data-v="a" class="on">Sesudah</button></div>
+ <div class="bars" id="tpB"></div>
+</div></section>
+
+<section class="slide" data-title="Naik dan turun terbesar"><div class="in">
+ <span class="kick">Per organisasi · perubahan terbesar</span><h2>OPD yang anggarannya paling berubah</h2>
+ <p class="lead" id="nkLead"></p>
+ <div class="g g2"><div class="c"><small>Kenaikan terbesar</small><div class="dv" id="nkU" style="margin-top:10px"></div></div><div class="c"><small>Penurunan terbesar</small><div class="dv" id="nkD" style="margin-top:10px"></div></div></div>
+</div></section>
+
+<section class="slide" data-title="Seluruh OPD"><div class="in">
+ <span class="kick">Data lengkap per organisasi</span><h2>Seluruh 53 OPD</h2>
+ <div class="tools"><input id="q" placeholder="Cari nama OPD…"><span id="ch"></span><span class="note" id="cn" style="margin:0"></span></div>
+ <div class="tw"><table><thead><tr id="oh"></tr></thead><tbody id="ob"></tbody></table></div>
+ <p class="note">Belanja per organisasi = penjumlahan seluruh baris rekening belanja di bawah organisasi tersebut, dibulatkan ke rupiah. Klik judul kolom untuk mengurutkan.</p>
+</div></section>
+
+<section class="slide" data-title="Poin kunci"><div class="in">
+ <span class="kick">Rangkuman</span><h2>Poin kunci untuk diingat</h2>
+ <ul class="pts" id="kp"></ul>
+</div></section>
+
+<section class="slide" data-title="Catatan metode"><div class="in">
+ <span class="kick">Transparansi data</span><h2>Catatan cara resume ini dibuat</h2>
+ <ul class="pts sm" id="mt"></ul>
+</div></section>
+
+</div>
+
+<div id="ov"><div class="grid" id="ovg"></div></div>
+<div class="bar"><button class="btn" id="pv">←</button><div class="mid"><span id="ttl"></span><span><b id="ct">1</b>/<span id="tt"></span></span><div class="dots" id="dots"></div></div><div style="display:flex;gap:6px"><button class="btn" id="go" title="Daftar slide (G)">☰</button><button class="btn" id="fs" title="Layar penuh (F)">⛶</button><button class="btn" id="nx">→</button></div></div>
+
+<script>
+const ORGS=[["DINAS PENDIDIKAN", 867933369644.64, 886830328305.44], ["DINAS KESEHATAN", 797871124038.73, 910396094042.88], ["DINAS PEKERJAAN UMUM DAN PENATAAN RUANG", 386081000252.0, 365329429130.0], ["DINAS PERUMAHAN, KAWASAN PERMUKIMAN", 27026800957.0, 33025695388.0], ["DINAS LINGKUNGAN HIDUP", 31223058572.0, 41987541638.0], ["BADAN PENANGGULANGAN BENCANA DAERAH", 6911773623.0, 9416233766.0], ["SATUAN POLISI PAMONG PRAJA", 14548080157.0, 15405926708.0], ["DINAS PEMADAM KEBAKARAN DAN PENYELAMATAN", 7746123257.0, 12378547937.0], ["DINAS SOSIAL", 11185742531.0, 14477915502.0], ["DINAS TENAGA KERJA DAN TRANSMIGRASI", 10394144337.0, 13104073481.0], ["DINAS KELUARGA BERENCANA, PEMBERDAYAAN PEREMPUAN DAN PERLINDUNGAN ANAK", 17008575065.0, 17944187547.0], ["DINAS KETAHANAN PANGAN", 7676806668.0, 8055978066.0], ["DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL", 10404301249.0, 10755894062.0], ["DINAS PEMBERDAYAAN MASYARAKAT DAN DESA", 11351240609.0, 15555676202.0], ["DINAS PERHUBUNGAN", 47768593401.0, 66945097548.0], ["DINAS KOMUNIKASI DAN INFORMATIKA", 13792380031.5, 14010461064.5], ["DINAS KOPERASI DAN USAHA MIKRO", 8797751012.0, 9048514823.0], ["DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", 5523523358.0, 5696972114.0], ["DINAS PEMUDA DAN OLAHRAGA", 16778748601.0, 19959296182.0], ["DINAS KEBUDAYAAN DAN PARIWISATA", 15214364229.0, 18438481089.0], ["DINAS PERPUSTAKAAN DAN KEARSIPAN", 5967873310.0, 6542135576.0], ["DINAS PERIKANAN", 8276075615.0, 8905270079.0], ["DINAS PERTANIAN", 39416522580.0, 21064643063.0], ["DINAS PETERNAKAN DAN KESEHATAN HEWAN", 15075923527.0, 15152232410.0], ["DINAS PERINDUSTRIAN DAN PERDAGANGAN", 25172487735.0, 30197094503.0], ["SEKRETARIAT DAERAH", 87557309930.0, 101988535556.0], ["SEKRETARIAT DPRD", 89192632675.0, 97366440283.0], ["BADAN PERENCANAAN PEMBANGUNAN DAERAH", 16332746929.0, 18788148170.0], ["BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH", 459162944563.0, 499185582742.0], ["BADAN PENDAPATAN DAERAH", 33571327840.0, 36030878108.0], ["BADAN KEPEGAWAIAN DAN PENGEMBANGAN SUMBER DAYA MANUSIA", 10701268682.0, 13008227059.0], ["BADAN RISET DAN INOVASI DAERAH", 3755903953.0, 4369389542.0], ["INSPEKTORAT DAERAH", 17242587892.0, 16468339660.0], ["KECAMATAN BANDUNG", 3994672789.0, 3796947270.0], ["KECAMATAN BESUKI", 3491485743.0, 2978159771.0], ["KECAMATAN BOYOLANGU", 3264758262.0, 3026008266.0], ["KECAMATAN CAMPURDARAT", 3000427457.0, 3183258966.0], ["KECAMATAN GONDANG", 4252761203.0, 4250254684.0], ["KECAMATAN KALIDAWIR", 3566617915.0, 3409394855.0], ["KECAMATAN KARANGREJO", 3606574625.0, 3806703886.0], ["KECAMATAN KAUMAN", 3998824943.0, 3706487186.0], ["KECAMATAN KEDUNGWARU", 3563886306.0, 3663811819.0], ["KECAMATAN NGANTRU", 3334983377.0, 3092406237.0], ["KECAMATAN NGUNUT", 3702117941.0, 4034249253.0], ["KECAMATAN PAGERWOJO", 3467796307.0, 3681819470.0], ["KECAMATAN PAKEL", 3832912919.0, 3571682584.0], ["KECAMATAN PUCANGLABAN", 3068936067.0, 3594325429.0], ["KECAMATAN REJOTANGAN", 3419342923.0, 3561646668.0], ["KECAMATAN SENDANG", 2994025128.0, 3141609997.0], ["KECAMATAN SUMBERGEMPOL", 3505838877.0, 3361423316.0], ["KECAMATAN TANGGUNGGUNUNG", 3854291570.0, 3616444644.0], ["KECAMATAN TULUNGAGUNG", 27092570922.0, 31040329968.0], ["BADAN KESATUAN BANGSA DAN POLITIK", 16318253960.0, 16592114400.0]];
+const JENIS=[["5.1.01", "Belanja Pegawai", 1299178951829.64, 1227731308123.44], ["5.1.02", "Belanja Barang dan Jasa", 948837029003.23, 1209244093469.16], ["5.1.05", "Belanja Hibah", 105472457700.0, 104047422300.0], ["5.1.06", "Belanja Bantuan Sosial", 4575200000.0, 4495200000.0], ["5.2.01", "Belanja Modal Tanah", 0.0, 0.0], ["5.2.02", "Belanja Modal Peralatan dan Mesin", 67265734889.0, 106211220931.22], ["5.2.03", "Belanja Modal Gedung dan Bangunan", 21672372100.0, 20557821588.0], ["5.2.04", "Belanja Modal Jalan, Jaringan, dan Irigasi", 341183684646.0, 312681258964.0], ["5.2.05", "Belanja Modal Aset Tetap Lainnya", 9486359250.0, 8855781469.0], ["5.2.06", "Belanja Modal Aset Lainnya", 607850000.0, 761150000.0], ["5.3.01", "Belanja Tidak Terduga", 30000000000.0, 184828662514.0], ["5.4.01", "Belanja Bagi Hasil", 31689167640.0, 36143551657.0], ["5.4.02", "Belanja Bantuan Keuangan", 374025379000.0, 253380869000.0]];
+const CNT={org:53,prog:163,keg:479,sub:1516};
+const K={"pdB": "Rp3.015.225.983.588,87", "pdA": "Rp2.991.288.766.927,24", "pdD": "−Rp23.937.216.661,63", "pdN": -1, "pbB": "Rp218.768.202.469,00", "pbA": "Rp477.649.573.088,58", "pbD": "+Rp258.881.370.619,58", "blB": "Rp3.233.994.186.057,87", "blA": "Rp3.468.938.340.015,82", "blD": "+Rp234.944.153.957,95", "blP": "+7,26%"};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const nf=new Intl.NumberFormat("id-ID"),fm=n=>"Rp"+nf.format(Math.round(n)),ab=Math.abs;
+const cm=n=>{const a=ab(n);return "Rp"+(a>=1e12?(n/1e12).toFixed(2).replace(".",",")+" T":a>=1e9?(n/1e9).toFixed(2).replace(".",",")+" M":(n/1e6).toFixed(1).replace(".",",")+" Jt")};
+const sg=n=>(n>0?"+":n<0?"−":"")+fm(ab(n)),sc=n=>(n>0?"+":n<0?"−":"")+cm(ab(n)).replace("Rp","Rp");
+const pr=(a,b)=>b?(a-b)/b*100:0,ps=v=>(v>0?"+":v<0?"−":"")+ab(v).toFixed(2).replace(".",",")+"%";
+const cl=n=>n>0?"up":n<0?"dn":"fl";
+const tcase=s=>s.toLowerCase().replace(/(^|[\s,(])([a-z])/g,(m,a,b)=>a+b.toUpperCase()).replace(/\b(Dan|Di|Dalam|Serta)\b/g,x=>x.toLowerCase()).replace(/\bDprd\b/,"DPRD");
+const kat=n=>/^SEKRETARIAT/.test(n)?"Sekretariat":/^KECAMATAN/.test(n)?"Kecamatan":/^(BADAN|INSPEKTORAT)/.test(n)?"Badan":"Dinas";
+const O=ORGS.map(([n,b,a])=>({n:tcase(n),b,a,d:a-b,p:pr(a,b),k:kat(n)}));
+const J=JENIS.map(([c,n,b,a])=>({c,n,b,a,d:a-b}));
+const GR=[["5.1","Belanja Operasi","#5aa2ff"],["5.2","Belanja Modal","#22d3ee"],["5.3","Belanja Tidak Terduga","#fbbf24"],["5.4","Belanja Transfer","#a78bfa"]].map(([c,n,col])=>{const r=J.filter(j=>j.c.startsWith(c));return{c,n,col,b:r.reduce((s,j)=>s+j.b,0),a:r.reduce((s,j)=>s+j.a,0)}});
+const TB=GR.reduce((s,g)=>s+g.b,0),TA=GR.reduce((s,g)=>s+g.a,0);
+
+/* sampul/struktur */
+$("#cnt").innerHTML=[["Organisasi (OPD)",CNT.org],["Program",CNT.prog],["Kegiatan",CNT.keg],["Sub kegiatan",CNT.sub]].map(([k,v])=>`<div class="c"><small>${k}</small><div class="v">${nf.format(v)}</div><div class="s">${k==="Organisasi (OPD)"?"termasuk 19 kecamatan":"kode unik terbaca"}</div></div>`).join("");
+
+/* gambaran besar */
+const eb=(t,v,b,d)=>`<div class="c"><small>${t}</small><div class="v">${v}</div><div class="s">Sebelum ${b}</div><div class="s ${cl(d.n)}"><b>${d.t}</b></div></div>`;
+$("#eq").innerHTML=eb("Pendapatan Daerah",K.pdA,K.pdB,{n:K.pdN,t:K.pdD})+`<div class="op">+</div>`+eb("Pembiayaan (SiLPA)",K.pbA,K.pbB,{n:1,t:K.pbD})+`<div class="op">=</div>`+eb("Belanja Daerah",K.blA,K.blB,{n:1,t:K.blD});
+
+/* pendapatan */
+const PD=[["4","PENDAPATAN DAERAH",3015225983588.87,2991288766927.24,0],["4.1","Pendapatan Asli Daerah (PAD)",819992701288.87,889091729871.24,0],["4.1.01","Pajak Daerah",310576322399.89,310576322399.89,1],["4.1.02","Retribusi Daerah",497251642037.09,563587345188.19,1],["4.1.03","Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan",7677384453.25,9475436115.00,1],["4.1.04","Lain-lain PAD yang Sah",4487352398.64,5452626168.16,1],["4.2","Pendapatan Transfer",2195233282300,2102197037056,0],["4.2.01","Pendapatan Transfer Pemerintah Pusat",2054293214000,1954813268756,1],["4.2.02","Pendapatan Transfer Antar Daerah",140940068300,147383768300,1]];
+$("#pdT").innerHTML=PD.map(([c,n,b,a,l],i)=>{const d=a-b;return `<tr class="${i===0?"tot":l?"l1":""}"><td><b>${c}</b> ${n}</td><td>${fm(b)}</td><td>${fm(a)}</td><td class="${cl(d)}">${sg(d)}</td><td class="${cl(d)}">${ps(pr(a,b))}</td></tr>`}).join("");
+const pad=PD[1],trf=PD[6],tt=PD[0];
+$("#pdLead").innerHTML=`Total pendapatan <b>${cm(tt[2])}</b> menjadi <b>${cm(tt[3])}</b> (${ps(pr(tt[3],tt[2]))}). PAD naik <b>${cm(ab(pad[3]-pad[2]))}</b>, sedangkan pendapatan transfer turun <b>${cm(ab(trf[3]-trf[2]))}</b>.`;
+function dv(el,items,mx){mx=mx||Math.max(...items.map(i=>ab(i.d)))||1;$(el).innerHTML=items.map(i=>{const w=ab(i.d)/mx*50;return `<div class="dr" title="${i.t||""}"><div class="lb">${i.l}</div><div class="tk"><i style="${i.d>=0?`left:50%;background:var(--ok)`:`right:50%;background:var(--bad)`};width:${w}%"></i></div><div class="vl ${cl(i.d)}">${sc(i.d)}</div></div>`}).join("")}
+dv("#pdD",PD.filter(r=>r[0].split(".").length===3).map(r=>({l:`${r[0]} ${r[1]}`,d:r[3]-r[2],t:`${fm(r[2])} → ${fm(r[3])}`})));
+
+/* belanja kelompok */
+let bv="a";
+function blk(){$("#blStk").innerHTML=GR.map(g=>`<div style="flex:${g[bv]} 1 0;background:${g.col}" title="${g.n}">${(g[bv]/(bv==="a"?TA:TB)*100).toFixed(1).replace(".",",")}%</div>`).join("");$("#blLeg").innerHTML=GR.map(g=>`<span class="chip" style="border-color:${g.col}">${g.n} · ${cm(g[bv])}</span>`).join("")}
+$("#blSeg").onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("#blSeg button").forEach(x=>x.classList.toggle("on",x===b));bv=b.dataset.v;blk()};blk();
+$("#blT").innerHTML=GR.map(g=>`<tr><td><b>${g.c}</b> ${g.n}</td><td>${fm(g.b)}</td><td>${fm(g.a)}</td><td class="${cl(g.a-g.b)}">${sg(g.a-g.b)}</td><td class="${cl(g.a-g.b)}">${ps(pr(g.a,g.b))}</td></tr>`).join("")+`<tr class="tot"><td><b>5</b> BELANJA DAERAH</td><td>${K.blB}</td><td>${K.blA}</td><td class="up">${K.blD}</td><td class="up">${K.blP}</td></tr>`;
+$("#blLead").innerHTML=`Belanja daerah naik dari <b>${cm(TB)}</b> menjadi <b>${cm(TA)}</b>. Kelompok terbesar sesudah perubahan adalah <b>${[...GR].sort((a,b)=>b.a-a.a)[0].n}</b>.`;
+
+/* jenis */
+const JS=[...J].sort((a,b)=>b.d-a.d),up=JS[0],dnn=JS[JS.length-1];
+dv("#jnD",J.map(j=>({l:`${j.c} ${j.n.replace("Belanja ","")}`,d:j.d,t:`${fm(j.b)} → ${fm(j.a)}`})));
+$("#jnLead").innerHTML=`Kenaikan terbesar: <b>${up.n}</b> (${sc(up.d)}). Penurunan terbesar: <b>${dnn.n}</b> (${sc(dnn.d)}). Belanja Tidak Terduga naik dari ${cm(J.find(j=>j.c==="5.3.01").b)} menjadi ${cm(J.find(j=>j.c==="5.3.01").a)}.`;
+
+/* pembiayaan */
+const pbB=218768202469,pbA=477649573088.58;
+$("#pbC").innerHTML=`<div class="c"><small>Sebelum</small><div class="v">${cm(pbB)}</div><div class="s">${K.pbB}</div></div><div class="c"><small>Sesudah</small><div class="v">${cm(pbA)}</div><div class="s">${K.pbA}</div></div><div class="c"><small>Selisih</small><div class="v up">${K.pbD}</div><div class="s up"><b>${ps(pr(pbA,pbB))}</b> dari angka sebelum</div></div>`;
+$("#pbB").innerHTML=[["Sebelum",pbB],["Sesudah",pbA]].map(([l,v])=>`<div class="br"><div>${l}</div><div class="t"><i style="width:${v/pbA*100}%"></i></div><div class="vl">${cm(v)}</div></div>`).join("");
+
+/* top 10 */
+let tv="a";
+function topChart(){const s=[...O].sort((a,b)=>b[tv]-a[tv]).slice(0,10),mx=s[0][tv],T=tv==="a"?TA:TB;$("#tpB").innerHTML=s.map(o=>`<div class="br" title="${o.n}: ${fm(o.b)} → ${fm(o.a)}"><div>${o.n}</div><div class="t"><i style="width:${o[tv]/mx*100}%"></i></div><div class="vl">${cm(o[tv])} · ${(o[tv]/T*100).toFixed(1).replace(".",",")}%</div></div>`).join("");$("#topLead").innerHTML=`Sepuluh OPD terbesar menyerap <b>${(s.reduce((x,o)=>x+o[tv],0)/T*100).toFixed(1).replace(".",",")}%</b> dari total belanja (${tv==="a"?"sesudah":"sebelum"} perubahan). Persentase di kanan = porsi terhadap total belanja daerah.`}
+$("#tpSeg").onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("#tpSeg button").forEach(x=>x.classList.toggle("on",x===b));tv=b.dataset.v;topChart()};topChart();
+
+/* naik turun */
+const OS=[...O].sort((a,b)=>b.d-a.d),nu=O.filter(o=>o.d>0).length,nd=O.filter(o=>o.d<0).length;
+const mxo=Math.max(ab(OS[0].d),ab(OS[OS.length-1].d));
+dv("#nkU",OS.slice(0,6).map(o=>({l:o.n,d:o.d,t:`${fm(o.b)} → ${fm(o.a)}`})),mxo);
+dv("#nkD",OS.slice(-6).reverse().map(o=>({l:o.n,d:o.d,t:`${fm(o.b)} → ${fm(o.a)}`})),mxo);
+$("#nkLead").innerHTML=`<b>${nu}</b> OPD anggarannya naik, <b>${nd}</b> turun${O.length-nu-nd?`, ${O.length-nu-nd} tetap`:""}. Selisih = belanja sesudah dikurangi sebelum perubahan.`;
+
+/* tabel OPD */
+const OS_={k:"a",d:-1,c:"all",q:""},COLS=[["n","Organisasi"],["k","Kategori"],["b","Sebelum"],["a","Sesudah"],["d","Selisih"],["p","%"]];
+$("#ch").innerHTML=["all","Dinas","Badan","Sekretariat","Kecamatan"].map(k=>`<button class="btn ${k==="all"?"on":""}" data-k="${k}" style="padding:7px 12px">${k==="all"?"Semua":k}</button>`).join(" ");
+function ot(){const q=OS_.q.toLowerCase(),r=O.filter(o=>(OS_.c==="all"||o.k===OS_.c)&&o.n.toLowerCase().includes(q)).sort((x,y)=>OS_.k==="n"||OS_.k==="k"?x[OS_.k].localeCompare(y[OS_.k],"id")*OS_.d:(x[OS_.k]-y[OS_.k])*OS_.d);
+ $("#oh").innerHTML=COLS.map(([k,l])=>`<th data-k="${k}">${l}${OS_.k===k?(OS_.d>0?" ▲":" ▼"):""}</th>`).join("");
+ $("#ob").innerHTML=r.map(o=>`<tr><td>${o.n}</td><td style="text-align:right">${o.k}</td><td>${fm(o.b)}</td><td>${fm(o.a)}</td><td class="${cl(o.d)}">${sg(o.d)}</td><td class="${cl(o.d)}">${ps(o.p)}</td></tr>`).join("")||`<tr><td colspan="6">Tidak ada yang cocok.</td></tr>`;$("#cn").textContent=r.length+" OPD"}
+$("#q").oninput=e=>{OS_.q=e.target.value;ot()};
+$("#ch").onclick=e=>{const b=e.target.closest("button");if(!b)return;$$("#ch button").forEach(x=>x.classList.toggle("on",x===b));OS_.c=b.dataset.k;ot()};
+$("#oh").onclick=e=>{const t=e.target.closest("th");if(!t)return;const k=t.dataset.k;if(OS_.k===k)OS_.d*=-1;else{OS_.k=k;OS_.d=k==="n"||k==="k"?1:-1}ot()};ot();
+
+/* poin kunci & metode */
+const kk=J.find(j=>j.c==="5.3.01"),bk=J.find(j=>j.c==="5.4.02"),sp=OS[0],sm=OS[OS.length-1],tp=[...O].sort((a,b)=>b.a-a.a)[0];
+const KP=[`Belanja daerah naik <b>${K.blD.replace("+","")}</b> (${K.blP}), dari ${K.blB} menjadi ${K.blA}.`,`Pendapatan daerah turun <b>${cm(ab(tt[3]-tt[2]))}</b> (${ps(pr(tt[3],tt[2]))}): PAD naik ${cm(ab(pad[3]-pad[2]))}, transfer turun ${cm(ab(trf[3]-trf[2]))}.`,`Selisihnya ditutup oleh SiLPA yang naik dari ${cm(pbB)} menjadi ${cm(pbA)} (${ps(pr(pbA,pbB))}).`,`Jenis belanja naik terbesar: <b>${up.n}</b> (${sc(up.d)}); turun terbesar: <b>${dnn.n}</b> (${sc(dnn.d)}).`,`<b>${kk.n}</b> naik dari ${cm(kk.b)} menjadi ${cm(kk.a)}.`,`OPD terbesar: <b>${tp.n}</b> (${cm(tp.a)}). Kenaikan terbesar: <b>${sp.n}</b> (${sc(sp.d)}); penurunan terbesar: <b>${sm.n}</b> (${sc(sm.d)}).`];
+$("#kp").innerHTML=KP.map((t,i)=>`<li><i>${i+1}</i><span>${t}</span></li>`).join("");
+$("#mt").innerHTML=[`<b>Sumber:</b> PDF 668 halaman, Lampiran III, Peraturan Daerah Nomor 6 Tahun 2026, 15 Oktober 2026 (cetakan SIPD-RI, Penetapan APBD Perubahan 2026). Kolom “Sebelum” dan “Sesudah” dibaca sebagai sebelum dan sesudah perubahan.`,`<b>Pendapatan dan pembiayaan</b> dikutip langsung dari halaman 1 dan halaman terakhir dokumen.`,`<b>Belanja</b> tidak memiliki baris total di dokumen. Totalnya dihitung dengan menjumlahkan seluruh baris rekening belanja (5.x.xx) di setiap sub kegiatan. Hasilnya sama persis dengan pendapatan ditambah pembiayaan, baik sebelum maupun sesudah perubahan.`,`Beberapa halaman terakhir berupa hasil pemindaian dengan teks yang kurang bersih. Tiga baris belanja di sana dibaca manual dari teks yang terpecah, dan hasil penjumlahannya tetap cocok.`,`Jumlah program, kegiatan, dan sub kegiatan adalah kode unik yang terbaca dari teks PDF. Angka OPD dibulatkan ke rupiah; total utama ditulis lengkap dengan sen.`,`Resume ini tidak mengubah angka dokumen; hanya menghitung selisih, persentase, dan peringkat dari angka tersebut.`].map((t,i)=>`<li><i>${i+1}</i><span>${t}</span></li>`).join("");
+
+/* ====== DECK ENGINE ====== */
+const SL=$$(".slide");let cur=0;$("#tt").textContent=SL.length;
+$("#dots").innerHTML=SL.map((_,i)=>`<i data-i="${i}"></i>`).join("");
+$("#ovg").innerHTML=SL.map((s,i)=>`<button data-i="${i}"><b>${i+1}</b>${s.dataset.title}</button>`).join("");
+function go(n){cur=Math.max(0,Math.min(SL.length-1,n));SL.forEach((s,i)=>{s.classList.toggle("on",i===cur);s.classList.toggle("prev",i<cur);if(i===cur)s.scrollTop=0});
+ $("#prog").style.width=(cur+1)/SL.length*100+"%";$("#ct").textContent=cur+1;$("#ttl").textContent=SL[cur].dataset.title;
+ $$("#dots i").forEach((d,i)=>d.classList.toggle("on",i===cur));$$("#ovg button").forEach((b,i)=>b.classList.toggle("on",i===cur));
+ $("#pv").style.opacity=cur?1:.4;$("#nx").style.opacity=cur<SL.length-1?1:.4;try{history.replaceState(null,"","#"+(cur+1))}catch(e){}}
+const ov=v=>$("#ov").classList.toggle("on",v);
+$("#pv").onclick=()=>go(cur-1);$("#nx").onclick=()=>go(cur+1);$("#go").onclick=()=>ov(!$("#ov").classList.contains("on"));
+$("#dots").onclick=e=>{const d=e.target.closest("i");if(d)go(+d.dataset.i)};
+$("#ovg").onclick=e=>{const b=e.target.closest("button");if(b){go(+b.dataset.i);ov(false)}};
+$("#fs").onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.()};
+addEventListener("keydown",e=>{if(/INPUT/.test(e.target.tagName))return;const k=e.key;
+ if(k==="ArrowRight"||k==="PageDown"||k===" "){e.preventDefault();go(cur+1)}else if(k==="ArrowLeft"||k==="PageUp")go(cur-1);else if(k==="Home")go(0);else if(k==="End")go(SL.length-1);else if(k==="g"||k==="G")ov(!$("#ov").classList.contains("on"));else if(k==="f"||k==="F")$("#fs").click();else if(k==="Escape")ov(false)});
+let tx=null,ty=null;addEventListener("touchstart",e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+addEventListener("touchend",e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6)go(cur+(dx<0?1:-1));tx=null},{passive:true});
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
