@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Dasborad APBD Kabupaten Tulungagung</title>
+<title>Dasboard APBD Kabupaten Tulungagung</title>
 <meta name="theme-color" content="#0c2340">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,15 +16,16 @@ body{font-family:var(--body);color:var(--tx);min-height:100vh;line-height:1.6;ov
  background:radial-gradient(900px 500px at 85% -10%,rgba(74,163,255,.28),transparent 60%),radial-gradient(700px 420px at -10% 110%,rgba(242,183,5,.12),transparent 60%),linear-gradient(160deg,#081a31,var(--navy) 55%,#11375f);background-attachment:fixed}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(#000,transparent 75%);-webkit-mask-image:linear-gradient(#000,transparent 75%)}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:10px}
-.wrap{position:relative;z-index:1;width:min(900px,100% - 40px);margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 0 60px}
+.wrap{position:relative;z-index:1;width:min(1100px,100% - 40px);margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 0 60px}
 .hero{text-align:center;padding:36px 0 28px}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:99px;background:rgba(242,183,5,.12);border:1px solid rgba(242,183,5,.4);color:var(--gold);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
 .hero h1{font-family:var(--head);font-weight:800;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:14px}
 .hero h1 span{background:linear-gradient(120deg,var(--gold),#ffd966);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{color:var(--mu);font-size:1.08rem;max-width:560px;margin:0 auto}
-.grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:18px}
-.card{--c:var(--blue);position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--bd);border-top:4px solid var(--c);border-radius:6px 22px 22px 22px;padding:24px;backdrop-filter:blur(8px);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s;animation:up .5s cubic-bezier(.16,1,.3,1) both;text-decoration:none;color:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px;margin-top:18px}
+.card{--c:var(--blue);position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--bd);border-top:4px solid var(--c);border-radius:6px 22px 22px 22px;padding:24px;backdrop-filter:blur(8px);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s;animation:up .5s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i)*70ms);text-decoration:none;color:inherit}
 .card.t-gold{--c:var(--gold)}
+.card.t-green{--c:var(--green)}
 .card::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:.3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0),rgba(255,255,255,.1),transparent 45%)}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.45);border-color:rgba(255,255,255,.28);border-top-color:var(--c)}
 .card:hover::before{opacity:1}
@@ -37,9 +38,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
 .card h3{font-family:var(--head);font-size:1.6rem;line-height:1.3;margin-bottom:8px}
 .card p{color:var(--mu);font-size:.95rem;flex:1;margin-bottom:18px}
 .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--bd);flex-wrap:wrap}
+.date{display:inline-flex;align-items:center;gap:6px;font-size:.9rem;color:var(--mu)}
+.date svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
 .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 24px;border-radius:99px;border:1px solid transparent;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;text-decoration:none;transition:.2s}
 .btn.p{background:var(--gold);color:#1a1400}.btn.p:hover{background:#ffc820}
-.btn.s{background:transparent;border-color:var(--bd);color:var(--tx)}.btn.s:hover{background:rgba(255,255,255,.1)}
+.btn.g{background:var(--green);color:#052e1f}.btn.g:hover{background:#4ade80}
 @media (max-width:640px){.hero{padding-top:20px}.card h3{font-size:1.3rem}.btn{width:100%;justify-content:center}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -53,8 +56,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
   </header>
 
   <main class="grid" id="grid">
-    <!-- Satu kotak utama: Resume PAPBD 2026 -->
-    <a class="card t-gold" href="https://inibuktikerjaku.vercel.app/resume-apbd-perubahan-2026-lampiranIII.html" target="_blank" rel="noopener">
+    <!-- Kotak 1: Resume PAPBD 2026 -->
+    <a class="card t-gold" style="--i:0" href="https://inibuktikerjaku.vercel.app/resume-apbd-perubahan-2026-lampiranIII.html" target="_blank" rel="noopener">
       <div class="top">
         <div class="ico">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -68,13 +71,34 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
       <h3>Resume PAPBD 2026</h3>
       <p>Ringkasan Perubahan Anggaran Pendapatan dan Belanja Daerah (PAPBD) Kabupaten Tulungagung Tahun Anggaran 2026 – Lampiran III. Klik untuk membuka dokumen lengkap.</p>
       <div class="foot">
-        <span class="date" style="display:inline-flex;align-items:center;gap:6px;font-size:.9rem;color:var(--mu);">
-          <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+        <span class="date">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
           2026
         </span>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span class="btn p">Buka Resume ↗</span>
+        <span class="btn p">Buka Resume ↗</span>
+      </div>
+    </a>
+
+    <!-- Kotak 2: Realisasi APBD 2026 -->
+    <a class="card t-green" style="--i:1" href="https://inibuktikerjaku.vercel.app/realisasi2026.html" target="_blank" rel="noopener">
+      <div class="top">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 3v18h18"/>
+            <path d="M7 15l4-5 4 3 5-7"/>
+          </svg>
         </div>
+        <span class="no">02</span>
+      </div>
+      <span class="tipe">Laporan Realisasi</span>
+      <h3>Realisasi APBD 2026</h3>
+      <p>Laporan realisasi Anggaran Pendapatan dan Belanja Daerah Kabupaten Tulungagung Tahun Anggaran 2026. Klik untuk melihat data realisasi terkini.</p>
+      <div class="foot">
+        <span class="date">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          2026
+        </span>
+        <span class="btn g">Buka Realisasi ↗</span>
       </div>
     </a>
   </main>
