@@ -43,7 +43,29 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
 .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 24px;border-radius:99px;border:1px solid transparent;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;text-decoration:none;transition:.2s}
 .btn.p{background:var(--gold);color:#1a1400}.btn.p:hover{background:#ffc820}
 .btn.g{background:var(--green);color:#052e1f}.btn.g:hover{background:#4ade80}
-@media (max-width:640px){.hero{padding-top:20px}.card h3{font-size:1.3rem}.btn{width:100%;justify-content:center}}
+
+/* ===== SECTION LAPORAN KINERJA ===== */
+.kinerja{margin-top:48px}
+.kinerja-header{text-align:center;margin-bottom:22px}
+.kinerja-header h2{font-family:var(--head);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.02em;margin-bottom:6px}
+.kinerja-header h2 span{background:linear-gradient(120deg,var(--gold),#ffd966);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.kinerja-header p{color:var(--mu);font-size:.95rem}
+.kinerja-card{background:var(--card);border:1px solid var(--bd);border-top:4px solid var(--purple);border-radius:6px 22px 22px 22px;padding:28px;backdrop-filter:blur(8px);box-shadow:0 24px 50px rgba(0,0,0,.35)}
+.kinerja-top{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.kinerja-avatar{width:92px;height:112px;border-radius:14px;background:linear-gradient(135deg,var(--purple),#7c3aed);display:grid;place-items:center;font-family:var(--head);font-weight:800;font-size:28px;color:#fff;flex-shrink:0;overflow:hidden;position:relative}
+.kinerja-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center;position:absolute;inset:0}
+.kinerja-info{flex:1;min-width:200px}
+.kinerja-info .nama{font-family:var(--head);font-weight:800;font-size:1.4rem;line-height:1.2}
+.kinerja-info .nip{font-size:.85rem;color:var(--mu);font-weight:600;margin:3px 0 8px}
+.kinerja-info .jabatan{font-size:.95rem;font-weight:700;color:var(--purple)}
+.kinerja-info .unit{font-size:.85rem;color:var(--mu)}
+.kinerja-info .unit strong{color:var(--tx)}
+.kinerja-desc{margin-top:20px;padding-top:18px;border-top:1px dashed var(--bd);font-size:.92rem;color:var(--mu);line-height:1.75}
+.kinerja-desc b{color:var(--tx)}
+@media (max-width:640px){
+  .hero{padding-top:20px}.card h3{font-size:1.3rem}.btn{width:100%;justify-content:center}
+  .kinerja-card{padding:20px}.kinerja-avatar{width:80px;height:98px;margin:0 auto}.kinerja-top{flex-direction:column;text-align:center}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -102,6 +124,31 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
       </div>
     </a>
   </main>
+
+  <!-- SECTION LAPORAN KINERJA NANANG AGUS SUBEKTI -->
+  <section class="kinerja" aria-label="Laporan Kinerja Nanang Agus Subekti">
+    <div class="kinerja-header">
+      <h2>Laporan <span>Kinerja</span></h2>
+      <p>Penyusun Dashboard Laporan Realisasi Fisik dan Keuangan APBD</p>
+    </div>
+    <div class="kinerja-card">
+      <div class="kinerja-top">
+        <div class="kinerja-avatar">
+          <img src="foto-nanang.jpg" alt="Foto Nanang Agus Subekti" onerror="this.style.display='none'; this.parentElement.innerText='NAS';">
+        </div>
+        <div class="kinerja-info">
+          <div class="nama">NANANG AGUS SUBEKTI</div>
+          <div class="nip">NIP. 198508282009011003</div>
+          <div class="jabatan">Penelaah Teknis Kebijakan</div>
+          <div class="unit"><strong>Bagian Administrasi Pembangunan</strong><br>Sekretariat Daerah Kabupaten Tulungagung</div>
+        </div>
+      </div>
+      <div class="kinerja-desc">
+        Dashboard <b>Realisasi APBD Kabupaten Tulungagung</b> ini disusun sebagai bagian dari <b>laporan kinerja</b> yang bersangkutan dalam melaksanakan tugas dan fungsi sebagai <b>Penelaah Teknis Kebijakan</b> pada <b>Bagian Administrasi Pembangunan Setda Kabupaten Tulungagung</b>.<br><br>
+        Penyajian data dimaksudkan untuk memberikan gambaran capaian realisasi fisik dan keuangan seluruh OPD di lingkungan Pemerintah Kabupaten Tulungagung, sekaligus sebagai bahan evaluasi dan pengambilan keputusan dalam rangka percepatan penyerapan anggaran serta peningkatan kinerja pelaksanaan program dan kegiatan APBD.
+      </div>
+    </div>
+  </section>
 </div>
 
 <script>
