@@ -26,6 +26,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
 .card{--c:var(--blue);position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--bd);border-top:4px solid var(--c);border-radius:6px 22px 22px 22px;padding:24px;backdrop-filter:blur(8px);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,border-color .3s;animation:up .5s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i)*70ms);text-decoration:none;color:inherit}
 .card.t-gold{--c:var(--gold)}
 .card.t-green{--c:var(--green)}
+.card.t-blue{--c:var(--blue)}
+.card.t-purple{--c:var(--purple)}
+.card.t-red{--c:var(--red)}
 .card::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:.3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0),rgba(255,255,255,.1),transparent 45%)}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.45);border-color:rgba(255,255,255,.28);border-top-color:var(--c)}
 .card:hover::before{opacity:1}
@@ -35,19 +38,22 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
 .ico svg{width:28px;height:28px;stroke:var(--c);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .no{font-family:var(--head);font-weight:800;font-size:2.4rem;line-height:1;color:rgba(255,255,255,.1)}
 .tipe{display:inline-block;align-self:flex-start;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin-bottom:6px}
-.card h3{font-family:var(--head);font-size:1.6rem;line-height:1.3;margin-bottom:8px}
-.card p{color:var(--mu);font-size:.95rem;flex:1;margin-bottom:18px}
+.card h3{font-family:var(--head);font-size:1.35rem;line-height:1.3;margin-bottom:8px;text-transform:none}
+.card p{color:var(--mu);font-size:.92rem;flex:1;margin-bottom:18px}
 .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--bd);flex-wrap:wrap}
 .date{display:inline-flex;align-items:center;gap:6px;font-size:.9rem;color:var(--mu)}
 .date svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
 .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 24px;border-radius:99px;border:1px solid transparent;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;text-decoration:none;transition:.2s}
 .btn.p{background:var(--gold);color:#1a1400}.btn.p:hover{background:#ffc820}
 .btn.g{background:var(--green);color:#052e1f}.btn.g:hover{background:#4ade80}
+.btn.b{background:var(--blue);color:#04203f}.btn.b:hover{background:#6bb8ff}
+.btn.v{background:var(--purple);color:#1e0b3a}.btn.v:hover{background:#bda0fb}
+.btn.r{background:var(--red);color:#3a0a0a}.btn.r:hover{background:#ff8b8b}
 
 /* ===== SECTION LAPORAN KINERJA ===== */
 .kinerja{margin-top:48px}
 .kinerja-header{text-align:center;margin-bottom:22px}
-.kinerja-header h2{font-family:var(--head);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.02em;margin-bottom:6px}
+.kinerja-header h2{font-family:var(--head);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.02em;margin-bottom:6px;text-transform:none}
 .kinerja-header h2 span{background:linear-gradient(120deg,var(--gold),#ffd966);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .kinerja-header p{color:var(--mu);font-size:.95rem}
 .kinerja-card{background:var(--card);border:1px solid var(--bd);border-top:4px solid var(--purple);border-radius:6px 22px 22px 22px;padding:28px;backdrop-filter:blur(8px);box-shadow:0 24px 50px rgba(0,0,0,.35)}
@@ -63,7 +69,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
 .kinerja-desc{margin-top:20px;padding-top:18px;border-top:1px dashed var(--bd);font-size:.92rem;color:var(--mu);line-height:1.75}
 .kinerja-desc b{color:var(--tx)}
 @media (max-width:640px){
-  .hero{padding-top:20px}.card h3{font-size:1.3rem}.btn{width:100%;justify-content:center}
+  .hero{padding-top:20px}.card h3{font-size:1.2rem}.btn{width:100%;justify-content:center}
   .kinerja-card{padding:20px}.kinerja-avatar{width:80px;height:98px;margin:0 auto}.kinerja-top{flex-direction:column;text-align:center}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -78,8 +84,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
   </header>
 
   <main class="grid" id="grid">
-    <!-- Kotak 1: Resume PAPBD 2026 -->
-    <a class="card t-gold" style="--i:0" href="https://inibuktikerjaku.vercel.app/resume-apbd-perubahan-2026-lampiranIII.html" target="_blank" rel="noopener">
+    <!-- Kotak 1: Ringkasan Peraturan Daerah No. 6 Tahun 2026 -->
+    <a class="card t-gold" style="--i:0" href="https://inibuktikerjaku.vercel.app/papbd2026.html" target="_blank" rel="noopener">
       <div class="top">
         <div class="ico">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -89,6 +95,52 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
         </div>
         <span class="no">01</span>
       </div>
+      <span class="tipe">Ringkasan Peraturan</span>
+      <h3>Ringkasan Peraturan Daerah Kabupaten Tulungagung Nomor 6 Tahun 2026</h3>
+      <p>Tentang Perubahan Anggaran Pendapatan dan Belanja Daerah (APBD) Tahun Anggaran 2026. Klik untuk membaca ringkasan lengkap peraturan daerah.</p>
+      <div class="foot">
+        <span class="date">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          2026
+        </span>
+        <span class="btn p">Buka Ringkasan ↗</span>
+      </div>
+    </a>
+
+    <!-- Kotak 2: Lampiran I Peraturan Daerah No. 6 Tahun 2026 -->
+    <a class="card t-green" style="--i:1" href="https://inibuktikerjaku.vercel.app/lam1p2026.html" target="_blank" rel="noopener">
+      <div class="top">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 3v5h5M9 13h6M9 17h6"/>
+          </svg>
+        </div>
+        <span class="no">02</span>
+      </div>
+      <span class="tipe">Lampiran Peraturan</span>
+      <h3>Lampiran I Peraturan Daerah Kabupaten Tulungagung Nomor 6 Tahun 2026 tentang Perubahan APBD Tahun Anggaran 2026</h3>
+      <p>Lampiran I dari Peraturan Daerah tentang Perubahan APBD Tahun Anggaran 2026. Klik untuk membuka dokumen lampiran.</p>
+      <div class="foot">
+        <span class="date">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          2026
+        </span>
+        <span class="btn g">Buka Lampiran I ↗</span>
+      </div>
+    </a>
+
+    <!-- Kotak 3: Resume PAPBD 2026 -->
+    <a class="card t-blue" style="--i:2" href="https://inibuktikerjaku.vercel.app/resume-apbd-perubahan-2026-lampiranIII.html" target="_blank" rel="noopener">
+      <div class="top">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 3v5h5M9 13h6M9 17h6"/>
+          </svg>
+        </div>
+        <span class="no">03</span>
+      </div>
       <span class="tipe">Dokumen Anggaran</span>
       <h3>Resume PAPBD 2026</h3>
       <p>Ringkasan Perubahan Anggaran Pendapatan dan Belanja Daerah (PAPBD) Kabupaten Tulungagung Tahun Anggaran 2026 – Lampiran III. Klik untuk membuka dokumen lengkap.</p>
@@ -97,12 +149,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
           <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
           2026
         </span>
-        <span class="btn p">Buka Resume ↗</span>
+        <span class="btn b">Buka Resume ↗</span>
       </div>
     </a>
 
-    <!-- Kotak 2: Realisasi APBD 2026 -->
-    <a class="card t-green" style="--i:1" href="https://inibuktikerjaku.vercel.app/realisasi2026.html" target="_blank" rel="noopener">
+    <!-- Kotak 4: Realisasi APBD 2026 -->
+    <a class="card t-purple" style="--i:3" href="https://inibuktikerjaku.vercel.app/realisasi2026.html" target="_blank" rel="noopener">
       <div class="top">
         <div class="ico">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -110,7 +162,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
             <path d="M7 15l4-5 4 3 5-7"/>
           </svg>
         </div>
-        <span class="no">02</span>
+        <span class="no">04</span>
       </div>
       <span class="tipe">Laporan Realisasi</span>
       <h3>Realisasi APBD 2026</h3>
@@ -120,7 +172,30 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
           <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
           2026
         </span>
-        <span class="btn g">Buka Realisasi ↗</span>
+        <span class="btn v">Buka Realisasi ↗</span>
+      </div>
+    </a>
+
+    <!-- Kotak 5: Realisasi Fisik dan Keuangan APBD 2026 -->
+    <a class="card t-red" style="--i:4" href="https://inibuktikerjaku.vercel.app/rfk.html" target="_blank" rel="noopener">
+      <div class="top">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 3v18h18"/>
+            <path d="M7 15l4-5 4 3 5-7"/>
+          </svg>
+        </div>
+        <span class="no">05</span>
+      </div>
+      <span class="tipe">Laporan RFK</span>
+      <h3>Realisasi Fisik dan Keuangan APBD 2026</h3>
+      <p>Laporan capaian realisasi fisik dan keuangan Anggaran Pendapatan dan Belanja Daerah Kabupaten Tulungagung Tahun Anggaran 2026. Klik untuk melihat data RFK.</p>
+      <div class="foot">
+        <span class="date">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          2026
+        </span>
+        <span class="btn r">Buka RFK ↗</span>
       </div>
     </a>
   </main>
@@ -137,7 +212,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;background-im
           <img src="foto-nanang.jpg" alt="Foto Nanang Agus Subekti" onerror="this.style.display='none'; this.parentElement.innerText='NAS';">
         </div>
         <div class="kinerja-info">
-          <div class="nama">NANANG AGUS SUBEKTI</div>
+          <div class="nama">Nanang Agus Subekti</div>
           <div class="nip">NIP. 198508282009011003</div>
           <div class="jabatan">Penelaah Teknis Kebijakan</div>
           <div class="unit"><strong>Bagian Administrasi Pembangunan</strong><br>Sekretariat Daerah Kabupaten Tulungagung</div>
